@@ -1,17 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavarList } from "./NavbarList";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="container">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
-					</Link>
+		<nav id="navbar" className="navbar navbar-expand-lg bg-body-tertiary mb-5">
+			<div className="container-fluid">
+				<a className="navbar-brand text-white navbar-brand m-3 h1 ps-4" href="#">
+					TAK LOGO
+				</a>
+				<div className="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul className="navbar-nav ms-auto ps-5">
+						<NavarList />
+						<NavarList />
+						<NavarList />
+						<NavarList />
+						<li className="nav-item pe-4">
+							<button type="button" class="btn btn-outline-light">INGRESA</button>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</nav>
