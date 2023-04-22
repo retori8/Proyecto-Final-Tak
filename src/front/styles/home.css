@@ -5,3 +5,57 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+#home{
+    margin: auto;
+}
+#cardbanner {
+    margin: auto;  
+    text-align: left;
+} 
+#cardbody{
+    background-color:  rgb(246, 246, 238);
+    border: none;
+}
+.btn{
+    background-color: rgb(72, 47, 65);
+    color: rgb(246, 246, 238);
+}
+#bannerimg{
+    border-radius: 50%;
+}
+/* #imgbanner{
+    object-fit: cover;
+} */
+#carousel{  
+    color: aliceblue;
+    margin: auto;
+}
+.carousel-item img{
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.carousel {
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+}
+.card-img-top {
+    max-width: 100px;
+    border-radius: 50%;
+    margin: 15px auto 0;
+    box-shadow: 0 8px 20px -4px #95abbb;
+    width: 100px;
+    height: 100px;
+}
+.gtco-testimonials {
+    position: relative;
+    margin-top: 30px;
+}
+#cardtestimonials {
+    background-color: rgb(249, 249, 245);
+    border-radius: 5%;
+}
+#testimonials {
+    margin-left: 11%;
+} 

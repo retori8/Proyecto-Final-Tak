@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans&family=Viga&display=swap');
+
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+
+body {
+    background-color: rgb(246, 246, 238);
+}
+#navbar{
+    background-color: rgb(72, 47, 65);
+    font-family:'Viga', sans-serif;
+}
+#footer{
+    font-family:'Viga', sans-serif;
+    background-color: rgb(72, 47, 65);
+    color: rgb(249, 249, 245);
+
+}
+
