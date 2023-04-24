@@ -1,0 +1,24 @@
+@import url(https://fonts.googleapis.com/css?family=Lora);
+
+body {
+    font-size: 100%;
+    font-family: 'Lora', serif;
+  }
+  
+  .blockquote {
+    margin: 3.7em auto;
+    padding: 2em;
+    background: linear-gradient(white, white) padding-box, url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/80625/sea.jpg) border-box  0 / cover;
+    border: 2em solid transparent;
+    box-shadow: 5px 3px 30px black;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    line-height: 1.5;
+    width: 50%;
+  }
+  
+  footer {
+    padding-top: 5%;
+  }
+
+  

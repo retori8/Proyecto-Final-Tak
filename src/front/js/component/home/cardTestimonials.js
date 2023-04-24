@@ -7,7 +7,7 @@ export const CardTestimonials = () => {
                 <div>
                     <div id="cardtestimonials" className="card text-center">
                         <img
-                            className="card-img-top"
+                            className="cardimgtop"
                             src="https://images.unsplash.com/photo-1572561300743-2dd367ed0c9a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=50&w=300"
                             alt=""
                         />

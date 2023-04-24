@@ -1,0 +1,36 @@
+#cardChallenge {
+    background-image: url('https://media.meer.com/attachments/81612b35575aa86bfd9d69ce1667fe0b2ad2344e/store/fill/1090/613/e85cec719ffcdc7cea08a97f10656820830bef05c00e7d12ae81d64caba2/Hombre-mirando-una-puesta-de-sol-en-Tennessee-Estados-Unidos.jpg');
+    border-radius: 5%;
+    border: none;
+}
+.Background-fixed {
+    background-attachment: fixed;
+    background-position: center;
+}
+.ImageBackgroundWrap {
+    position: relative;
+    z-index: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.ImageInnerWrap {
+  /*  position: relative;
+    z-index: 223;*/
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.TextBackground {
+   background-color: rgba(0, 45, 37, 0.83);
+    
+    padding: 13%;
+    color: white;
+    text-align: center;
+}
+.animacion{
+    background-image: url('https://www.blogdelfotografo.com/wp-content/uploads/2017/09/rain-2538429_1920.jpg');
+    height: 30em;
+}
+

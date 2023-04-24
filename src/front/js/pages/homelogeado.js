@@ -8,25 +8,26 @@ import ListCounter from "../component/homelogeado/listcounter";
 import "../../styles/homelogeado.css";
 import { Actions } from "../component/homelogeado/actions";
 import { Statistics } from "../component/homelogeado/statistics";
+import { CardStatistics } from "../component/homelogeado/cardstatistics";
 
 
 
 export const HomeLogeado = () => {
 	const [task, setTask] = useState("");
 	const [list, setList] = useState([]);
-  
+
 	function handleSubmit(e) {
-	  e.preventDefault();
-	  setList([...list, task]);
-	  setTask("");
+		e.preventDefault();
+		setList([...list, task]);
+		setTask("");
 	}
 	console.log(task);
 	console.log(list);
-  
+
 	function handleDelete(i) {
-	  const deleteTask = [...list];
-	  deleteTask.splice(i, 1);
-	  setList(deleteTask);
+		const deleteTask = [...list];
+		deleteTask.splice(i, 1);
+		setList(deleteTask);
 	}
 
 	return (
@@ -46,9 +47,19 @@ export const HomeLogeado = () => {
 			</CardList>
 			<br />
 			<Actions />
-			<Statistics />
+			<div>
+				<h1 className="text-center m-5">TUS AVANCES</h1>
+				<br/>
+				<div className="container">
+					<div className="row">
+						<CardStatistics />
+						<CardStatistics />
+						<CardStatistics />
+						<CardStatistics />
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
 
- 

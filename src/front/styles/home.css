@@ -38,9 +38,10 @@
 .carousel {
     margin-top: 30px;
     margin-bottom: 50px;
+    
 
 }
-.card-img-top {
+.cardimgtop {
     max-width: 100px;
     border-radius: 50%;
     margin: 15px auto 0;
