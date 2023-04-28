@@ -160,14 +160,18 @@ def delete_books(id):
 
     return jsonify({"msg":"book delete", "book": {}}), 200
 
-@app.route('/api/favoritebooks', methods=['POST'])
-def add_all_favoritebooks():
+#favoritebooks----------------------------------------------------------------------------------------------------------------
 
-    favoritebooks = request.get_json()
+@app.route('/api/favoritebooks', methods=['GET'])#almacenar user/books
+def add_favoritebooks():
 
+    favoritebooks = User.query.get(11)#el libro favorito del usuario(id)
+    book = Book.query.get(6)#es el libro(id)
+    favoritebooks.books.append(book)#guardar libro
+    favoritebooks.new_user()#guardar usuario
+    #print(favoritebooks)
     
     return jsonify({"msg":"favoritebooks created", "favoritebooks": "favoritebooks.serialize()"}), 201
-
 
 #podcasts--------------------------------------------------------------------------------------------------------
 
@@ -210,6 +214,19 @@ def delete_podcast(id):
     podcast.delete_podcast()
 
     return jsonify({"msg":"podcast delete", "podcast": {}}), 200
+
+#favorite_podcasts--------------------------------------------------------------------------------------------------------
+
+@app.route('/api/favoritepodcasts', methods=['GET'])
+def add_favoritepodcasts():
+
+    favoritepodcasts = User.query.get(12)
+    podcast = Podcast.query.get(4)
+    favoritepodcasts.podcasts.append(podcast)
+    favoritepodcasts.new_user()
+
+    return jsonify({"msg":"new favotite_podcast"}), 201
+
 #movies------------------------------------------------------------------------------------------------------
 
 @app.route('/api/movies', methods=['POST'])
@@ -251,6 +268,18 @@ def delete_movies(id):
     movie.delete_movie()
 
     return jsonify({"msg":"movie delete", "movie": {}}), 200
+
+#favoritemovies------------------------------------------------------------------------------------------------------
+
+@app.route('/api/favoritemovies', methods=['GET'])
+def add_favoritemovies():
+
+    user = User.query.get(11)
+    movie = Movie.query.get(9)
+    user.movies.append(movie)
+    user.update_user()
+
+    return jsonify({"msg":"new favotite_movie"}), 201
 
 
 # challenges -----------------------------------------------------------------------------------------------
@@ -415,6 +444,18 @@ def delete_service(id):
     service.delete_service()
 
     return jsonify({"msg":"service delete", "service": {}}), 200
+
+#services/user------------------------------------------------------------------------------------------------------------------
+
+@app.route('/api/servicesusers', methods=['GET'])
+def add_servicesusers():
+
+    servicesusers = User.query.get(10)
+    service = Service.query.get(1)
+    servicesusers.services.append(service)
+    servicesusers.new_user()
+
+    return jsonify({"msg":"new service_user"}), 201
 
 #-------------------------------------------------------------------------------------------------------------------------
 # any other endpoint will try to serve it like a static file

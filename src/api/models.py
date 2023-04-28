@@ -26,7 +26,7 @@ favorite_movie = db.Table(
 )
 
 service_user = db.Table(
-    'services_users',
+    'service_user',
     db.Column('user_id', db.Integer, db.ForeignKey(
         'user.id'), primary_key=True),
     db.Column('services_id', db.Integer, db.ForeignKey(
@@ -81,6 +81,7 @@ class User(db.Model):# voy a crear un modelo con esa clase
     books = db.relationship('Book', secondary='favorite_book', backref="users")
     podcasts = db.relationship('Podcast', secondary='favorite_podcast', backref="users")
     movies = db.relationship('Movie', secondary='favorite_movie', backref="users")
+    services = db.relationship('Service', secondary='service_user', backref="users")
     challengesUser = db.relationship('ChallengesUser', back_populates="users")
 
 
@@ -93,7 +94,7 @@ class User(db.Model):# voy a crear un modelo con esa clase
             "address": self.address,
             "birthdate": self.birthdate,
             "image": self.image,
-            "role_id": self.role_id.serialize(),
+            #"role_id": self.role_id.serialize(),
         }
     
     def new_user(self):
