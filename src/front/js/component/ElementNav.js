@@ -1,11 +1,11 @@
 import React from "react";
 
-export const NavbarList = () => {
+export const ElementNavbar = () => {
     return (
         <div id="navbarli">
             <li className="nav-item pe-4">
-                <a className="nav-link active" aria-current="page" href="#">
-                    RESPIRA
+                <a className="nav-link active text-light" aria-current="page" href="#">
+                    TAK
                 </a>
             </li>
         </div>

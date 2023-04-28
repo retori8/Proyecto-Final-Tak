@@ -5,6 +5,7 @@ import "../../styles/home.css";
 import { Carrusel } from "../component/home/carrusel";
 import { CardBanner } from "../component/home/cardBanner";
 import { Testimonials } from "../component/home/Testimonials";
+import { BannerCard } from "../component/home/bannerCard";
 
 
 export const Home = () => {
@@ -12,7 +13,7 @@ export const Home = () => {
 
 	return (
 		<div id="home" className="text-center mt-5">
-			<CardBanner />
+			<BannerCard />
 			<Carrusel />
 			<Testimonials />
 			<h1>Hello Rigo!!</h1>

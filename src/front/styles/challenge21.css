@@ -8,8 +8,9 @@ body {
   .blockquote {
     margin: 3.7em auto;
     padding: 2em;
-    background: linear-gradient(white, white) padding-box, url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/80625/sea.jpg) border-box  0 / cover;
+    background: linear-gradient(white, white) padding-box, url(https://img.freepik.com/fotos-premium/pintura-liquida-realista-abstracta-efecto-marmoleado-tecnica-arte-fluido-salpicaduras-flujos-gotas-trazos-pintura-textura-fondo-rosa-acrilico-papel-pintado-cubiertas-envoltura-tela-embalaje_245580-535.jpg) border-box  0 / cover;
     border: 2em solid transparent;
+    border-radius: 1em;
     box-shadow: 5px 3px 30px black;
     font-family: 'Lora', serif;
     font-style: italic;

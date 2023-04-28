@@ -6,10 +6,10 @@ export const Carrusel = () => {
         <div>
             <div
                 id="carousel"
-                className="carousel slide col-10"
+                className="carousel slide col-11"
                 data-bs-ride="carousel"
             >
-                <div className="carousel-inner my-5">
+                <div className="carousel-inner">
                     <ImgCarousel />
                     <ImgCarousel />
                     <ImgCarousel />

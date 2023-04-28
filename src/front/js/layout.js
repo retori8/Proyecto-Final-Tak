@@ -8,7 +8,7 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+
 import { Footer } from "./component/footer";
 import { HomeLogeado } from "./pages/homelogeado";
 import { Challenges } from "./pages/challenges";
@@ -17,6 +17,7 @@ import { Challenge21Days } from "./pages/21dayschallenge";
 import { DayOf21Days } from "./pages/day21days";
 import { Fail21Days } from "./pages/fail21days";
 import { Discover } from "./pages/discover";
+import { Navbar } from "./component/Navbar";
 
 //create your first component
 const Layout = () => {
