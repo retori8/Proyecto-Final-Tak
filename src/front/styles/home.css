@@ -31,16 +31,17 @@
     margin: auto;
 }
 .carousel-item img{
-    height: 400px;
+    height: 500px;
     object-fit: cover;
     border-radius: 10px;
 }
 .carousel {
     margin-top: 30px;
     margin-bottom: 50px;
+    
 
 }
-.card-img-top {
+.cardimgtop {
     max-width: 100px;
     border-radius: 50%;
     margin: 15px auto 0;
@@ -59,3 +60,5 @@
 #testimonials {
     margin-left: 11%;
 } 
+
+

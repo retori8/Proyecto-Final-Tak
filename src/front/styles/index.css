@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans&family=Viga&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
 
 /* 
     General Styles used on every website (Don't Repeat Yourself)
@@ -7,21 +7,34 @@
 
 body {
     background-color: rgb(246, 246, 238);
+    font-family: 'Montserrat', sans-serif!important;
 }
 #navbar{
-    background-color: rgb(255, 255, 255);
-    font-family:'Montserrat', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
+    background-color: rgb(72, 47, 65);
+    font-family: 'Montserrat', sans-serif;
 }
-
-.nav-item{
-    color: black;
-}
-
 #footer{
-    font-family:'Montserrat', sans-serif;
+    font-family:'Viga', sans-serif;
     background-color: rgb(72, 47, 65);
     color: rgb(249, 249, 245);
 }
+#buttonav{
+    background-color: rgb(72, 47, 65);
+}
+
+/* banner */
+.page-header { background: url(https://ychef.files.bbci.co.uk/1280x720/p0bzmxtx.jpg)no-repeat; position: relative; background-size: cover; margin-top: 0%; }
+.page-caption { padding-top: 11em; padding-bottom: 9em; }
+
+.card-section { position: relative; bottom: 11em; font-family: 'Montserrat', sans-serif;}
+.card-block { padding: 4em; }
+.section-title { margin-bottom: 3em; }
+
+
+
+
+
+
+
+
 
