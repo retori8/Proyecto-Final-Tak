@@ -18,6 +18,13 @@ import { Error403 } from "./pages/403";
 import { Error503 } from "./pages/503";
 import { Navbar } from "./component/navbar";
 import { Login } from "./component/Login";
+import { HomeLogeado } from "./pages/homelogeado";
+import { Challenges } from "./pages/challenges";
+import { RandomChallenge } from "./pages/randomchallenge";
+import { Challenge21Days } from "./pages/21dayschallenge";
+import { DayOf21Days } from "./pages/day21days";
+import { Fail21Days } from "./pages/fail21days";
+import { Discover } from "./pages/discover";
 
 //create your first component
 const Layout = () => {
@@ -45,6 +52,14 @@ const Layout = () => {
                     <Route element={<Error401 />} path="error401" />
                     <Route element={<Error403 />} path="error403" />
                     <Route element={<Error503 />} path="error503" />
+                    <Route element={<HomeLogeado />} path="/home" />
+                    <Route element={<Challenges />} path="/challenges" />
+                    <Route element={<RandomChallenge />} path="/challenges/random" />
+                    <Route element={<Challenge21Days />} path="/challenges/21days" />
+                    <Route element={<DayOf21Days />} path="/challenges/21days/:id" />
+                    <Route element={<Fail21Days />} path="/challenges/fail21days" />
+                    <Route element={<Discover />} path="/discover" />
+                    <Route element={<h1>Not found!</h1>} />
                 </Routes>
                 <Footer />
             </BrowserRouter>
