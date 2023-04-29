@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
-import { Carrusel } from "../component/carrusel";
-import { CardBanner } from "../component/cardBanner";
+import { Carrusel } from "../component/home/carrusel";
 import { Testimonials } from "../component/Testimonials";
+import { BannerCard } from "../component/home/bannerCard";
 
 
 export const Home = () => {
@@ -12,7 +11,7 @@ export const Home = () => {
 
 	return (
 		<div id="home" className="text-center mt-5">
-			<CardBanner />
+			<BannerCard />
 			<Carrusel />
 			<Testimonials />
 		</div>

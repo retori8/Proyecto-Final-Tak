@@ -25,3 +25,17 @@ body {
     color: rgb(249, 249, 245);
 }
 
+#buttonav{
+    background-color: rgb(72, 47, 65);
+}
+
+/* banner */
+.page-header { background: url(https://ychef.files.bbci.co.uk/1280x720/p0bzmxtx.jpg)no-repeat; position: relative; background-size: cover; margin-top: 0%; }
+.page-caption { padding-top: 11em; padding-bottom: 9em; }
+
+.card-section { position: relative; bottom: 11em; font-family: 'Montserrat', sans-serif;}
+.card-block { padding: 4em; }
+.section-title { margin-bottom: 3em; }
+
+
+

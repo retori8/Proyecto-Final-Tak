@@ -1,7 +1,7 @@
 import React from "react";
 import { BannerSimpleLeft } from "../component/BannerSimpleLeft";
 import { BannerSimpleRight } from "../component/BannerSimpleRight";
-import { Carrusel } from "../component/carrusel";
+import { Carrusel } from "../component/home/carrusel";
 import { Unete } from "../component/Unete";
 import { Testimonials } from "../component/Testimonials";
 
