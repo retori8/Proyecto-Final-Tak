@@ -1,21 +1,23 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { UserPerfil } from "./pages/userPerfil";
 import { RegisterPage } from "./pages/registerPage";
 import { RecoveryPass } from "./pages/recoveryPass";
 import { Tak } from "./pages/tak";
-import { Login } from "./component/Login";
 import { Respira } from "./pages/respira";
+import { LoginUser } from "./pages/loginUser";
+import { Donate } from "./pages/donate";
+import { Error401 } from "./pages/401";
+import { Error403 } from "./pages/403";
+import { Error503 } from "./pages/503";
+import { Navbar } from "./component/navbar";
+import { Login } from "./component/Login";
 
 //create your first component
 const Layout = () => {
@@ -28,24 +30,25 @@ const Layout = () => {
     return (
         <div>
             <BrowserRouter basename={basename}>
-                <ScrollToTop>
-                    <Navbar />
-                    <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Demo />} path="/demo" />
-                        <Route element={<Single />} path="/single/:theid" />
-                        <Route element={<h1>Not found!</h1>} />
-                        <Route element={<UserPerfil />} path="/user/:id" />
-                        <Route element={<RegisterPage />} path="/register" />
-                        <Route element={<RecoveryPass />} path="/recovery" />
-                        <Route element={<Tak />} path="/tak" />
-                        <Route element={<Login />} path="/login" />
-                        <Route element={<Respira />} path="/respira" />
-                    </Routes>
-                    <Footer />
-                </ScrollToTop>
+                <Navbar />
+                <Routes>
+                    <Route element={<Login />} path="/login" />
+                    <Route element={<Home />} path="/" />
+                    <Route element={<h1>Not found!</h1>} />
+                    <Route element={<UserPerfil />} path="/user/:id" />
+                    <Route element={<RegisterPage />} path="/register" />
+                    <Route element={<RecoveryPass />} path="/recovery" />
+                    <Route element={<Tak />} path="/tak" />
+                    {/* <Route element={<LoginUser />} path="/login" /> */}
+                    <Route element={<Respira />} path="/respira" />
+                    <Route element={<Donate />} path="donate" />
+                    <Route element={<Error401 />} path="error401" />
+                    <Route element={<Error403 />} path="error403" />
+                    <Route element={<Error503 />} path="error503" />
+                </Routes>
+                <Footer />
             </BrowserRouter>
-        </div>
+        </div >
     );
 };
 

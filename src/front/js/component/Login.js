@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { CampoForm } from "./CampoForm";
 import { BotonUno } from "./BotonUno";
+import Context from "../store/appContext"
 
 export const Login = () => {
+
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleEmail = (event) => {
+        setEmail(event.target.value)
+    }
+
+    const handlePassword = (event) => {
+        setPassword(event.target.value)
+    }
+
+    const handleClick = () => {
+        console.log("click");
+    }
+
     return (
         <div id="cardbanner" className="container col-10 row">
             <div id="cardbody" className="card mb-3">
@@ -16,9 +34,27 @@ export const Login = () => {
                             <div className="mb-4">
                                 <h1 className="card-title m-2">Nos alegra tenerte aquí</h1>
                             </div>
-                            <CampoForm />
-                            <CampoForm />
-                            <BotonUno />
+                            <CampoForm
+                                type={"text"}
+                                label={"Email"}
+                                placeholder={"ingresa tu Email"}
+                                onInputChange={handleEmail}
+                            />
+                            <p>{email}</p>
+
+                            <CampoForm
+                                type={"password"}
+                                label={"Password"}
+                                placeholder={"Ingresa tu password"}
+                                onInputChange={handlePassword}
+                            />
+                            <p>{password}</p>
+
+                            <BotonUno
+                                name={"Ingresar"}
+                                onClick={handleClick}
+                            />
+
                             <p className="card-text m-2">
                                 <small className="text-body-secondary">¿No tienes cuenta? Crea tu cuenta aquí</small>
                             </p>
