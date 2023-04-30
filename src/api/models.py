@@ -6,7 +6,7 @@ favorite_book = db.Table(
     db.Column('user_id', db.Integer, db.ForeignKey(
         'user.id'), primary_key=True),
     db.Column('book_id', db.Integer, db.ForeignKey(
-        'book.id'), primary_key=True)
+        'books.id'), primary_key=True)
 )
 
 favorite_podcast = db.Table(
@@ -14,7 +14,7 @@ favorite_podcast = db.Table(
     db.Column('user_id', db.Integer, db.ForeignKey(
         'user.id'), primary_key=True),
     db.Column('podcast_id', db.Integer, db.ForeignKey(
-        'podcast.id'),  primary_key=True)
+        'podcasts.id'),  primary_key=True)
 )
 
 favorite_movie = db.Table(
@@ -22,7 +22,7 @@ favorite_movie = db.Table(
     db.Column('user_id', db.Integer, db.ForeignKey(
         'user.id'),  primary_key=True),
     db.Column('movie_id', db.Integer, db.ForeignKey(
-        'movie.id'), primary_key=True)
+        'movies.id'), primary_key=True)
 )
 
 service_user = db.Table(

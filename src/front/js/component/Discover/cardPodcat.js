@@ -1,7 +1,7 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa";
+import { ButtonFavorite } from "./buttonFavorite";
 
-export const CardPodcats = () => {
+export const CardPodcats = (props) => {
 
 
     return (
@@ -13,20 +13,18 @@ export const CardPodcats = () => {
                     className="img-fluid card-img-top"
                 />
                 <div className="p-4">
-                    <h5 className="text-center">Titulo del Podcast</h5>
+                    <h5 className="text-center">{props.name}</h5>
                     <p className=" my-1">
-                        Anfitriones:
+                        Anfitriones:{props.podcaster}
                     </p>
                     <p className=" my-1">
-                        Capítuloa destacados:
+                        Capítulo destacado:{props.featured_episodes}
                     </p>
                     <p className=" my-1">
-                        Resena:
+                        Resena:{props.properties}
                     </p>
                     <div className="py-2 mt-4 text-end">
-                        <button type="button" class="btn btn-primary btn-lg">
-                            <FaHeart />
-                        </button>
+                        <ButtonFavorite />
                     </div>
                 </div>
             </div>
