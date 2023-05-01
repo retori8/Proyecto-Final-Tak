@@ -182,6 +182,8 @@ class Movie(db.Model):
         return {
             "id": self.id,
             "name": self.name,
+            "director": self.director,
+            "duration": self.duration,
             "properties": self.properties
         }
 
