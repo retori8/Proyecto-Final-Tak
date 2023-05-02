@@ -149,17 +149,16 @@ export const HomeLogeado = () => {
 	return (
 		<div id="homelogeado">
 			<CardList>
-				<Input handleSubmit={actions.handleSubmit} handleChange={actions.handleChange} />
+				<Input handleSubmit={actions.handleSubmit} handleChange={actions.handleChange}/>
 				<List>
-					{!!store.thanks &&
-						store.thanks?.length > 0 ? (
-						store.thanks?.map((thank, i) => {
+					{!!store.thanks && //es distinto de null
+						store.thanks?.length > 0 ? ( //es mayor a cero
+						store.thanks?.map((thank, i) => { //mapealo
 							return (
 								<ElementsList
 									handleDelete={actions.handleDelete}
-									thank={store.thanks?.list}
+									thank={thank?.list}
 									i={i}
-									key={store.thanks?.id}
 								/>
 							);
 						})

@@ -19,6 +19,7 @@ from api.models import db, Challenges
 from api.models import db, Service
 from api.models import db, Thanks
 from api.models import db, ChallengesUser
+from datetime import datetime
 
 #from models import Person
 
@@ -368,9 +369,9 @@ def add_thank():
 
     thank = Thanks()
     thank.list = data["list"]
-    thank.date = data["date"]
+    thank.date = datetime.now()
     thank.users_id = data["users_id"]
-    thank.new_thanks()  
+    thank.new_thanks()   
     
     return jsonify({"msg":"thank created", "thank": thank.serialize()}), 201 
 

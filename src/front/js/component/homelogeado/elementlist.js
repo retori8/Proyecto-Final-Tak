@@ -5,7 +5,6 @@ export default function ElementsList(props) {
         <li
             id="thank"
             className="list-group-item d-flex justify-content-between"
-            key={props.key}
         >{props.thank}
             <button
                 id="buttonDelete"

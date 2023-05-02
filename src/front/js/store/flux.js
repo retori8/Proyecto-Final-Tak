@@ -1,3 +1,5 @@
+import { Actions } from "../component/homelogeado/actions";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -10,9 +12,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			thanks: [],
 			thanks_by_user: null,
 			thank: {
-				list:"",
-				date:"",
-				user_id:""
+				list: "",
+				date: "",
+				users_id: ""
 			},
 			//list: null,
 			//text: null,
@@ -32,9 +34,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//----------------------------------------------------------------
 			getBooks: async () => {
-
+				const { url } = getStore()
 				try {
-					const response = await fetch(`http://127.0.0.1:3001/api/books`, {
+					const response = await fetch(`${url}/api/books`, {
 						metod: "GET",
 						headers: {
 							"Content-Type": "application/json",
@@ -116,7 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getThanksByUser: async () => {
-				const { thanks_by_user } = getStore
+				const { thanks_by_user } = getStore();
 
 				try {
 					const response = await fetch(`http://127.0.0.1:3001/api/thanks/${id}`, {
@@ -137,48 +139,82 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			deleteThank : async () => {
+			deleteThank: async () => {
 				const options = {
-				  method: "DELETE",
-				  headers: {
-					"Content-Type": "application/json",
-				  },
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+					},
 				};
 				try {
-				  const response = await fetch(
-					`http://127.0.0.1:3001/api/thanks/${id}`,
-					options
-				  );
-				  if (response.status == 200) {
-					setStore({ thanks: thanks.delete.thanks.id});
-				  }
+					const response = await fetch(
+						`http://127.0.0.1:3001/api/thanks/${id}`,
+						options
+					);
+					if (response.status == 200) {
+						setStore({ thanks: thanks.delete.thanks.id });
+					}
 				} catch (error) {
-				  console.log(error);
+					console.log(error);
 				}
-			  },
+			},
+
+			addThank: async () => {
+				const { thank } = getStore()
+				console.log(thank)
+				const options = {
+					method: "POST",
+					body: JSON.stringify({ ...thank }),
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+				try {
+					const response = await fetch(
+						`http://127.0.0.1:3001/api/thanks`, options
+					);
+					let data_thank = await response.json()
+
+
+				} catch (error) {
+					console.log(error);
+				}
+
+			},
+
+			/*createThank: () => {
+				const { thank } = getStore();
+				fetch("http://127.0.0.1:3001/api/thanks", {
+					metod: "POST",
+					body: JSON.stringify({ thank }),
+					headers: {
+						"Content-Type": "application/json",
+					},
+				});
+			},*/
+
 
 			handleChange(e) {
-				const {thank} = getStore()
+				const { thank } = getStore()
 				e.preventDefault();
-				let setchange = {...thank}
-				setchange.list = e.target.value
-				
+				thank.list = e.target.value
 				setStore({
-					thank:{...setchange}
+					thank: { ...thank }
 				})
 				console.log(getStore().thank)
 			},
 
 			handleSubmit(e) {
 				e.preventDefault();
-				const {thank} = getStore()
-				let setchange = {...thank}
-				setchange.date = new Date()
-				setchange.user_id = 10
+				const { thanks } = getStore()
+				const { thank } = getStore()
+				thank.users_id = 10
 				setStore({
-					thank:{...setchange}
+					thanks: [...thanks, thank.users_id]
 				})
-				console.log(getStore().thank)
+				e.target.reset()
+				getActions().addThank()
+				console.log(getStore().thanks)
 			},
 
 			handleDelete(i) {
@@ -186,7 +222,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				thanks.splice(i, 1);
 				setStore({ thanks: thanks });
 			},
-			today() {new Date()},
+
 
 		},
 		//-------------------------------------------------------------------------------------------------------------------------
