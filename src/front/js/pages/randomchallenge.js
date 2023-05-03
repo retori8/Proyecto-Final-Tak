@@ -1,23 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../styles/challenge.css";
 import { CardChallenge } from "../component/Challenges/cardChallenge";
+import { Context } from "../store/appContext";
 
 
 
 export const RandomChallenge = () => {
 
+    const { store, actions } = useContext(Context);
+
     return (
         <div id="randomchallenge">
             <div className="container">
                 <div className="row">
-                    <div className="col-4">
+                    <div className="col-4 me-3">
                         <h1>Desafio Random</h1>
-                        <h4>Es un hecho establecido  un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos</h4>
-
+                        <h4>¿Qué te parece si soltamos un poco el control y nos aventuramos a hacer un desafío aleatorio? Lo que podemos adelantarte es que será un reto a corto plazo, creado para ejercitar nuestra “conciencia plena”.</h4>
                     </div>
-                    <div className="col-8">
-                        <CardChallenge />
-                        <button type="button" class="col-11 btn btn-outline-light btn-lg m-2 ms-4">INGRESA</button>
+                    <div className="col-7">
+                        <CardChallenge random={store.random} click={actions.getRandom}/>
                     </div>
                 </div>
             </div>

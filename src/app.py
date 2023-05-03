@@ -11,14 +11,7 @@ from api.models import db # me permite vincular mi api con mis modelos
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
-from api.models import db, User
-from api.models import db, Book
-from api.models import db, Podcast
-from api.models import db, Movie
-from api.models import db, Challenges
-from api.models import db, Service
-from api.models import db, Thanks
-from api.models import db, ChallengesUser
+from api.models import db, User, Book, Podcast, Movie, Challenges, Service, Thanks, ChallengesUser
 from datetime import datetime
 
 #from models import Person
@@ -293,7 +286,7 @@ def add_challenge():
     challenge.name = data["name"]
     challenge.length_in_days = data["length_in_days"]
     challenge.text = data["text"]
-    challenge.audio = data["audio"]  if data["audio"] else challenge.audio
+    challenge.audio = data["audio"] if data["audio"] else None
     challenge.new_challenges()  
     
     return jsonify({"msg":"challenge created", "challenge": challenge.serialize()}), 201
@@ -304,6 +297,7 @@ def get_all_challenges():
     challenges = list(map(lambda challenge : challenge.serialize(), challenges))
 
     return jsonify(challenges), 200 
+
 
 @app.route('/api/challenges/<int:id>', methods=['PUT'])#no puedo por id, se puede repetir
 def update_challenges(id):
@@ -317,6 +311,12 @@ def update_challenges(id):
     challenge.update_challenges() 
 
     return jsonify({"msg":"challenge update", "challenge": challenge.serialize()}), 200
+
+@app.route('/api/challenges/<int:id>', methods=['GET'])
+def challenges_by_type(id):
+    challenge = Challenges.query.get(id)
+
+    return jsonify({"msg":"challenge by id", "challenge": challenge.serialize()}), 200
 
 @app.route('/api/challenges/<int:id>', methods=['DELETE'])
 def delete_challenges(id):
@@ -360,6 +360,7 @@ def delete_challengesuser(id):
     challengesusers.delete_challengesuser()
 
     return jsonify({"msg":"challengesuser delete", "challengesuser": {}}), 200
+
 
 #thanks--------------------------------------------------------------------------------------------------------------------------
 
