@@ -9,23 +9,23 @@
     margin-top: 7em;
 
     animation-name: respiracion;
-    animation-duration: 6s;
+    animation-duration: 12s;
     animation-iteration-count: infinite;
 }
 
 @keyframes respiracion {
     0% {
-        background-color: blue;
+        background-color: rgb(233, 240, 31);
         transform: scale(1);
     }
 
     50% {
-        background-color: rgb(32, 147, 255);
+        background-color: rgb(233, 240, 31);
         transform: scale(4);
     }
 
     100% {
-        background-color: blue;
+        background-color: rgb(233, 240, 31);
         transform: scale(1);
     }
 }
@@ -43,7 +43,7 @@
     font-weight: 700;
 
     animation-name: inhala;
-    animation-duration: 6s;
+    animation-duration: 4s;
     animation-iteration-count: infinite;
 }
 
@@ -79,7 +79,7 @@
     margin-top: -60px;
 
     animation-name: exhala;
-    animation-duration: 6s;
+    animation-duration: 8s;
     animation-iteration-count: infinite;
 }
 

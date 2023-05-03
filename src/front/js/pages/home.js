@@ -6,6 +6,7 @@ import { Testimonials } from "../component/Testimonials";
 import { BannerCard } from "../component/home/bannerCard";
 
 
+
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 

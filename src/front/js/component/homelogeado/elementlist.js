@@ -1,4 +1,5 @@
 import React from "react";
+import "../../../styles/homelogeado.css";
 
 export default function ElementsList(props) {
     return (
@@ -9,7 +10,7 @@ export default function ElementsList(props) {
             <button
                 id="buttonDelete"
                 type="button"
-                className="btn-close btn-close-focus-shadow"
+                className="btn-close btn-dark btn-close-focus-shadow"
                 aria-label="Close"
                 onClick={props.handleDelete}
             ></button>
