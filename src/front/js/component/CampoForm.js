@@ -11,6 +11,8 @@ export const CampoForm = (props) => {
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         onChange={props.onInputChange}
+        value={props.value}
+        name={props.name}
       />
     </div>
   );

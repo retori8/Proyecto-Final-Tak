@@ -1,25 +1,33 @@
 import React, { useContext, useState } from "react";
 import { CampoForm } from "./CampoForm";
 import { BotonUno } from "./BotonUno";
-import Context from "../store/appContext"
+import { Context } from "../store/appContext";
 
 export const Login = () => {
 
+    const { store, actions } = useContext(Context);
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const handleSubmit = e => {
+        e.preventDefault();
 
-    const handleEmail = (event) => {
-        setEmail(event.target.value)
+        actions.getLogin();
     }
 
-    const handlePassword = (event) => {
-        setPassword(event.target.value)
-    }
 
-    const handleClick = () => {
-        console.log("click");
-    }
+    /*     const [email, setEmail] = useState("");
+        const [password, setPassword] = useState("");
+    
+        const handleEmail = (event) => {
+            setEmail(event.target.value)
+        }
+    
+        const handlePassword = (event) => {
+            setPassword(event.target.value)
+        }
+    
+        const handleClick = () => {
+            console.log("click");
+        } */
 
     return (
         <div id="cardbanner" className="container col-10 row">
@@ -31,29 +39,34 @@ export const Login = () => {
 
                     <div className="col-md-6">
                         <div className="card-body ps-4">
-                            <div className="mb-4">
-                                <h1 className="card-title m-2">Nos alegra tenerte aquí</h1>
-                            </div>
-                            <CampoForm
-                                type={"text"}
-                                label={"Email"}
-                                placeholder={"ingresa tu Email"}
-                                onInputChange={handleEmail}
-                            />
-                            <p>{email}</p>
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-4">
+                                    <h1 className="card-title m-2">Nos alegra tenerte aquí</h1>
+                                </div>
+                                <CampoForm
+                                    type={"text"}
+                                    label={"Email"}
+                                    placeholder={"ingresa tu Email"}
+                                    onInputChange={actions.handleChange}
+                                    value={store.email}
+                                    name={'email'}
+                                />
 
-                            <CampoForm
-                                type={"password"}
-                                label={"Password"}
-                                placeholder={"Ingresa tu password"}
-                                onInputChange={handlePassword}
-                            />
-                            <p>{password}</p>
+                                <CampoForm
+                                    type={"password"}
+                                    label={"Password"}
+                                    placeholder={"Ingresa tu password"}
+                                    onInputChange={actions.handleChange}
+                                    value={store.password}
+                                    name={'password'}
+                                />
 
-                            <BotonUno
-                                name={"Ingresar"}
-                                onClick={handleClick}
-                            />
+                                <BotonUno
+                                    name={"Ingresar"}
+                                />
+
+                            </form>
+
 
                             <p className="card-text m-2">
                                 <small className="text-body-secondary">¿No tienes cuenta? Crea tu cuenta aquí</small>

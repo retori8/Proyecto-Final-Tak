@@ -59,7 +59,7 @@ export const Navbar = () => {
 							</Link>
 						</li>
 						<li className="nav-item pe-4">
-							<button type="button" class="btn btn-outline-light">Ingresa</button>
+							<button type="button" className="btn btn-outline-light">Ingresa</button>
 						</li>
 					</ul>
 				</div>

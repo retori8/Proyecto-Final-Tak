@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CampoForm } from "./CampoForm";
 import { BotonUno } from "./BotonUno";
+import { Context } from "../store/appContext";
 
 export const Recovery = () => {
+
+    const { store, actions } = useContext(Context);
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        actions.getRecovery();
+    }
+
     return (
         <div id="cardbanner" className="container col-10 row">
             <div id="cardbody" className="card mb-3">
@@ -13,14 +23,25 @@ export const Recovery = () => {
 
                     <div className="col-md-6">
                         <div className="card-body ps-4">
-                            <div className="mb-4">
-                                <h1 className="card-title m-2">No todo está perdido</h1>
-                            </div>
-                            <p className="card-text m-2">
-                                Escribe la cuenta de Email asociada a tu cuenta y, haremos llegar un código para recuperar tu contraseña.
-                            </p>
-                            <CampoForm />
-                            <BotonUno />
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-4">
+                                    <h1 className="card-title m-2">Calma, No todo está perdido</h1>
+                                </div>
+                                <p className="card-text m-2">
+                                    Escribe el email asociado a tu cuenta y, haremos llegar un código para recuperar tu contraseña.
+                                </p>
+                                <CampoForm
+                                    type={"text"}
+                                    label={"Email"}
+                                    placeholder={"ingresa tu Email"}
+                                    onInputChange={actions.handleChange}
+                                    value={store.email}
+                                    name={'email'}
+                                />
+                                <BotonUno
+                                    name={"Recuperar"}
+                                />
+                            </form>
                             <p className="card-text m-2">
                                 <small className="text-body-secondary">Si no te ha llegado el correo, revisa la casilla de Spam</small>
                             </p>
