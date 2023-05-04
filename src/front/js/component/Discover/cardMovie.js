@@ -1,7 +1,7 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa";
+import { ButtonFavorite } from "./buttonFavorite";
 
-export const CardMovie = () => {
+export const CardMovie = (props) => {
 
 
     return (
@@ -13,20 +13,18 @@ export const CardMovie = () => {
                     className="img-fluid card-img-top"
                 />
                 <div className="p-4">
-                    <h5 className="text-center">Titulo de la Pelicula</h5>
+                    <h5 className="text-center">{props.name}</h5>
                     <p className=" my-1">
-                        Director:
+                        Director:{props.director}
                     </p>
                     <p className=" my-1">
-                        Duracion:
+                        Duracion:{props.duration}
                     </p>
                     <p className=" my-1">
-                        Resena:
+                        Resena:{props.properties}
                     </p>
                     <div className="py-2 mt-4 text-end">
-                        <button type="button" class="btn btn-primary btn-lg">
-                            <FaHeart />
-                        </button>
+                        <ButtonFavorite />
                     </div>
                 </div>
             </div>

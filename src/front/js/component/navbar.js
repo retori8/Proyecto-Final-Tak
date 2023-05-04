@@ -1,31 +1,33 @@
-/* import React from "react";
+import React from "react";
 import { ElementNavbar } from "./ElementNav";
+import { Link } from "react-router-dom";
+import logo from "./../../img/logo.png";
 
 export const Navbar = () => {
 	return (
-		<nav id="navbar" className="navbar navbar-expand-lg bg-body-tertiary">
+		<nav id="navbar" className="navbar navbar-expand-lg bg-body-tertiary mb-3">
 			<div className="container-fluid">
-				<a className="navbar-brand  text-light m-3 h1 ps-4" href="#">
-					TAK LOGO
-				</a>
+				<Link className="navbar-brand text-white navbar-brand m-3 h1 ps-4" to={"/"}>
+					<img src={logo} height={35} />
+				</Link>
 				<div className="collapse navbar-collapse" id="navbarNavDropdown">
 					<ul className="navbar-nav ms-auto ps-5">
-						<ElementNavbar />
-						<ElementNavbar />
-						<ElementNavbar />
-						<ElementNavbar />
+						<ElementNavbar name="TAK?" to="/tak" />
+						<ElementNavbar name="RESPIRA" to="/respira" />
+						<ElementNavbar name="DESAFIOS" to="/challenges" />
+						<ElementNavbar name="DESCUBRE" to="/discover" />
 						<li className="nav-item pe-4">
-							<button id="buttonav" type="button" class="btn-dark btn-outline-light btn-lg">INGRESA</button>
+							<Link type="button" className="btn btn-outline-light m-4" aria-current="page" to="/login">LOGIN</Link>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 	);
-}; */
+};
 
 
-import React from "react";
+/*import React from "react";
 import { Link } from "react-router-dom";
 import logo from "./../../img/logo.png";
 
@@ -66,4 +68,4 @@ export const Navbar = () => {
 			</div>
 		</nav>
 	);
-};
+};*/

@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export const ElementNavbar = () => {
+export const ElementNavbar = (props) => {
     return (
         <div id="navbarli">
             <li className="nav-item pe-4">
-                <a className="nav-link active text-light" aria-current="page" href="#">
-                    TAK
-                </a>
+                <Link type="button" className="nav-link active text-dark m-3" aria-current="page" to={props.to}>
+                    {props.name}
+                </Link>
             </li>
         </div>
     );

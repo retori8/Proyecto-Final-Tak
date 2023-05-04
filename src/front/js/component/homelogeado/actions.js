@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Actions = () => {
     return (
@@ -10,12 +11,12 @@ export const Actions = () => {
                         <div className="card">
                             <div className="cover item-a">
                                 <h1>
-                                    Biblioteca 
+                                    Biblioteca
                                     <br />
                                     Mindfulness
                                 </h1>
                                 <div className="card-back">
-                                    <a href="#">Vamos !</a>
+                                    <Link type="button" className="btn btn-outline-light m-4" aria-current="page" to="/discover">Vamos !</Link>
                                 </div>
                             </div>
                         </div>
@@ -24,12 +25,12 @@ export const Actions = () => {
                         <div className="card">
                             <div className="cover item-b">
                                 <h1>
-                                Respiracion
+                                    Respiracion
                                     <br />
                                     Mindfulness
                                 </h1>
                                 <div className="card-back">
-                                    <a href="#">Vamos !</a>
+                                    <Link type="button" className="btn btn-outline-light m-4" aria-current="page" to="/respira">Vamos !</Link>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +44,7 @@ export const Actions = () => {
                                     Mindfulness
                                 </h1>
                                 <div className="card-back">
-                                    <a href="#">Vamos !</a>
+                                    <Link type="button" className="btn btn-outline-light m-4" aria-current="page" to="/challenges" >Vamos !</Link>
                                 </div>
                             </div>
                         </div>

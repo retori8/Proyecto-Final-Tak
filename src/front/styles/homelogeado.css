@@ -120,9 +120,7 @@ body section .row {
 #title{
     margin-bottom: 3%;
  }
-#buttonDelete{
-    display: none;
-}
+
 #task:hover #buttonDelete{
     display:inline-flex
 }
@@ -151,6 +149,5 @@ body section .row {
   display: block;
   margin: 0 0 25px;
 }
-
 
 

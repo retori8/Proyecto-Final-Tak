@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function ListCounter({list}){
+export default function ListCounter(props){
     return(
         <li className="list-group-item align-items-start">
             <span className="badge bg-secondary rounded-pill">
-              {list.length} {list.length >= 2 ? "s" : ""} agradecimientos
+              {props.length} agradecimiento{props.length >= 2 ? "s" : ""}
             </span>
         </li>
     )

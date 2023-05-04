@@ -1,8 +1,10 @@
 #cardChallenge {
-    background-image: url('https://media.meer.com/attachments/81612b35575aa86bfd9d69ce1667fe0b2ad2344e/store/fill/1090/613/e85cec719ffcdc7cea08a97f10656820830bef05c00e7d12ae81d64caba2/Hombre-mirando-una-puesta-de-sol-en-Tennessee-Estados-Unidos.jpg');
+    background-color: rgb(218, 190, 81);
     border-radius: 5%;
     border: none;
+    align-items: center;
 }
+
 .Background-fixed {
     background-attachment: fixed;
     background-position: center;

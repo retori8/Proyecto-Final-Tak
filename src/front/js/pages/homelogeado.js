@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+//import React, { useState,useEffect } from "react";
 import CardList from "../component/homelogeado/cardlist";
 import Input from "../component/homelogeado/imput";
 import List from "../component/homelogeado/list";
@@ -6,50 +6,53 @@ import ElementsList from "../component/homelogeado/elementlist";
 import ListDefault from "../component/homelogeado/listdefault";
 import ListCounter from "../component/homelogeado/listcounter";
 import "../../styles/homelogeado.css";
-import { Actions } from "../component/homelogeado/actions";
-import { Statistics } from "../component/homelogeado/statistics";
+import { Context } from "../store/appContext";
 import { CardStatistics } from "../component/homelogeado/cardstatistics";
-
+import { Actions } from "../component/homelogeado/actions";
+import React, { useContext } from "react";
 
 
 export const HomeLogeado = () => {
-	const [task, setTask] = useState("");
-	const [list, setList] = useState([]);
 
-	function handleSubmit(e) {
-		e.preventDefault();
-		setList([...list, task]);
-		setTask("");
-	}
-	console.log(task);
-	console.log(list);
+	const { store, actions } = useContext(Context);
 
-	function handleDelete(i) {
+
+
+	/*function handleDelete(i) {
 		const deleteTask = [...list];
 		deleteTask.splice(i, 1);
 		setList(deleteTask);
-	}
+		updateTaskList(deleteTask);
+	}*/
+
 
 	return (
 		<div id="homelogeado">
 			<CardList>
-				<Input handleSubmit={handleSubmit} task={task} setTask={setTask} />
+				<Input handleSubmit={actions.handleSubmit} handleChange={actions.handleChangeObj} />
 				<List>
-					{list.length > 0 ? (
-						list.map((task, i) => {
-							return <ElementsList handleDelete={handleDelete} task={task} i={i} />;
+					{!!store.thanks && //es distinto de null
+						store.thanks?.length > 0 ? ( //es mayor a cero
+						store.thanks?.map((thank, i) => { //mapealo
+							return (
+								<ElementsList
+									handleDelete={actions.handleDelete}
+									thank={thank?.list}
+									i={i}
+								/>
+							);
 						})
 					) : (
 						<ListDefault />
 					)}
-					<ListCounter list={list} />
+					<ListCounter length={store.thanks?.length} />
 				</List>
 			</CardList>
 			<br />
 			<Actions />
 			<div>
 				<h1 className="text-center m-5">TUS AVANCES</h1>
-				<br/>
+				<br />
 				<div className="container">
 					<div className="row">
 						<CardStatistics />
@@ -62,4 +65,3 @@ export const HomeLogeado = () => {
 		</div>
 	);
 };
-
