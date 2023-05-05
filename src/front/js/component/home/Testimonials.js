@@ -10,10 +10,10 @@ export const Testimonials = () => {
             <br/>
             <div className="container text-center">
                 <div className="row grid gap-0 column-gap-3">
-                    <CardTestimonials />
-                    <CardTestimonials />
-                    <CardTestimonials />
-                    <CardTestimonials />
+                    <CardTestimonials img={"https://bootstrapious.com/i/snippets/sn-team/teacher-7.jpg"} name="John Doe" testimonio="Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis" />
+                    <CardTestimonials img={"https://bootstrapious.com/i/snippets/sn-team/teacher-7.jpg"} name="John Doe" testimonio="Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis" />
+                    <CardTestimonials img={"https://bootstrapious.com/i/snippets/sn-team/teacher-7.jpg"} name="John Doe" testimonio="Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis" />
+                    <CardTestimonials img={"https://bootstrapious.com/i/snippets/sn-team/teacher-7.jpg"} name="John Doe" testimonio="Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis" />
                 </div>
             </div>
         </div>

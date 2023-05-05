@@ -13,6 +13,8 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 from api.models import db, User, Book, Podcast, Movie, Challenges, Service, Thanks, ChallengesUser
 from datetime import datetime
+import cloudinary
+
 
 #from models import Person
 
@@ -469,6 +471,14 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+
+
+cloudinary.config(
+  cloud_name = os.getenv('CLOUDINARY_CLOUD_NAME'),
+  api_key = os.getenv('CLOUDINARY_CLOUD_API_KEY'),
+  api_secret = os.getenv('CLOUDINARY_CLOUD_API_SECRET'),
+  secure = True
+)
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':

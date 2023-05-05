@@ -37,5 +37,11 @@ body {
 .card-block { padding: 4em; }
 .section-title { margin-bottom: 3em; }
 
+#challengeCard{
+    border-radius: 3%;
+    box-shadow: 0 0 50px #ccc;
+}
+
+
 
 

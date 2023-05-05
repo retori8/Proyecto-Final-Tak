@@ -15,6 +15,8 @@ export const Home = () => {
 			<BannerCard />
 			<Carrusel />
 			<Testimonials />
+			<br/>
+			<br/>
 		</div>
 	);
 };
