@@ -9,7 +9,7 @@
     margin-top: 7em;
 
     animation-name: respiracion;
-    animation-duration: 12s;
+    animation-duration: 25s;
     animation-iteration-count: infinite;
 }
 
@@ -19,7 +19,12 @@
         transform: scale(1);
     }
 
-    50% {
+    25% {
+        background-color: rgb(233, 240, 31);
+        transform: scale(4);
+    }
+
+    55%{
         background-color: rgb(233, 240, 31);
         transform: scale(4);
     }
@@ -43,24 +48,24 @@
     font-weight: 700;
 
     animation-name: inhala;
-    animation-duration: 4s;
+    animation-duration: 25s;
     animation-iteration-count: infinite;
 }
 
 @keyframes inhala {
     0%{
+        opacity: 0;
+    }
+
+    5% {
         opacity: 100;
     }
 
-    10% {
+    18% {
         opacity: 100;
     }
 
-    25% {
-        opacity: 100;
-    }
-
-    45%{
+    23%{
         opacity: 0;
     }
 
@@ -69,17 +74,56 @@
     }
 
     100%{
-        opacity: 100;
+        opacity: 0;
     }
     
 }
+
+.mantiene {
+    font-size: 40px;
+    font-weight: 700;
+    margin-top: -60px;
+
+    animation-name: mantiene;
+    animation-duration: 25s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes mantiene{
+
+        0%{
+            opacity: 0;
+        }
+
+        20%{
+            opacity: 0;
+        }
+
+        25%{
+            opacity: 100;
+        }
+
+        50%{
+            opacity: 100;
+        }
+
+        53%{
+            opacity: 0;
+        }
+
+        100%{
+            opacity: 0;
+        }
+
+}
+
 .exhala {
     font-size: 40px;
     font-weight: 700;
     margin-top: -60px;
 
     animation-name: exhala;
-    animation-duration: 8s;
+    animation-duration: 25s;
     animation-iteration-count: infinite;
 }
 
@@ -92,16 +136,16 @@
         opacity: 0;
     }
 
+    50% {
+        opacity: 0;
+    }
+
     55% {
         opacity: 100;
     }
 
-    70% {
+    95%{
         opacity: 100;
-    }
-
-    90%{
-        opacity: 0;
     }
 
     100%{

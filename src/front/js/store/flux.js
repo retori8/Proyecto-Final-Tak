@@ -25,10 +25,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			lastname: '',
 			users: '',
 			newUser: {
-				name: "",
-				lastName: "",
+				first_name: "",
+				last_name: "",
 				email: "",
 				password: "",
+				address: "",
+				birthdate: 0,
+				image: "",
+				role_id: 0,
+				funcion: "",
 			}
 		},
 
@@ -41,6 +46,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					[e.target.name]: e.target.value
 				})
 			},
+
+			handleChangeObjUser(e) {
+				const { newUser } = getStore()
+				e.preventDefault();
+				newUser[e.target.name] = e.target.value
+				setStore({
+					newUser
+				})
+			},
+
+			/* handlePasswordValidate(e){
+				const { newUser } = getStore()
+				e.preventDefault();
+				
+			}, */
+
 
 			getLogin: () => {
 				const { email, password, url } = getStore();
@@ -65,14 +86,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			createNewUser: () => {
-				const { url, name, lastname, email, password } = getStore();
-				fetch(`${url}/new-user`, {
+				const { url } = getStore();
+				const { newUser } = getStore();
+				console.log(newUser)
+
+				fetch(`${url}/api/register`, {
 					method: 'POST',
-					body: JSON.stringify({ name, lastname, email, password }),
+					body: JSON.stringify({ ...newUser }),
 					headers: {
 						'Content-Type': 'application/json'
 					}
 				})
+			},
+
+			addThank: async () => {
+				const { url } = getStore()
+				const { thank } = getStore()
+				console.log(thank)
+				const options = {
+					method: "POST",
+					body: JSON.stringify({ ...thank }),
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+				try {
+					const response = await fetch(
+						`${url}/api/thanks`, options
+					);
+					let data_thank = await response.json()
+
+
+				} catch (error) {
+					console.log(error);
+				}
+
 			},
 
 			getUser: async () => {
@@ -109,7 +157,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const { challenge_21_days } = getStore();
 
 				try {
-					const response = await fetch(`${url}/api/challenges/3`, {
+					const response = await fetch(`${url}/api/challenges`, {
 						metod: "GET",
 						headers: {
 							"Content-Type": "application/json",

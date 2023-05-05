@@ -74,7 +74,7 @@ class User(db.Model):# voy a crear un modelo con esa clase
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
     address = db.Column(db.String(120), nullable=True)#--------------- default ="" / no es obligarotio
-    birthdate = db.Column(db.Integer, nullable=True)
+    birthdate = db.Column(db.DateTime(), nullable=True)
     image = db.Column(db.String(255), nullable=True)
     role_id = db.Column(db.Integer, db.ForeignKey("role.id"), default=2)
     thanks = db.relationship('Thanks', back_populates="user")

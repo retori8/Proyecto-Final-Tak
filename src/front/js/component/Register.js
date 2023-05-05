@@ -7,11 +7,29 @@ export const Register = () => {
 
     const { store, actions } = useContext(Context);
 
+
     const handleSubmit = e => {
+        console.log(store);
         e.preventDefault();
-        console.log(this.state)
-        actions.getRecovery();
+        if (store.newUser.re_password.length > 0) {
+            if (store.newUser.password !== store.newUser.re_password) {
+                console.log("Las contraseñan no son iguales")
+            }
+            else {
+                actions.createNewUser();
+            }
+        }
     }
+
+    /* const validarPassword2 = () => {
+        if (store.newUser.password > 0) {
+            if (store.newUser.password !== store.newUser.re_password) {
+                console.log("Las contraseñan no son iguales")
+            } else {
+                console.log("Las contraseñan son iguales")
+            }
+        }
+    } */
 
     return (
         <div id="cardbanner" className="container col-10 row mb-5">
@@ -30,40 +48,40 @@ export const Register = () => {
                                         type={"text"}
                                         label={"Nombre"}
                                         placeholder={"ingresa tu nombre "}
-                                        onInputChange={actions.handleChange}
-                                        value={store.name}
-                                        name={'name'}
+                                        onInputChange={actions.handleChangeObjUser}
+                                        value={store.newUser.name}
+                                        name={'first_name'}
                                     />
                                     <CampoForm
                                         type={"text"}
                                         label={"Apellidos"}
                                         placeholder={"ingresa tus apellidos "}
-                                        onInputChange={actions.handleChange}
-                                        value={store.lastname}
-                                        name={'lastname'}
+                                        onInputChange={actions.handleChangeObjUser}
+                                        value={store.newUser.lastname}
+                                        name={'last_name'}
                                     />
                                     <CampoForm
                                         type={"text"}
                                         label={"Email"}
                                         placeholder={"ingresa tu Email "}
-                                        onInputChange={actions.handleChange}
-                                        value={store.email}
+                                        onInputChange={actions.handleChangeObjUser}
+                                        value={store.newUser.email}
                                         name={'email'}
                                     />
                                     <CampoForm
                                         type={"password"}
                                         label={"Constraseña"}
                                         placeholder={"Ingresa tu constraseña"}
-                                        onInputChange={actions.handleChange}
-                                        value={store.password}
+                                        onInputChange={actions.handleChangeObjUser}
+                                        value={store.newUser.password}
                                         name={'password'}
                                     />
                                     <CampoForm
                                         type={"password"}
                                         label={"Validación de contraseña"}
                                         placeholder={"Repite tu contraseña"}
-                                        onInputChange={actions.handleChange}
-                                        value={store.re_password}
+                                        onInputChange={actions.handleChangeObjUser}
+                                        value={store.newUser.re_password}
                                         name={'re_password'}
                                     />
                                     <BotonUno
