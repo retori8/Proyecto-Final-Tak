@@ -19,6 +19,10 @@ body {
     color: black;
 }
 
+#navbarli{
+    color: chartreuse; 
+}
+
 #footer{
     font-family:'Montserrat', sans-serif;
     background-color: rgb(72, 47, 65);

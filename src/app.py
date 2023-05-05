@@ -11,7 +11,7 @@ from api.models import db # me permite vincular mi api con mis modelos
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
-from api.models import db, User, Book, Podcast, Movie, Challenges, Service, Thanks, ChallengesUser
+from api.models import db, User, Book, Podcast, Movie, Challenges, Service, Thanks, ChallengesUser, Role
 from datetime import datetime
 
 #from models import Person
@@ -402,7 +402,7 @@ def get_all_thanks_by_user(id):
 def add_role():
     data = request.get_json()
 
-    role = User()
+    role = Role()
     role.name = data["name"]
     role.user = data["user"]
     role.new_role()  
@@ -468,6 +468,23 @@ def serve_any_other_file(path):
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0 # avoid cache memory
     return response
+
+@app.route('/api/register', methods=['POST'])
+def register():
+    data = request.get_json()
+
+    user = User()
+    user.first_name = data["first_name"]
+    user.last_name = data["last_name"]
+    user.email = data["email"]
+    user.password = data["password"]
+    user.address = data["address"] if data["address"] else None
+    user.birthdate = data["birthdate"] if data["birthdate"] else None
+    user.image = data["image"] if data["image"] else None
+    user.role_id = 2
+    user.new_user()  
+    
+    return jsonify({"msg":"user created", "user": user.serialize()}), 201
 
 
 # this only runs if `$ python src/main.py` is executed
