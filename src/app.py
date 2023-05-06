@@ -2,18 +2,25 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os # me permite leer del env.
-from flask import Flask, request, jsonify, url_for, send_from_directory
+from flask import Flask, request, jsonify, url_for, send_from_directory,  Blueprint
 from flask_migrate import Migrate# genera de manera dinamica mis tablas desde models
 from flask_swagger import swagger
 from flask_cors import CORS # evita errores de seguridad en la api
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
+from werkzeug.security import generate_password_hash, check_password_hash
 from api.utils import APIException, generate_sitemap
 from api.models import db # me permite vincular mi api con mis modelos
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
-from api.models import db, User, Book, Podcast, Movie, Challenges, Service, Thanks, ChallengesUser, Role
+from api.models import db, User, Book, Podcast, Movie, Challenges, Service, Thanks, ChallengesUser, Role, Storage
+from dotenv import load_dotenv
 from datetime import datetime
 import cloudinary
+from cloudinary.uploader import upload
 
 
 #from models import Person
@@ -23,6 +30,9 @@ static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
+load_dotenv()
+app.config["DEBUG"] = True
+app.config["ENV"] = "development"
 # database condiguration
 db_url = os.getenv("DATABASE_URL") #es para diferenciar modo produccion y desarrollo?
 if db_url is not None:
@@ -30,12 +40,15 @@ if db_url is not None:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
 
+app.config["JWT_SECRET_KEY"] = "tak-secret"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)
 
 # Allow CORS requests to this API
 CORS(app)
+
+jwt = JWTManager(app)
 
 # add the admin
 setup_admin(app)
@@ -51,14 +64,123 @@ app.register_blueprint(api, url_prefix='/api')
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
+
+
 # generate sitemap with all your endpoints
 # @app.route('/')
 # def sitemap():
 #     if ENV == "development":
 #         return generate_sitemap(app)
 #     return send_from_directory(static_file_dir, 'index.html')
+#login---------------------------------------------------------------------------------------------------------------------
+
+@app.route('/login', methods=['POST'])
+def login():
+
+    email = request.json.get('email')
+    password = request.json.get('password')
+
+    if not email:
+        return jsonify({ "msg": "Tu email es necesario"}), 422
+
+    if not password:
+        return jsonify({ "msg": "Tu password es necesario"}), 422
+
+    user = User.query.filter_by(email=email).first()
+
+    if not user:
+        return jsonify({ "msg": "Usuario/Contraseña son incorrectos"}), 401
+
+    if not check_password_hash(user.password, password):
+        return jsonify({ "msg": "Username/Password are incorrects"}), 401
+
+    access_token = create_access_token(identity=user.id)
+
+    data = {
+        "access_token": access_token,
+        "user": user.serialize()
+    }
+
+    return jsonify(data), 200
+
+@app.route('/api/register', methods=['POST'])
+def register():
+    data = request.get_json()
+
+    user = User()
+    user.first_name = data["first_name"]
+    user.last_name = data["last_name"]
+    user.email = data["email"]
+    user.password = generate_password_hash(data["password"])
+    user.address = data["address"] if data["address"] else None
+    user.birthdate = data["birthdate"] if data["birthdate"] else None
+    user.image = data["image"] if data["image"] else None
+    user.role_id = 2
+
+    '''if len(role) > 0:
+        for roles_id in role:
+            role = Role.query.get(roles_id)
+            user.roles.append(role)'''
+
+    '''# Datos de la tabla "users"
+    first_name = request.json.get('first_name')
+    last_name = request.json.get('last_name')
+    email = request.json.get('email')
+    password = request.json.get('password')
+
+    # Datos de la tabla roles
+    roles = request.json.get('roles')'''
+
+    if not user.first_name:
+        return jsonify({ "msg": "Necesitamos tu nombre"}), 422
+    
+    if not user.last_name:
+        return jsonify({ "msg": "Necesitamos tu apellido"}), 422
+    
+    if not user.email:
+        return jsonify({ "msg": "Necesitamos tu email"}), 422
+
+    if not user.password:
+        return jsonify({ "msg": "Necesitamos que ingreses una contraseña"}), 422
+
+    user_filter = User.query.filter_by(email=user.email).first()
+
+    if user_filter:
+        return jsonify({ "msg": "El usuario ya existe"}), 400
+
+    user.new_user()
+    
+
+    access_token = create_access_token(identity=user.id)
+
+    datos = {
+        "access_token": access_token,
+        "user": user.serialize()
+    }
+
+    return jsonify(datos), 200
+
+#simon register-----------------------------------------------------------------------
+# app.route('/api/register', methods=['POST'])
+# def register():
+#     data = request.get_json()
+
+#     user = User()
+#     user.first_name = data["first_name"]
+#     user.last_name = data["last_name"]
+#     user.email = data["email"]
+#     user.password = data["password"]
+#     user.address = data["address"] if data["address"] else None
+#     user.birthdate = data["birthdate"] if data["birthdate"] else None
+#     user.image = data["image"] if data["image"] else None
+#     user.role_id = 2
+#     user.new_user()  
+    
+#     return jsonify({"msg":"user created", "user": user.serialize()}), 201
+
 #user---------------------------------------------------------------------------------------------------------------------
 @app.route('/api/users', methods=['POST'])
+@jwt_required()
 def add_user():
     data = request.get_json()
 
@@ -66,7 +188,7 @@ def add_user():
     user.first_name = data["first_name"]
     user.last_name = data["last_name"]
     user.email = data["email"]
-    user.password = data["password"]
+    user.password = generate_password_hash(data["password"])
     user.address = data["address"] if data["address"] else None
     user.birthdate = data["birthdate"] if data["birthdate"] else None
     user.image = data["image"] if data["image"] else None
@@ -83,6 +205,7 @@ def get_all_users():#trae todos los registros que tengo en mi base de datos
     return jsonify(users), 200 
 
 @app.route('/api/users/search', methods=['GET'])#search?q=janedoe@gmail.com
+@jwt_required()
 def search_user():
     q = request.args.get(q)#como lo hago si tengo mas parametros?
 
@@ -92,6 +215,7 @@ def search_user():
     return jsonify(users), 200 
 
 @app.route('/api/users/<int:id>', methods=['PUT'])
+@jwt_required()
 def update_user(id):
     data = request.get_json()
 
@@ -108,6 +232,7 @@ def update_user(id):
     return jsonify({"msg":"user update", "user": user.serialize()}), 200
 
 @app.route('/api/users/<int:id>', methods=['DELETE'])
+@jwt_required()
 def delete_user(id):
     user = User.query.get(id)
     user.delete_user()
@@ -366,7 +491,8 @@ def delete_challengesuser(id):
 
 #thanks--------------------------------------------------------------------------------------------------------------------------
 
-@app.route('/api/thanks', methods=['POST'])
+'''@app.route('/api/thanks', methods=['POST'])
+@jwt_required()
 def add_thank():
     data = request.get_json()
 
@@ -379,6 +505,7 @@ def add_thank():
     return jsonify({"msg":"thank created", "thank": thank.serialize()}), 201 
 
 @app.route('/api/thanks', methods=['GET'])
+@jwt_required()
 def get_all_thanks():
     thanks = Thanks.query.all()
     thanks = list(map(lambda thank : thank.serialize(), thanks))
@@ -398,6 +525,51 @@ def get_all_thanks_by_user(id):
     thanks = list(map(lambda thank : thank.serialize(), thanks))
 
     return jsonify(thanks), 200
+
+@app.route('/api/thanks/<int:id>', methods=['GET'])
+def get_thanks_by_user(id = None):
+    print(datetime.now())
+    current_user = get_jwt_identity()
+
+    thanks = Thanks.query.filter_by(users_id=id)
+    thanks = list(map(lambda thank : thank.serialize(), thanks))
+
+    return jsonify(thanks), 200'''
+
+@app.route('/thanks', methods=['GET', 'POST'])
+@app.route('/thanks/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+@jwt_required()
+def thanks(id = None):
+    print(datetime.now())
+    current_user = get_jwt_identity()
+
+    if request.method == 'GET':
+        if id is not None:
+            thanks = Thanks.query.filter_by(id=id, users_id=current_user).first()
+            if not thanks:
+                return jsonify({ "msg": "No encontrado"}), 404
+
+            return jsonify(thanks.serialize()), 200
+            
+        else:
+            thanks = Thanks.query.filter_by(users_id=current_user)
+            thanks = list(map(lambda msg: msg.serialize(), thanks))
+
+            return jsonify(thanks), 200
+
+
+    if request.method == 'POST':
+        thanks = request.json.get('thanks')
+        list = request.json.get('list')
+        users_id = request.json.get('user_id')
+        
+
+        thank = Thanks()
+        thank.list = list
+        thank.users_id = users_id
+        thank.new_thanks()   
+    
+        return jsonify({"msg":"thank created", "thank": thank.serialize()}), 201 
 
 #roles------------------------------------------------------------------------------------------------------------------------
 @app.route('/api/roles', methods=['POST'])
@@ -461,7 +633,75 @@ def add_servicesusers():
 
     return jsonify({"msg":"new service_user"}), 201
 
-#-------------------------------------------------------------------------------------------------------------------------
+#unload-------------------------------------------------------------------------------------------------------------------------
+
+@app.route('/api/upload', methods=['POST'])
+def upload_archivo():
+    
+    title = request.form['title']
+    type_upload = request.form['type_upload']
+
+    if not title:
+        return jsonify({ "msg": "El titulo es requerido"}), 400    
+
+    if not 'archivo' in request.files:
+        return jsonify({ "msg": "La imagen es requerida"}), 400    
+    
+    archivo = request.files['archivo']
+    public_id = archivo.filename
+    resp = upload(archivo, resource_type = type_upload, folder="storege", public_id=public_id)
+
+    if not resp:
+        return jsonify({ "msg": "Error al subir archivo"}), 400
+
+    storage = Storage()
+    storage.title = title
+    storage.archivo= resp['secure_url']
+    storage.public_id = public_id
+    storage.type_upload =type_upload
+
+    storage.new_archivo()
+
+    return jsonify(storage.serialize()), 201
+
+@app.route('/upload/<int:id>', methods=['PUT'])
+def update_upload_archivo(id):
+    storage = Storage.query.get(id)
+
+    if not storage:
+        return jsonify({ "msg": "Storage no encontrada."}), 404
+
+    title = request.form['title']
+
+    if not title:
+        return jsonify({ "msg": "El titulo es requerido"}), 400    
+
+    if not 'archivo' in request.files:
+        return jsonify({ "msg": "La archivo es requerida"}), 400    
+    
+    archivo = request.files['archivo']
+    resp = upload(archivo, folder="storage", public_id=storage.public_id)
+
+    if not resp:
+        return jsonify({ "msg": "Error al subir imagen"}), 400
+
+    storage.title = title
+    storage.archivo = resp['secure_url']
+    storage.update()
+
+    return jsonify(storage.serialize()), 200
+
+
+@app.route('/uploads', methods=['GET'])
+def list_uploads():
+
+    uploads = Storage.query.all()
+    uploads = list(map(lambda item: item.serialize(), uploads))
+
+    return jsonify(uploads), 200
+
+
+#------------------------------------------------------------------------------------------------------------------------
 # any other endpoint will try to serve it like a static file
 @app.route('/<path:path>', methods=['GET'])
 def serve_any_other_file(path):
@@ -470,23 +710,6 @@ def serve_any_other_file(path):
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0 # avoid cache memory
     return response
-
-@app.route('/api/register', methods=['POST'])
-def register():
-    data = request.get_json()
-
-    user = User()
-    user.first_name = data["first_name"]
-    user.last_name = data["last_name"]
-    user.email = data["email"]
-    user.password = data["password"]
-    user.address = data["address"] if data["address"] else None
-    user.birthdate = data["birthdate"] if data["birthdate"] else None
-    user.image = data["image"] if data["image"] else None
-    user.role_id = 2
-    user.new_user()  
-    
-    return jsonify({"msg":"user created", "user": user.serialize()}), 201
 
 
 

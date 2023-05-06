@@ -72,7 +72,7 @@ class User(db.Model):# voy a crear un modelo con esa clase
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)
+    password = db.Column(db.String(200), nullable=False)
     address = db.Column(db.String(120), nullable=True)#--------------- default ="" / no es obligarotio
     birthdate = db.Column(db.DateTime(), nullable=True)
     image = db.Column(db.String(255), nullable=True)
@@ -94,7 +94,7 @@ class User(db.Model):# voy a crear un modelo con esa clase
             "address": self.address,
             "birthdate": self.birthdate,
             "image": self.image,
-            #"role_id": self.role_id.serialize(),
+            "role_id": self.role_id,
         }
     
     def new_user(self):
@@ -303,4 +303,32 @@ class Challenges(db.Model):
         db.session.commit()
 
 
+class Storage(db.Model):
+    __tablename__ = 'storage'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    archivo = db.Column(db.String(255), nullable=False)
+    public_id = db.Column(db.String(100), nullable=False)
+    type_upload = db.Column(db.String(150), default="audios")
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "archivo": self.archivo,
+            "public_id": self.public_id,
+            "type_upload": self.type_upload
+        }
+
+
+    def new_archivo(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update_archivo(self):
+        db.session.commit()
+
+    def delete_archivo(self):
+        db.session.delete(self)
+        db.session.commit()
 

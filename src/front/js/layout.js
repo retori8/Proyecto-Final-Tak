@@ -25,6 +25,7 @@ import { Challenge21Days } from "./pages/21dayschallenge";
 import { DayOf21Days } from "./pages/day21days";
 import { Fail21Days } from "./pages/fail21days";
 import { Discover } from "./pages/discover";
+import { Storage } from "./pages/storage";
 
 //create your first component
 const Layout = () => {
@@ -60,6 +61,7 @@ const Layout = () => {
                     <Route element={<Fail21Days />} path="/challenges/fail21days" />
                     <Route element={<Discover />} path="/discover" />
                     <Route element={<h1>Not found!</h1>} />
+                    <Route element={<Storage />} path="/storage" />
                 </Routes>
                 <Footer />
             </BrowserRouter>

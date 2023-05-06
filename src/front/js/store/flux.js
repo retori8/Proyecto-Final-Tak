@@ -1,5 +1,3 @@
-import { Actions } from "../component/homelogeado/actions";
-
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -17,6 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				date: "",
 				users_id: ""
 			},
+			currentUser: null,
 			//SIMON
 			email: '',
 			password: '',
@@ -62,17 +61,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 			}, */
 
+			getLogin: async (info = { email: ' ', password: ' ' }) => {
+				try {
+					const { url } = getStore();
+					const response = await fetch(`${url}/login`, {
+						method: 'POST',
+						body: JSON.stringify(info),
+						headers: {
+							'Content-Type': 'application/json'
+						}
+					})
 
-			getLogin: () => {
-				const { email, password, url } = getStore();
-				fetch(`${url}/users`, {
-					method: 'POST',
-					body: JSON.stringify({ email, password }),
-					headers: {
-						'Content-Type': 'application/json'
+					const data = await response.json()
+
+					if (data.access_token) {
+						setStore({ currentUser: data })
+						localStorage.setItem('currentUser', JSON.stringify(data));
 					}
-				})
+
+					return data;
+
+				} catch (error) {
+					console.log("there has been an error login in");
+				}
 			},
+			// getLogin: () => {
+			// 	const { email, password, url } = getStore();
+			// 	fetch(`${url}/users`, {
+			// 		method: 'POST',
+			// 		body: JSON.stringify({ email, password }),
+			// 		headers: {
+			// 			'Content-Type': 'application/json'
+			// 		}
+			// 	})
+			// validar que el token 
+			// },
 
 			getRecovery: () => {
 				const { email, url } = getStore();
