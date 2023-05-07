@@ -1,23 +1,27 @@
 import React from "react";
 import { ElementNavbar } from "./ElementNav";
 import { Link } from "react-router-dom";
-import logo from "./../../img/logo.png";
+import logo from "./../../img/logo_tak.png";
 
 export const Navbar = () => {
 	return (
-		<nav id="navbar" className="navbar navbar-expand-lg bg-body-tertiary mb-3">
+		<nav id="navbar" className="navbar navbar-expand-lg bg-body-tertiary mb-3 fixed-top">
 			<div className="container-fluid">
-				<Link className="navbar-brand text-white navbar-brand m-3 h1 ps-4" to={"/"}>
+				<Link className="navbar-brand m-3 ps-4" to={"/"}>
 					<img src={logo} height={35} />
 				</Link>
-				<div className="collapse navbar-collapse" id="navbarNavDropdown">
+				<div className="collapse navbar-collapse m" id="navbarNavDropdown">
 					<ul className="navbar-nav ms-auto ps-5">
-						<ElementNavbar name="TAK?" to="/tak" />
-						<ElementNavbar name="RESPIRA" to="/respira" />
-						<ElementNavbar name="DESAFIOS" to="/challenges" />
-						<ElementNavbar name="DESCUBRE" to="/discover" />
+						<ElementNavbar name="Tak?" to="/tak" />
+						<ElementNavbar name="Respira" to="/respira" />
+						<ElementNavbar name="Desafíos" to="/challenges" />
+						<ElementNavbar name="Descubre" to="/discover" />
 						<li className="nav-item pe-4">
-							<Link type="button" className="btn btn-outline-light m-4" aria-current="page" to="/login">LOGIN</Link>
+							<Link type="button" className="btn btnNavbar" aria-current="page" to="/login">
+								<span className="">
+									Login
+								</span>
+							</Link>
 						</li>
 					</ul>
 				</div>

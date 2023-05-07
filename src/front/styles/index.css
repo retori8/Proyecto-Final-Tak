@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans&family=Viga&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+
 
 /* 
     General Styles used on every website (Don't Repeat Yourself)
@@ -8,42 +12,157 @@
 body {
     background-color: rgb(246, 246, 238);
 }
+
+/* ---------- NAVBAR ----------------- */
+
 #navbar{
-    background-color: rgb(255, 255, 255);
-    font-family:'Montserrat', sans-serif;
+    background-color:#f7e6d3;
+    font-family:'Roboto', sans-serif;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 300;
+    color: #333233;
 }
+
+.btnNavbar{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    margin-top: 30px;
+    border: solid 1px #636b5f;
+    border-radius: 20px;
+    padding-inline: 25px;
+}
+
+.btnNavbar:hover{
+    color: beige;
+    background-color: #636b5f;
+    border-color: #636b5f;
+}
+
+/* ---------- FOOTER ----------------- */
+
+#footer{
+    font-family:'Roboto', sans-serif;
+    background-color:#636b5f;
+    color: rgb(249, 249, 245);
+    height: 90px;
+    padding-top: 30px;
+}
+
+.logo-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}
+
+.text-footer {
+    margin: auto;
+    font-family:'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    text-align: center;
+    color: #f7e6d3;
+}
+
+.rrss-footer {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.rrss-footer a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 40px;
+    width: 40px;
+
+    background-color: #636b5f ;
+    border: solid 1px #f7e6d3;
+    border-radius: 100%;
+
+    margin-left: 8px;
+    color: #f7e6d3;
+    text-decoration: none;
+}
+
+.rrss-footer a:hover{
+    text-decoration: none;
+    color: #636b5f;
+    background-color: #f7e6d3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+p{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+    font-size: 1rem;
+    color: rgb(24, 23, 23);
+}
+
 
 .nav-item{
     color: black;
 }
 
 #navbarli{
-    color: chartreuse; 
+    margin-top: 0.7rem;
+    font-size: medium;
 }
 
-#footer{
-    font-family:'Montserrat', sans-serif;
-    background-color: rgb(72, 47, 65);
-    color: rgb(249, 249, 245);
-}
+
 
 #buttonav{
     background-color: rgb(72, 47, 65);
 }
 
-/* banner */
-.page-header { background: url(https://ychef.files.bbci.co.uk/1280x720/p0bzmxtx.jpg)no-repeat; position: relative; background-size: cover; margin-top: 0%; }
+
+
+
+/* ---------- BANNER --------------- */
+
+
+
 .page-caption { padding-top: 11em; padding-bottom: 9em; }
 
 .card-section { position: relative; bottom: 11em; font-family: 'Montserrat', sans-serif;}
-.card-block { padding: 4em; }
+
+.card-block {   
+    padding: 4em;
+    margin-top: -450px;  
+}
+
 .section-title { margin-bottom: 3em; }
 
 #challengeCard{
     border-radius: 3%;
     box-shadow: 0 0 50px #ccc;
+}
+
+
+
+
+
+.title-testimonios{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Playfair', serif;
+    font-weight: 400;
+
 }
 
 

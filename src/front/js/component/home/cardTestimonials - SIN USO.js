@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 
 export const CardTestimonials = (props) => {
     return (
@@ -17,4 +17,4 @@ export const CardTestimonials = (props) => {
         </div>
 
     );
-};
+}; */

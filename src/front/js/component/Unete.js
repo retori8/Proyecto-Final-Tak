@@ -1,12 +1,13 @@
 import React from "react";
-import '../../styles/unete.css'
 import { BotonUno } from "./BotonUno";
+import "../../styles/tak.css"
 
 export const Unete = () => {
     return (
-        <div className="fondo container">
-            <h2>Únete a Tak</h2>
-            <BotonUno />
+        <div className="container unete-content">
+            <h2 className="title-unete">Únete a Tak</h2>
+            <br />
+            <button type="button" class="btn btn-outline-light btn-unete">Light</button>
         </div>
     );
 };

@@ -1,3 +1,9 @@
+.respira-content{
+    height: 100vh;
+    margin-top: 150px;
+}
+
+
 .circle {
     margin: auto;
     background-color: blue;
