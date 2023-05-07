@@ -6,8 +6,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			podcasts: null,
 			movies: null,
 			challenge_21_days: null,
-			thanks: [],
-			thanks_by_user: null,
 			tareas_random: ["Hoy escribele una carta de agradecimiento a alguien que haya influido positivamente en tu vida.", "Hoy proponte decirle a una persona amiga algo que aprecias de ella", "Hoy mírate en el espejo mientras te lavas los dientes, y piensa en algo que has hecho bien recientemente o algo que te gusta de ti", "Hoy sal a caminar y mira cuantas cosas positivas puedes encontrar en tu camino, agudiza tus sentidos al máximo para encontrar las cosas que antes pasaban desapercibidas.", "Hoy disponte a comer disfrutando de cada bocado, con todos tus sentidos, despierta tu olfato, observa los colores, siente la temperatura y agradece el privilegio que tienes al gozar de esta comida."],
 			random: null,
 			thank: {
@@ -16,6 +14,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				users_id: ""
 			},
 			currentUser: null,
+			id:null,
+			thanks: [],
+			thanks_by_user: null,
 			//SIMON
 			email: '',
 			password: '',
@@ -33,6 +34,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				image: "",
 				role_id: 0,
 				funcion: "",
+				token: null,
+				id:null
 			}
 		},
 
@@ -76,13 +79,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					if (data.access_token) {
 						setStore({ currentUser: data })
-						localStorage.setItem('currentUser', JSON.stringify(data));
 					}
 
 					return data;
 
 				} catch (error) {
-					console.log("there has been an error login in");
+					console.log("hay un error en el login");
 				}
 			},
 			// getLogin: () => {
@@ -122,29 +124,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-			addThank: async () => {
-				const { url } = getStore()
-				const { thank } = getStore()
-				console.log(thank)
-				const options = {
-					method: "POST",
-					body: JSON.stringify({ ...thank }),
-					headers: {
-						"Content-Type": "application/json",
-					},
-				}
-				try {
-					const response = await fetch(
-						`${url}/api/thanks`, options
-					);
-					let data_thank = await response.json()
+			// addThank: async () => {
+			// 	const { url } = getStore()
+			// 	const { thank } = getStore()
+			// 	console.log(thank)
+			// 	const options = {
+			// 		method: "POST",
+			// 		body: JSON.stringify({ ...thank }),
+			// 		headers: {
+			// 			"Content-Type": "application/json",
+			// 		},
+			// 	}
+			// 	try {
+			// 		const response = await fetch(
+			// 			`${url}/api/thanks`, options
+			// 		);
+			// 		let data_thank = await response.json()
 
 
-				} catch (error) {
-					console.log(error);
-				}
+			// 	} catch (error) {
+			// 		console.log(error);
+			// 	}
 
-			},
+			// },
 
 			getUser: async () => {
 				try {
@@ -309,8 +311,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getThanksByUser: async () => {
-				const { url } = getStore()
-				const { thanks_by_user } = getStore();
+				const { url, id, thanks_by_user } = getStore()
 
 				try {
 					const response = await fetch(`${url}/api/thanks/${id}`, {

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
-import injectContext from "./store/appContext";
+import injectContext, { Context } from "./store/appContext";
 
 import { Footer } from "./component/footer";
 import { UserPerfil } from "./pages/userPerfil";
@@ -26,6 +26,7 @@ import { DayOf21Days } from "./pages/day21days";
 import { Fail21Days } from "./pages/fail21days";
 import { Discover } from "./pages/discover";
 import { Storage } from "./pages/storage";
+import { ProteccionDeRutas } from "../../utils/proteccionderutas";
 
 //create your first component
 const Layout = () => {
@@ -34,7 +35,7 @@ const Layout = () => {
     const basename = process.env.BASENAME || "";
 
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
-
+    const { store: { currentUser } } = useContext(Context)
     return (
         <div>
             <BrowserRouter basename={basename}>
@@ -54,7 +55,7 @@ const Layout = () => {
                     <Route element={<Error403 />} path="error403" />
                     <Route element={<Error503 />} path="error503" />
                     <Route element={<HomeLogeado />} path="/home" />
-                    <Route element={<Challenges />} path="/challenges" />
+                    <Route element={<ProteccionDeRutas currentUser={currentUser}><Challenges /></ProteccionDeRutas>} path="/challenges" />
                     <Route element={<RandomChallenge />} path="/challenges/random" />
                     <Route element={<Challenge21Days />} path="/challenges/21days" />
                     <Route element={<DayOf21Days />} path="/challenges/21days/:id" />

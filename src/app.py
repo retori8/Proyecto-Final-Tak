@@ -79,6 +79,7 @@ def login():
 
     email = request.json.get('email')
     password = request.json.get('password')
+    user = User()
 
     if not email:
         return jsonify({ "msg": "Tu email es necesario"}), 422
@@ -86,10 +87,10 @@ def login():
     if not password:
         return jsonify({ "msg": "Tu password es necesario"}), 422
 
-    user = User.query.filter_by(email=email).first()
+    user_filter = User.query.filter_by(email=email, password=password).first()
 
-    if not user:
-        return jsonify({ "msg": "Usuario/Contraseña son incorrectos"}), 401
+    if not user_filter:
+        return jsonify({ "msg": "Email/Contraseña son incorrectos"}), 401
 
     if not check_password_hash(user.password, password):
         return jsonify({ "msg": "Username/Password are incorrects"}), 401
@@ -102,6 +103,29 @@ def login():
     }
 
     return jsonify(data), 200
+
+@app.route("/token", methods=["POST"])
+def create_token():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    # Query your database for username and password
+    user = User.query.filter_by(email=email, password=password).first()
+    if user is None:
+        # the user was not found on the database
+        return jsonify({"msg": "Bad email or password"}), 401
+    
+    # create a new token with the user id inside
+    access_token = create_access_token(identity=user.id)
+    return jsonify({ "token": access_token, "user_id": user.id })
+
+@app.route("/protected", methods=["GET"])
+@jwt_required()
+def protected():
+    # Access the identity of the current user with get_jwt_identity
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+    
+    return jsonify({"id": user.id, "username": user.username }), 200
 
 @app.route('/api/register', methods=['POST'])
 def register():
@@ -491,7 +515,7 @@ def delete_challengesuser(id):
 
 #thanks--------------------------------------------------------------------------------------------------------------------------
 
-'''@app.route('/api/thanks', methods=['POST'])
+@app.route('/api/thanks', methods=['POST'])
 @jwt_required()
 def add_thank():
     data = request.get_json()
@@ -534,18 +558,17 @@ def get_thanks_by_user(id = None):
     thanks = Thanks.query.filter_by(users_id=id)
     thanks = list(map(lambda thank : thank.serialize(), thanks))
 
-    return jsonify(thanks), 200'''
+    return jsonify(thanks), 200
 
-@app.route('/thanks', methods=['GET', 'POST'])
+'''@app.route('/thanks', methods=['GET', 'POST'])
 @app.route('/thanks/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 @jwt_required()
 def thanks(id = None):
-    print(datetime.now())
     current_user = get_jwt_identity()
 
     if request.method == 'GET':
         if id is not None:
-            thanks = Thanks.query.filter_by(id=id, users_id=current_user).first()
+            thanks = Thanks.query.filter_by(users_id=current_user).first()
             if not thanks:
                 return jsonify({ "msg": "No encontrado"}), 404
 
@@ -560,16 +583,18 @@ def thanks(id = None):
 
     if request.method == 'POST':
         thanks = request.json.get('thanks')
+        date = request.json.get('date')
         list = request.json.get('list')
         users_id = request.json.get('user_id')
         
-
         thank = Thanks()
         thank.list = list
+        thank.date = datetime.now()
         thank.users_id = users_id
-        thank.new_thanks()   
+        thank.new_thanks()
+  
     
-        return jsonify({"msg":"thank created", "thank": thank.serialize()}), 201 
+        return jsonify({"msg":"thank created", "thank": thank.serialize()}), 201 '''
 
 #roles------------------------------------------------------------------------------------------------------------------------
 @app.route('/api/roles', methods=['POST'])
