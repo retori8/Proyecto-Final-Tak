@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ElementNavbar } from "./ElementNav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "./../../img/logo.png";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context)
+	const navitgate = useNavigate()
 	return (
 		<nav id="navbar" className="navbar navbar-expand-lg bg-body-tertiary mb-3">
 			<div className="container-fluid">
@@ -12,12 +15,22 @@ export const Navbar = () => {
 				</Link>
 				<div className="collapse navbar-collapse" id="navbarNavDropdown">
 					<ul className="navbar-nav ms-auto ps-5">
-						<ElementNavbar name="TAK?" to="/tak" />
-						<ElementNavbar name="RESPIRA" to="/respira" />
-						<ElementNavbar name="DESAFIOS" to="/challenges" />
-						<ElementNavbar name="DESCUBRE" to="/discover" />
+						{
+							store.currentUser ?
+								<>
+									<ElementNavbar name="MI CUENTA" to="/home" />
+									<ElementNavbar name="TAK?" to="/tak" />
+									<ElementNavbar name="RESPIRA" to="/respira" />
+									<ElementNavbar name="DESAFIOS" to="/challenges" />
+									<ElementNavbar name="DESCUBRE" to="/discover" />
+								</>
+								:
+								<></>
+						}
 						<li className="nav-item pe-4">
-							<Link type="button" className="btn btn-outline-light m-4" aria-current="page" to="/login">LOGIN</Link>
+							<button type="button" className="btn btn-outline-light m-4" aria-current="page" onClick={e => actions.comprobarLogin(navitgate)}>
+								{store.currentUser ? "LOGOUT" : "LOGIN"}
+							</button>
 						</li>
 					</ul>
 				</div>

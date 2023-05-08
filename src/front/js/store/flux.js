@@ -101,7 +101,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//register----------------------------------------------------------------------------------------------------------------------
 
-			createNewUser: async (e, navigate) => {
+			createNewUser: async (navigate) => {
 				try {
 					const { url, newUser } = getStore();
 					const response = await fetch(`${url}/api/register`, {
@@ -115,9 +115,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json()
 					console.log(data)
 
-					setStore({ newUser: data })
-					sessionStorage.setItem('newUser', JSON.stringify(data))
-						
+					// setStore({ newUser: data })
+					// sessionStorage.setItem('newUser', JSON.stringify(data))
 					navigate('/login')
 
 
@@ -126,14 +125,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			handleSubmitRegister: e => {
-				const { createNewUser } = getActions()
-				console.log(store);
+			handleSubmitRegister: (e, navitgate) => {
 				e.preventDefault();
-				
-				if (store.newUser.re_password=== store.newUser.password) {
-				
-					createNewUser();	
+				console.log(getStore());
+				if (getStore().newUser.re_password === getStore().newUser.password) {
+
+					getActions().createNewUser(navitgate);
+				}
+				else {
+					console.log("NO COINCIDEN LAS CONTRASEÑAS")
 				}
 			},
 
@@ -141,8 +141,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const { newUser } = getStore()
 				e.preventDefault();
 				newUser[e.target.name] = e.target.value
-				setStore({newUser })
-				console.log(newUser)
+				setStore({ newUser })
+				console.log(getStore().newUser[e.target.name])
 			},
 
 			//recovery----------------------------------------------------------------------------------------------------------------------
@@ -176,10 +176,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						`${url}/thanks`, options
 					);
 					let data_thank = await response.json()
+					console.log(data_thank)
 
-					setStore({
-						thanks: data_thank
-					})
+					// setStore({
+					// 	thanks: data_thank
+					// })
 
 				} catch (error) {
 					console.log(error);
@@ -218,7 +219,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					thanks: [...thanks, setchange]
 				})
 				e.target.reset()
-				getActions().addThank()
+				getActions().getThanks()
 				console.log(getStore().thanks)
 			},
 
@@ -375,7 +376,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						challenge_21_days: challenge_info
 					});
-					
+
 				} catch (error) {
 					console.log(error.message);
 				}
@@ -439,20 +440,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 							})}
 						</ul>*/
 
-						// handleSubmitRegister: e => {
-						// 	const { createNewUser } = getActions()
-						// 	console.log(store);
-						// 	e.preventDefault();
-						// 	if (store.newUser.re_password.length > 0) {
-						// 		if (store.newUser.password !== store.newUser.re_password) {
-						// 			console.log("Las contraseñan no son iguales")
-						// 		}
-						// 		else {
-						// 			createNewUser();
-						// 		}
-						// 	}
-						// },
+			// handleSubmitRegister: e => {
+			// 	const { createNewUser } = getActions()
+			// 	console.log(store);
+			// 	e.preventDefault();
+			// 	if (store.newUser.re_password.length > 0) {
+			// 		if (store.newUser.password !== store.newUser.re_password) {
+			// 			console.log("Las contraseñan no son iguales")
+			// 		}
+			// 		else {
+			// 			createNewUser();
+			// 		}
+			// 	}
+			// },
 
+			comprobarLogin(navigate) {
+				console.log(getStore().currentUser)
+				if (getStore().currentUser !== null) {
+					getActions().logout()
+					navigate('/login')
+				}
+				else {
+					navigate('/login')
+				}
+			},
+
+			getFavoritos() {
+				getActions().getFavoritosBooks()
+			},
+
+			getFavoritosBooks() {
+
+			}
 
 		}
 	}

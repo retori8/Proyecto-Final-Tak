@@ -70,7 +70,6 @@ def handle_invalid_usage(error):
 @app.route('/api/login', methods=['POST'])
 def login():
 
-    user = User()
     email = request.json.get('email')
     password = request.json.get('password')
     
@@ -81,20 +80,20 @@ def login():
     if not password:
         return jsonify({ "msg": "Tu password es necesario"}), 422
 
-    user_filter = User.query.filter_by(email=email, password=password).first()
+    user_filter = User.query.filter_by(email=email).first()
 
     if not user_filter:
         return jsonify({ "msg": "Email/Contraseña son incorrectos"}), 401
 
-    if not check_password_hash(user.password, password):
+    if not check_password_hash(user_filter.password, password):
         return jsonify({ "msg": "Username/Password are incorrects"}), 401
     
 
-    access_token = create_access_token(identity=user.id)
+    access_token = create_access_token(identity=user_filter.id)
 
     data = {
         "access_token": access_token,
-        "user": user.serialize()
+        "user": user_filter.serialize()
     }
 
     return jsonify(data), 200
@@ -138,9 +137,9 @@ def register():
     user.last_name = data["last_name"]
     user.email = data["email"]
     user.password = generate_password_hash(data["password"])
-    user.address = data["address"] if data["address"] else None
-    user.birthdate = data["birthdate"] if data["birthdate"] else None
-    user.image = data["image"] if data["image"] else None
+    # user.address = data["address"] if not data["address"] else ""
+    # user.birthdate = data["birthdate"] if data["birthdate"] else None
+    # user.image = data["image"] if data["image"] else None
     user.role_id = 2
 
     '''if len(role) > 0:

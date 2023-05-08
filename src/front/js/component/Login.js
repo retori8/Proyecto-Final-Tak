@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { CampoForm } from "./CampoForm";
 import { BotonUno } from "./BotonUno";
 import { Context } from "../store/appContext";
@@ -11,7 +11,10 @@ export const Login = () => {
 
 
     useEffect(() => {
-        if (store.currentUser !== null) navigate('/')
+        if (store.currentUser !== null) {
+            navigate('/')
+            console.log(store)
+        }
     }, [])
 
 
@@ -53,7 +56,12 @@ export const Login = () => {
 
                             </form>
                             <p className="card-text m-2">
-                                <small className="text-body-secondary">¿No tienes cuenta? Crea tu cuenta aquí</small>
+                                <small className="text-body-secondary">
+                                    ¿No tienes cuenta?
+                                    <Link className="ms-1" to='/register'>
+                                        Crea tu cuenta aquí
+                                    </Link>
+                                </small>
                             </p>
                         </div>
                     </div>
