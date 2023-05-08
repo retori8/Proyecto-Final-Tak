@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: a5d366e6a779
+Revision ID: 2e9e58f3a1b8
 Revises: 
-Create Date: 2023-05-01 17:29:01.903474
+Create Date: 2023-05-08 14:44:55.059211
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a5d366e6a779'
+revision = '2e9e58f3a1b8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -61,19 +61,26 @@ def upgrade():
     sa.Column('text', sa.Text(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('storage',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('title', sa.String(length=255), nullable=False),
+    sa.Column('archivo', sa.String(length=255), nullable=False),
+    sa.Column('public_id', sa.String(length=100), nullable=False),
+    sa.Column('type_upload', sa.String(length=150), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=80), nullable=False),
     sa.Column('last_name', sa.String(length=80), nullable=False),
     sa.Column('email', sa.String(length=100), nullable=False),
-    sa.Column('password', sa.String(length=80), nullable=False),
+    sa.Column('password', sa.String(length=500), nullable=False),
     sa.Column('address', sa.String(length=120), nullable=True),
-    sa.Column('birthdate', sa.Integer(), nullable=True),
+    sa.Column('birthdate', sa.DateTime(), nullable=True),
     sa.Column('image', sa.String(length=255), nullable=True),
     sa.Column('role_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['role_id'], ['role.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('email')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('challenges_user',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -134,6 +141,7 @@ def downgrade():
     op.drop_table('favorite_book')
     op.drop_table('challenges_user')
     op.drop_table('user')
+    op.drop_table('storage')
     op.drop_table('service')
     op.drop_table('role')
     op.drop_table('podcasts')
