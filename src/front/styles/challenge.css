@@ -1,3 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+/* ------------------ CONTENEDOR --------------------- */
+.content-desafio{
+    height: 100vh;
+    padding-top: 170px;
+    margin-bottom: -90px;
+}
+
+.ImageInnerWrap {
+  /*  position: relative;
+    z-index: 223;*/
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.titulo-desfios{
+    font-family: 'Playfair', serif;
+    font-size: 50px;
+    font-weight: 600;
+    color: #333233;
+
+    margin: 10px;
+}
+
+/* ------------------ CARD --------------------- */
+
+.card{
+    background-color: antiquewhite;
+}
+
+.card-img{
+    border-radius: 14px;
+}
+.card-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 110px;
+
+    font-family: 'Playfair', serif;
+    font-size: 60px;
+    color: white;
+}
+
+.card-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 100px;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px; 
+    font-weight: 300;
+    color: white;
+}
+
+
+
+
+
+
+.TextBackground {
+   background-color: rgba(0, 45, 37, 0.83);
+    
+    padding: 13%;
+    color: white;
+    text-align: center;
+} */
+.animacion{
+    background-image: url('https://www.blogdelfotografo.com/wp-content/uploads/2017/09/rain-2538429_1920.jpg');
+    height: 30em;
+}
+
 #cardChallenge {
     background-color: rgb(218, 190, 81);
     border-radius: 5%;
@@ -14,24 +92,4 @@
     z-index: 0;
     background-size: cover;
     background-repeat: no-repeat;
-}
-
-.ImageInnerWrap {
-  /*  position: relative;
-    z-index: 223;*/
-    max-width: 900px;
-    margin: 0 auto;
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
-.TextBackground {
-   background-color: rgba(0, 45, 37, 0.83);
-    
-    padding: 13%;
-    color: white;
-    text-align: center;
-}
-.animacion{
-    background-image: url('https://www.blogdelfotografo.com/wp-content/uploads/2017/09/rain-2538429_1920.jpg');
-    height: 30em;
 }

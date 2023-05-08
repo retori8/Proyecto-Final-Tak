@@ -4,14 +4,20 @@ import { ChallengesCard } from "../component/Challenges/challengeCard";
 
 export const Challenges = () => {
     return (
-        <div>
+        <div className="content-desafio">
             <div className="text-center p-3 ">
-            <h1>Que mas te gustaria hacer hoy?</h1>
+                <h1 className="titulo-desfios">¡Acepta el desafío Tak!</h1>
             </div>
             <div className="container">
                 <div className="row row-cols-1 row-cols-md-2 g-4">
-                    <ChallengesCard title="DESAFIO 21 DIAS" text="h"/>
-                    <ChallengesCard title="DESAFIO RANDOM" text="h"/>
+                    <ChallengesCard
+                        img="http://localhost:3000/img/desafio-random.jpg"
+                        title="Desafío Random"
+                        text="Hemos preparado variados desafios para que aceptes el primero que recibas." />
+                    <ChallengesCard
+                        img="http://localhost:3000/img/desafio-21-dias.jpg"
+                        title="Desafío 21 Días"
+                        text="Durante 21 días escucharás una meditación que fomentará en ti la gratitud." />
                 </div>
             </div>
         </div>

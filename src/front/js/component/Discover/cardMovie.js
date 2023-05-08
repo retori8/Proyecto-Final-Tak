@@ -23,9 +23,9 @@ export const CardMovie = (props) => {
                     <p className=" my-1">
                         Resena:{props.properties}
                     </p>
-                    <div className="py-2 mt-4 text-end">
+                    {/* <div className="py-2 mt-4 text-end">
                         <ButtonFavorite />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
