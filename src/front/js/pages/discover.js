@@ -1,10 +1,11 @@
 import React from "react";
 import "../../styles/discover.css"
-import { CardBook } from "../component/Discover/cardBook";
-import { CardPodcats } from "../component/Discover/cardPodcat";
+/* import { CardBook } from "../component/Discover/cardBook";
+import { CardPodcats } from "../component/Discover/cardPodcat"; */
 import { useContext } from "react";
-import { CardMovie } from "../component/Discover/cardMovie";
+/* import { CardMovie } from "../component/Discover/cardMovie"; */
 import { CoverDiscover } from "../component/Discover/coverDiscover";
+import { CardDiscoverAll } from "../component/Discover/cardDiscoverAll";
 import { Context } from "../store/appContext";
 
 
@@ -15,14 +16,15 @@ export const Discover = () => {
 
 
 	return (
-		<div>
+		<div className="content-discover">
 			<br />
-			<CoverDiscover title={"Libros"} caption={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"}>
-				{!!store.books &&
+			<CoverDiscover title={"Libros"} caption={"Estas son nuestras mejores recomendaciones de libros para tí."}>
+				{/* {!!store.books &&
 					store.books?.length > 0 &&
 					store.books?.map((book, i) => {
 						return (
 							<CardBook
+								img="http://localhost:3000/img/libros/dones.jpg"
 								name={book?.name}
 								author={book?.author}
 								number_of_pages={book?.number_of_pages}
@@ -30,9 +32,9 @@ export const Discover = () => {
 								id={`/books/${book?.id}`}
 							/>
 						);
-					})}
+					})} */}
 			</CoverDiscover>
-			<CoverDiscover title={"Podcasts"} caption={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"}>
+			{/* <CoverDiscover title={"Podcasts"} caption={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"}>
 				{!!store.podcasts &&
 					store.podcasts?.length > 0 &&
 					store.podcasts?.map((podcast, i) => {
@@ -61,7 +63,7 @@ export const Discover = () => {
 							/>
 						);
 					})}
-			</CoverDiscover>
+			</CoverDiscover> */}
 			<br />
 			<br />
 			<br />

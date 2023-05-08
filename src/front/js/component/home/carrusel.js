@@ -7,20 +7,47 @@ export const Carrusel = () => {
             id="carousel"
             className="carousel slide col-11"
             data-bs-ride="carousel"
+            style={{ marginTop: '100px', }}
         >
             <div className="carousel-inner">
-                <div className="carousel-item active" data-bs-interval={10000}>
-                    <img src="https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/media/image/2023/01/relajacion-aliviar-estres-calma-2939564.jpg?tf=3840x" className="d-block w-100" alt="..." />
+                <div className="carousel-item active" data-bs-interval={4000}>
+                    <img src="http://localhost:3000/img/slide1.jpg" className="d-block w-100" alt="..." />
                     <div className="carousel-caption d-none d-md-block">
-                        <h1>La práctica  del mindfulness asociada al agradecimiento</h1>
-                        <h4>"Regula los neurotransmisores del estado de ánimo (serotonina) y del placer (dopamina)"</h4>
+                        <h2 className="carouselTitle">La Gratitud es Ahora</h2>
+                        <button type="button" class="btn btn-outline-light btn-carrusel" >Crear mi cuenta</button>
                     </div>
                 </div>
-                <ImgCarousel argumento="Mejora los niveles de glucosa." />
+                <div className="carousel-item" data-bs-interval={4000}>
+                    <img src="http://localhost:3000/img/slide2.jpg" className="d-block w-100" alt="..." />
+                    <div className="carousel-caption d-none d-md-block">
+                        <h2 className="carouselTitle">Respira y Conectate Contigo</h2>
+                        {/* <h3>Escucha una de nuestras meditaciones</h3> */}
+                        <button type="button" class="btn btn-outline-light btn-carrusel" >Respira & Conecta</button>
+                    </div>
+                </div>
+                <div className="carousel-item" data-bs-interval={4000}>
+                    <img src="http://localhost:3000/img/slide3.jpg" className="d-block w-100" alt="..." />
+                    <div className="carousel-caption d-none d-md-block">
+                        <h2 className="carouselTitle">Medita y Conectate Contigo</h2>
+                        {/* <h3>"Regula los neurotransmisores del estado de ánimo (serotonina) y del placer (dopamina)"</h3> */}
+                        <button type="button" class="btn btn-outline-ligh btn-carrusel" >Medita & Conecta</button>
+                    </div>
+                </div>
+                {/* <ImgCarousel img={"http://localhost:3000/img/slide1"} argumento="Mejora los niveles de glucosa." />
                 <ImgCarousel argumento="Mejora nuestra salud cardiaca." />
-                <ImgCarousel argumento="Aumenta los niveles de oxitocina, que es la hormona del amor, de la calma y el contacto" />
+                <ImgCarousel argumento="Aumenta los niveles de oxitocina, que es la hormona del amor, de la calma y el contacto" /> */}
             </div>
-            <button
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+            {/* <button
                 className="carousel-control-prev"
                 type="button"
                 data-bs-target="#carouselExampleInterval"
@@ -37,7 +64,10 @@ export const Carrusel = () => {
             >
                 <span className="carousel-control-next-icon" aria-hidden="true" />
                 <span className="visually-hidden">Next</span>
-            </button>
+            </button> */}
+
+
+
         </div>
 
     );

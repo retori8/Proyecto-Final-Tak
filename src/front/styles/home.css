@@ -1,12 +1,8 @@
-/*
-    home.css: This website contains selectors only used in home.css
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
 #home{
-    margin: auto;
+    margin-top: -16px;
 }
 #cardbanner {
     margin: auto;  
@@ -16,25 +12,162 @@
     background-color:  rgb(246, 246, 238);
     border: none;
 }
-.btn{
-    background-color: rgb(72, 47, 65);
-    color: rgb(246, 246, 238);
+
+
+/* ---------- HEADER HOME ----------------- */
+
+.page-header { 
+    background: url("http://localhost:3000/img/bannerhome.jpg")no-repeat; 
+    position: relative; 
+    background-size: cover; 
+    margin-top: 115px;
+    height: 700px;
 }
-#bannerimg{
-    border-radius: 50%;
+.title-header{
+    font-family: 'Playfair', serif;
+    font-weight: 500;
+    font-size: 5rem;
+    color: whitesmoke;
 }
-/* #imgbanner{
-    object-fit: cover;
-} */
-#carousel{  
-    color: aliceblue;
-    margin: auto;
+.subtitle-header{
+    font-family: 'Playfair', serif;
+    font-weight: 400;
+    font-size: 2rem;
+    color: whitesmoke;
 }
+.textBanner {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+    color: whitesmoke;
+    padding-right: 40rem;
+}
+.btnHeader{
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    border-radius: 30px;
+    border: solid 1px #ffffff;
+    padding: 10px 20px;
+}
+
+.btnHeader:hover{
+    background-color: #f7e6d3;
+    border: solid 1px #f7e6d3;
+}
+
+
+
+/* ---------- CARRUSEL ----------------- */
+
+.sugerencias-tak-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+
+    font-family: 'Playfair', serif;
+    font-weight: 600;
+    font-size: 50px;
+    color: #636b5f;
+}
+.carouselTitle{
+    font-family: 'Playfair', serif;
+    font-weight: 500;
+    font-size: 70px;
+    color: whitesmoke;
+    text-align: center;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.btn-carrusel{
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    border-radius: 30px;
+    border: solid 1px #ffffff;
+    padding: 10px 20px;
+    margin-bottom: 150px;
+}
+
+.btn-carrusel:hover{
+    background-color: #ffffff;
+    border: solid 1px #ffffff;
+}
+
 .carousel-item img{
-    height: 500px;
+    height: 600px;
     object-fit: cover;
     border-radius: 10px;
 }
+
+#carousel{  
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bannerimg{
+    border-radius: 50%;
+}
+
+
+
+
+/* ---------- TESTIMONIOS ----------------- */
+
+.title-testimonios{
+    font-family: 'Playfair', serif;
+    font-weight: 600;
+    font-size: 50px;
+    color: #636b5f;
+
+    margin-top: 150px;
+}
+
+.card-testimonio-body{
+    background-color: #ffffff;
+    padding: 40px 20px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px hwb(0 27% 73% / 0.2);
+}
+
+.card-testimonio-img{
+    margin-bottom: 20px;
+    border-radius: 50px;
+    box-shadow: 0px 5px 6px hwb(0 27% 73% / 0.7)
+}
+
+.card-testimonio-title{
+    font-family: 'Playfair', serif;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.card-testimonio-text{
+    font-family: 'Roboto', serif;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+/* #imgbanner{
+    object-fit: cover;
+} */
+
+
+/* 
+
 .carousel {
     margin-top: 30px;
     margin-bottom: 50px;
@@ -60,3 +193,4 @@
 #testimonials {
     margin-left: 11%;
 } 
+ */

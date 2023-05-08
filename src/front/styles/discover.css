@@ -1,3 +1,87 @@
-.cardescubre {
-    border-radius: 10%;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+/* ------------------ CONTENEDOR GENERAL --------------------- */
+.content-discover{
+    margin-top: 80px;
 }
+
+/* ------------------ TITULOS Y SUBTITULOS --------------------- */
+
+
+.title-discover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 50px;
+
+    font-family: 'Playfair', serif;
+    font-size: 60px;
+    font-weight: 500;
+    color: #333233;
+}
+
+.subtitle-discover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 40px;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+
+/* ------------------ CARD BODY --------------------- */
+
+
+.cardescubre {
+    border-radius: 15px;
+    background-color: aliceblue;
+    box-shadow: 5px 8px 10px #8888888c;
+}
+
+.card-img-top{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+/* ------------------ CARD ELEMENTS --------------------- */
+
+
+.card-titles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    font-family: 'Playfair', serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: #333233;
+}
+
+.card-autor{
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+.card-pages{
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    margin-top: -15px;
+}
+
+.card-resena{
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    margin-top: -15px;
+}
+
