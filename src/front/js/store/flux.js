@@ -119,7 +119,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// sessionStorage.setItem('newUser', JSON.stringify(data))
 					navigate('/login')
 
-
 				} catch (error) {
 					console.log(error);
 				}

@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { CampoForm } from "./CampoForm";
 import { BotonUno } from "./BotonUno";
 import { Context } from "../store/appContext";
+import "../../styles/login.css"
 
 export const Login = () => {
 
@@ -19,18 +20,18 @@ export const Login = () => {
 
 
     return (
-        <div id="cardbanner" className="container col-10 row">
+        <div className="container cont-login">
             <div id="cardbody" className="card mb-3">
                 <div className="row g-0">
                     <div className="col-md-6">
-                        <img src="https://img.freepik.com/vector-gratis/iniciar-sesion-ilustracion-concepto_114360-5475.jpg?w=826&t=st=1682212652~exp=1682213252~hmac=5a49f58e240e934d0378ccd7e019b183516384a4039b0b4337d33b93d675e7f1" id="bannerimg" className="img-fluid rounded-start" alt="..." />
+                        <img src="http://localhost:3000/img/login.png" id="" className="img-login" alt="..." />
                     </div>
 
                     <div className="col-md-6">
                         <div className="card-body ps-4">
                             <form onSubmit={(e) => actions.getLogin(e, navigate)}>
                                 <div className="mb-4">
-                                    <h1 className="card-title m-2">Nos alegra tenerte aquí</h1>
+                                    <h1 className="title-register">Nos alegra tenerte aquí</h1>
                                 </div>
                                 <CampoForm
                                     type={"text"}
@@ -55,10 +56,10 @@ export const Login = () => {
                                 />
 
                             </form>
-                            <p className="card-text m-2">
-                                <small className="text-body-secondary">
+                            <p className="text-crear-cuenta">
+                                <small className="">
                                     ¿No tienes cuenta?
-                                    <Link className="ms-1" to='/register'>
+                                    <Link className="link-crear-cuenta" to='/register'>
                                         Crea tu cuenta aquí
                                     </Link>
                                 </small>

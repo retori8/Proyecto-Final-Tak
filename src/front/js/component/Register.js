@@ -3,6 +3,7 @@ import { CampoForm } from "./CampoForm";
 import { BotonUno } from "./BotonUno";
 import { Context } from "../store/appContext";
 import { useNavigate } from 'react-router-dom';
+import "../../styles/register.css"
 
 export const Register = () => {
 
@@ -21,18 +22,18 @@ export const Register = () => {
     } */
 
     return (
-        <div id="cardbanner" className="container col-10 row mb-5">
+        <div className="container row cont-register">
             <div id="cardbody" className="card mb-3">
                 <div className="row g-0">
                     <div className="col-md-6">
-                        <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-sesion-movil_114360-135.jpg?w=1060&t=st=1682899190~exp=1682899790~hmac=e9c781896bba4438a41f753278ed7b5adebda5333891511eeda50ab8fba71108" id="bannerimg" className="img-fluid rounded-start" alt="..." />
+                        <img src="http://localhost:3000/img/create.png" className="img-register" alt="..." />
                     </div>
 
                     <div className="col-md-6">
-                        <div className="card-body ps-4">
+                        <div className="form-cont">
                             <form onSubmit={(e) => actions.handleSubmitRegister(e, navigate)}>
-                                <div className="mb-1 p-2">
-                                    <h1 className="m-2">Formulario de Registro</h1>
+                                <div className="">
+                                    <h1 className="title-register">Formulario de Registro</h1>
                                     <CampoForm
                                         type={"text"}
                                         label={"Nombre"}
@@ -74,7 +75,7 @@ export const Register = () => {
                                         name={'re_password'}
                                     />
                                     <BotonUno
-                                        name={"Registrar"}
+                                        name={"Crear mi cuenta"}
                                     />
                                 </div>
                             </form>
