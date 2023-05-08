@@ -1,5 +1,6 @@
 import React from "react";
 import { ChallengesCard } from "../component/Challenges/challengeCard";
+import { Link } from "react-router-dom";
 
 
 export const Challenges = () => {

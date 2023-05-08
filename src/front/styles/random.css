@@ -6,3 +6,46 @@
     margin-top: 250px;
     height: 100vh;
 }
+
+.title-random{
+    font-family: 'Playfair', serif;
+    font-weight: 600;
+    font-size: 80px;
+    line-height: 70px;
+    margin-top: 50px;
+    color: #333233;
+}
+
+.subtitle-random{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    line-height: 30px;
+    color: #333233;
+}
+
+
+
+/*---------------------------- CARD ---------------------------------*/
+
+.card-random{
+    height: 500px;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    background-color: #636b5f;
+}
+
+.text-random{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 50px;
+
+    font-family: 'Playfair', serif;
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 50px;
+
+    color: #ffffff;
+}
+

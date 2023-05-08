@@ -14,8 +14,8 @@ export const RandomChallenge = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-4 me-3">
-                        <h1>Desafio Random</h1>
-                        <h4>¿Qué te parece si soltamos un poco el control y nos aventuramos a hacer un desafío aleatorio? Lo que podemos adelantarte es que será un reto a corto plazo, creado para ejercitar nuestra “conciencia plena”.</h4>
+                        <h1 className="title-random">Desafio Random</h1>
+                        <h4 className="subtitle-random">¿Qué te parece si soltamos un poco el control y nos aventuramos a hacer un desafío aleatorio? Lo que podemos adelantarte es que será un reto a corto plazo, creado para ejercitar nuestra “conciencia plena”.</h4>
                     </div>
                     <div className="col-7">
                         <CardChallenge random={store.random} click={actions.getRandom} />
