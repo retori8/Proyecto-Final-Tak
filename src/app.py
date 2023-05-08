@@ -65,21 +65,15 @@ def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
 
+#LOGIN---------------------------------------------------------------------------------------------------------------------
 
-# generate sitemap with all your endpoints
-# @app.route('/')
-# def sitemap():
-#     if ENV == "development":
-#         return generate_sitemap(app)
-#     return send_from_directory(static_file_dir, 'index.html')
-#login---------------------------------------------------------------------------------------------------------------------
-
-@app.route('/login', methods=['POST'])
+@app.route('/api/login', methods=['POST'])
 def login():
 
+    user = User()
     email = request.json.get('email')
     password = request.json.get('password')
-    user = User()
+    
 
     if not email:
         return jsonify({ "msg": "Tu email es necesario"}), 422
@@ -94,6 +88,7 @@ def login():
 
     if not check_password_hash(user.password, password):
         return jsonify({ "msg": "Username/Password are incorrects"}), 401
+    
 
     access_token = create_access_token(identity=user.id)
 
@@ -103,6 +98,9 @@ def login():
     }
 
     return jsonify(data), 200
+
+#TOKEN/PROTECTED---------------------------------------------------------------------------------------------------------------------
+
 
 @app.route("/token", methods=["POST"])
 def create_token():
@@ -126,6 +124,10 @@ def protected():
     user = User.query.get(current_user_id)
     
     return jsonify({"id": user.id, "username": user.username }), 200
+
+
+
+#REGISTRO---------------------------------------------------------------------------------------------------------------------
 
 @app.route('/api/register', methods=['POST'])
 def register():
@@ -174,33 +176,96 @@ def register():
 
     user.new_user()
     
+    return jsonify({"msg":"register created", "user": user.serialize()}), 201
 
-    access_token = create_access_token(identity=user.id)
+    # access_token = create_access_token(identity=user.id)
 
-    datos = {
-        "access_token": access_token,
-        "user": user.serialize()
-    }
+    # datos = {
+    #     "access_token": access_token,
+    #     "user": user.serialize()
+    # }
 
-    return jsonify(datos), 200
+    # return jsonify(datos), 200
 
-#simon register-----------------------------------------------------------------------
-# app.route('/api/register', methods=['POST'])
-# def register():
-#     data = request.get_json()
+#thanks--------------------------------------------------------------------------------------------------------------------------
 
-#     user = User()
-#     user.first_name = data["first_name"]
-#     user.last_name = data["last_name"]
-#     user.email = data["email"]
-#     user.password = data["password"]
-#     user.address = data["address"] if data["address"] else None
-#     user.birthdate = data["birthdate"] if data["birthdate"] else None
-#     user.image = data["image"] if data["image"] else None
-#     user.role_id = 2
-#     user.new_user()  
+'''@app.route('/api/thanks', methods=['POST'])
+@jwt_required()
+def add_thank():
+    data = request.get_json()
+
+    thank = Thanks()
+    thank.list = data["list"]
+    thank.date = datetime.now()
+    thank.users_id = data["users_id"]
+    thank.new_thanks()   
     
-#     return jsonify({"msg":"user created", "user": user.serialize()}), 201
+    return jsonify({"msg":"thank created", "thank": thank.serialize()}), 201 
+
+@app.route('/api/thanks', methods=['GET'])
+@jwt_required()
+def get_all_thanks():
+    thanks = Thanks.query.all()
+    thanks = list(map(lambda thank : thank.serialize(), thanks))
+
+    return jsonify(thanks), 200 
+
+@app.route('/api/thanks/<int:id>', methods=['DELETE'])
+def delete_thank(id):
+    thank = Thanks.query.get(id)
+    thank.delete_thanks()
+
+    return jsonify({"msg":"thank delete", "thank": {}}), 200
+
+@app.route('/api/thanks/<int:id>', methods=['GET'])
+def get_all_thanks_by_user(id):
+    thanks = Thanks.query.filter_by(users_id=id)
+    thanks = list(map(lambda thank : thank.serialize(), thanks))
+
+    return jsonify(thanks), 200
+
+@app.route('/api/thanks/<int:id>', methods=['GET'])
+def get_thanks_by_user(id = None):
+    print(datetime.now())
+    current_user = get_jwt_identity()
+
+    thanks = Thanks.query.filter_by(users_id=id)
+    thanks = list(map(lambda thank : thank.serialize(), thanks))
+
+    return jsonify(thanks), 200'''
+
+@app.route('/thanks', methods=['GET', 'POST'])
+@app.route('/thanks/<int:id>', methods=['GET', 'DELETE'])
+@jwt_required()
+def thanks(id = None):
+    current_user = get_jwt_identity()
+    print(current_user)
+
+    if request.method == 'GET':
+        if id is not None:
+            thanks = Thanks.query.filter_by(users_id=current_user).first()
+            if not thanks:
+                return jsonify({ "msg": "No encontrado"}), 404
+
+            return jsonify(thanks.serialize()), 200
+            
+        else:
+            thanks = Thanks.query.filter_by(users_id=current_user)
+            thanks = list(map(lambda thank : thank.serialize(), thanks))
+
+            return jsonify(thanks), 200
+
+
+    if request.method == 'POST':
+        data = request.get_json()
+
+        thank = Thanks()
+        thank.list = data["list"]
+        thank.date = datetime.now()
+        thank.users_id = current_user
+        thank.new_thanks()   
+    
+    return jsonify({"msg":"thank created", "thank": thank.serialize()}), 201 
 
 #user---------------------------------------------------------------------------------------------------------------------
 @app.route('/api/users', methods=['POST'])
@@ -513,88 +578,7 @@ def delete_challengesuser(id):
     return jsonify({"msg":"challengesuser delete", "challengesuser": {}}), 200
 
 
-#thanks--------------------------------------------------------------------------------------------------------------------------
 
-@app.route('/api/thanks', methods=['POST'])
-@jwt_required()
-def add_thank():
-    data = request.get_json()
-
-    thank = Thanks()
-    thank.list = data["list"]
-    thank.date = datetime.now()
-    thank.users_id = data["users_id"]
-    thank.new_thanks()   
-    
-    return jsonify({"msg":"thank created", "thank": thank.serialize()}), 201 
-
-@app.route('/api/thanks', methods=['GET'])
-@jwt_required()
-def get_all_thanks():
-    thanks = Thanks.query.all()
-    thanks = list(map(lambda thank : thank.serialize(), thanks))
-
-    return jsonify(thanks), 200 
-
-@app.route('/api/thanks/<int:id>', methods=['DELETE'])
-def delete_thank(id):
-    thank = Thanks.query.get(id)
-    thank.delete_thanks()
-
-    return jsonify({"msg":"thank delete", "thank": {}}), 200
-
-@app.route('/api/thanks/<int:id>', methods=['GET'])
-def get_all_thanks_by_user(id):
-    thanks = Thanks.query.filter_by(users_id=id)
-    thanks = list(map(lambda thank : thank.serialize(), thanks))
-
-    return jsonify(thanks), 200
-
-@app.route('/api/thanks/<int:id>', methods=['GET'])
-def get_thanks_by_user(id = None):
-    print(datetime.now())
-    current_user = get_jwt_identity()
-
-    thanks = Thanks.query.filter_by(users_id=id)
-    thanks = list(map(lambda thank : thank.serialize(), thanks))
-
-    return jsonify(thanks), 200
-
-'''@app.route('/thanks', methods=['GET', 'POST'])
-@app.route('/thanks/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-@jwt_required()
-def thanks(id = None):
-    current_user = get_jwt_identity()
-
-    if request.method == 'GET':
-        if id is not None:
-            thanks = Thanks.query.filter_by(users_id=current_user).first()
-            if not thanks:
-                return jsonify({ "msg": "No encontrado"}), 404
-
-            return jsonify(thanks.serialize()), 200
-            
-        else:
-            thanks = Thanks.query.filter_by(users_id=current_user)
-            thanks = list(map(lambda msg: msg.serialize(), thanks))
-
-            return jsonify(thanks), 200
-
-
-    if request.method == 'POST':
-        thanks = request.json.get('thanks')
-        date = request.json.get('date')
-        list = request.json.get('list')
-        users_id = request.json.get('user_id')
-        
-        thank = Thanks()
-        thank.list = list
-        thank.date = datetime.now()
-        thank.users_id = users_id
-        thank.new_thanks()
-  
-    
-        return jsonify({"msg":"thank created", "thank": thank.serialize()}), 201 '''
 
 #roles------------------------------------------------------------------------------------------------------------------------
 @app.route('/api/roles', methods=['POST'])
@@ -720,10 +704,13 @@ def update_upload_archivo(id):
 @app.route('/uploads', methods=['GET'])
 def list_uploads():
 
-    uploads = Storage.query.all()
-    uploads = list(map(lambda item: item.serialize(), uploads))
+    storages = Storage.query.all()
+    storages = list(map(lambda storage: storage.serialize(), storages))
+    
 
-    return jsonify(uploads), 200
+    return jsonify(storages), 200
+
+#storage------------------------------------------------------------------------------------------------------------------------
 
 
 #------------------------------------------------------------------------------------------------------------------------

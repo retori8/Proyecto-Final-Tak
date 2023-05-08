@@ -97,6 +97,12 @@ class User(db.Model):# voy a crear un modelo con esa clase
             "role_id": self.role_id,
         }
     
+    def serialize_login(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+        }
+    
     def new_user(self):
         db.session.add(self)
         db.session.commit()

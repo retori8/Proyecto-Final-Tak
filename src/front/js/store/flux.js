@@ -1,11 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
+
 	return {
 		store: {
 			url: "http://127.0.0.1:3001",
+			audios: null,
 			books: null,
 			podcasts: null,
 			movies: null,
 			challenge_21_days: null,
+			thanks: [],
+			thanks_user: null,
+			thanks_by_user: null,
 			tareas_random: ["Hoy escribele una carta de agradecimiento a alguien que haya influido positivamente en tu vida.", "Hoy proponte decirle a una persona amiga algo que aprecias de ella", "Hoy mírate en el espejo mientras te lavas los dientes, y piensa en algo que has hecho bien recientemente o algo que te gusta de ti", "Hoy sal a caminar y mira cuantas cosas positivas puedes encontrar en tu camino, agudiza tus sentidos al máximo para encontrar las cosas que antes pasaban desapercibidas.", "Hoy disponte a comer disfrutando de cada bocado, con todos tus sentidos, despierta tu olfato, observa los colores, siente la temperatura y agradece el privilegio que tienes al gozar de esta comida."],
 			random: null,
 			thank: {
@@ -13,10 +18,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				date: "",
 				users_id: ""
 			},
+
 			currentUser: null,
-			id:null,
-			thanks: [],
-			thanks_by_user: null,
+			id: null,
 			//SIMON
 			email: '',
 			password: '',
@@ -25,23 +29,46 @@ const getState = ({ getStore, getActions, setStore }) => {
 			lastname: '',
 			users: '',
 			newUser: {
-				first_name: "",
-				last_name: "",
-				email: "",
-				password: "",
-				address: "",
-				birthdate: 0,
-				image: "",
-				role_id: 0,
-				funcion: "",
-				token: null,
-				id:null
+				first_name: '',
+				last_name: '',
+				email: '',
+				password: '',
+				re_password: ''
 			}
 		},
 
 		actions: {
 
-			// SIMON 
+			//login-----------------------------------------------------------------------------------------------------------------
+
+			getLogin: async (e, navigate) => {
+				e.preventDefault();
+				try {
+					const { url, email, password } = getStore();
+					let info = { email, password };
+					const response = await fetch(`${url}/api/login`, {
+						method: 'POST',
+						body: JSON.stringify(info),
+						headers: {
+							'Content-Type': 'application/json'
+						}
+					})
+					console.log(response)
+					const data = await response.json()
+					console.log(data)
+
+					if (data.access_token) {
+						setStore({ currentUser: data })
+						sessionStorage.setItem('currentUser', JSON.stringify(data))
+
+						navigate('/home')
+					}
+
+				} catch (error) {
+					console.log(error)
+					console.log("hay un error en el login");
+				}
+			},
 
 			handleChange: e => {
 				setStore({
@@ -49,13 +76,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-			handleChangeObjUser(e) {
-				const { newUser } = getStore()
-				e.preventDefault();
-				newUser[e.target.name] = e.target.value
-				setStore({
-					newUser
-				})
+			checkUser: () => {
+				if (sessionStorage.getItem('currentUser')) {
+					setStore({
+						currentUser: JSON.parse(sessionStorage.getItem('currentUser'))
+					})
+				}
 			},
 
 			/* handlePasswordValidate(e){
@@ -64,40 +90,62 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 			}, */
 
-			getLogin: async (info = { email: ' ', password: ' ' }) => {
+			logout: () => {
+				if (sessionStorage.getItem('currentUser')) {
+					setStore({
+						currentUser: null
+					})
+					sessionStorage.removeItem('currentUser')
+				}
+			},
+
+			//register----------------------------------------------------------------------------------------------------------------------
+
+			createNewUser: async (e, navigate) => {
 				try {
-					const { url } = getStore();
-					const response = await fetch(`${url}/login`, {
+					const { url, newUser } = getStore();
+					const response = await fetch(`${url}/api/register`, {
 						method: 'POST',
-						body: JSON.stringify(info),
+						body: JSON.stringify({ ...newUser }),
 						headers: {
 							'Content-Type': 'application/json'
 						}
 					})
 
 					const data = await response.json()
+					console.log(data)
 
-					if (data.access_token) {
-						setStore({ currentUser: data })
-					}
+					setStore({ newUser: data })
+					sessionStorage.setItem('newUser', JSON.stringify(data))
+						
+					navigate('/login')
 
-					return data;
 
 				} catch (error) {
-					console.log("hay un error en el login");
+					console.log(error);
 				}
 			},
-			// getLogin: () => {
-			// 	const { email, password, url } = getStore();
-			// 	fetch(`${url}/users`, {
-			// 		method: 'POST',
-			// 		body: JSON.stringify({ email, password }),
-			// 		headers: {
-			// 			'Content-Type': 'application/json'
-			// 		}
-			// 	})
-			// validar que el token 
-			// },
+
+			handleSubmitRegister: e => {
+				const { createNewUser } = getActions()
+				console.log(store);
+				e.preventDefault();
+				
+				if (store.newUser.re_password=== store.newUser.password) {
+				
+					createNewUser();	
+				}
+			},
+
+			handleChangeObjUser(e) {
+				const { newUser } = getStore()
+				e.preventDefault();
+				newUser[e.target.name] = e.target.value
+				setStore({newUser })
+				console.log(newUser)
+			},
+
+			//recovery----------------------------------------------------------------------------------------------------------------------
 
 			getRecovery: () => {
 				const { email, url } = getStore();
@@ -110,66 +158,109 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-			createNewUser: () => {
-				const { url } = getStore();
-				const { newUser } = getStore();
-				console.log(newUser)
+			//Thanks----------------------------------------------------------------------------------------------------------------------
 
-				fetch(`${url}/api/register`, {
-					method: 'POST',
-					body: JSON.stringify({ ...newUser }),
+
+			getThanks: async () => {
+				const { url, thank, currentUser } = getStore()
+				const options = {
+					method: "POST",
+					body: JSON.stringify({ ...thank }),
 					headers: {
-						'Content-Type': 'application/json'
-					}
-				})
-			},
-
-			// addThank: async () => {
-			// 	const { url } = getStore()
-			// 	const { thank } = getStore()
-			// 	console.log(thank)
-			// 	const options = {
-			// 		method: "POST",
-			// 		body: JSON.stringify({ ...thank }),
-			// 		headers: {
-			// 			"Content-Type": "application/json",
-			// 		},
-			// 	}
-			// 	try {
-			// 		const response = await fetch(
-			// 			`${url}/api/thanks`, options
-			// 		);
-			// 		let data_thank = await response.json()
-
-
-			// 	} catch (error) {
-			// 		console.log(error);
-			// 	}
-
-			// },
-
-			getUser: async () => {
+						"Content-Type": "application/json",
+						'Authorization': `Bearer ${currentUser?.access_token}`
+					},
+				}
 				try {
-					const response = await fetch(`${url}/api/users`, {
-						method: 'GET',
-						headers: {
-							'Content-Type': 'application/json'
-						},
-					});
-					if (response.status === 404) throw Error('Page not found');
-					const user_info = await response.json();
+					const response = await fetch(
+						`${url}/thanks`, options
+					);
+					let data_thank = await response.json()
 
 					setStore({
-						users: user_info,
-					});
+						thanks: data_thank
+					})
 
-					console.log(users);
 				} catch (error) {
-					console.log(error.message);
+					console.log(error);
+				}
+
+			},
+
+			getThanksByUser: async () => {
+				try {
+					const { currentUser, url } = getStore()
+					const options = {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': `Bearer ${currentUser?.access_token}`
+						}
+					}
+					const response = await fetch(`${url}/api/thanks/${currentUser?.user?.id}`, options)
+					const data = await response.json();
+
+					setStore({
+						thanks_user: data
+					})
+
+				} catch (error) {
+
 				}
 			},
 
-			// SIMON
+			handleSubmit(e) {
+				e.preventDefault();
+				const { thanks } = getStore()
+				const { thank } = getStore()
+				let setchange = { ...thank }
+				setStore({
+					thanks: [...thanks, setchange]
+				})
+				e.target.reset()
+				getActions().addThank()
+				console.log(getStore().thanks)
+			},
+
+			handleDelete(i) {
+				const { thanks } = getStore()
+				thanks.splice(i, 1);
+				setStore({ thanks: thanks });
+			},
+
+			handleChangeObj(e) {
+				const { thank } = getStore()
+				e.preventDefault();
+				thank.list = e.target.value
+				thank.user_id =
+					setStore({
+						thank: { ...thank }
+					})
+				console.log(getStore().thank)
+			},
+
+			deleteThank: async () => {
+				const { url } = getStore()
+				const options = {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				};
+				try {
+					const response = await fetch(`${url}/api/thanks/${id}`,
+						options
+					);
+					if (response.status == 200) {
+						setStore({ thanks: thanks.delete.thanks.id });
+					}
+				} catch (error) {
+					console.log(error);
+				}
+			},
+
+
+			//RANDOM----------------------------------------------------------------------------------------------------------------------
 
 			getRandom() {
 				const { tareas_random } = getStore()
@@ -177,28 +268,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ random: tareas_random[index] })
 			},
 
-			getChallenge21Days: async () => {
-				const { url } = getStore()
-				const { challenge_21_days } = getStore();
-
-				try {
-					const response = await fetch(`${url}/api/challenges`, {
-						metod: "GET",
-						headers: {
-							"Content-Type": "application/json",
-						},
-					});
-					if (response.status === 404) throw Error("Page not found");
-					const challenge_info = await response.json();
-
-					setStore({
-						challenge_21_days: challenge_info
-					});
-					console.log(challenge_21_days);
-				} catch (error) {
-					console.log(error.message);
-				}
-			},
 			//books-----------------------------------------------------------------------------------------------------
 			getBooks: async () => {
 				const { url } = getStore()
@@ -262,188 +331,131 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error.message);
 				}
 			},
-			//thanks-----------------------------------------------------------------------------------------------------
-			addThank: async () => {
-				const { url } = getStore()
-				const { thank } = getStore()
-				console.log(thank)
-				const options = {
-					method: "POST",
-					body: JSON.stringify({ ...thank }),
-					headers: {
-						"Content-Type": "application/json",
-					},
-				}
+
+			//NO OCUPADOS AUN----------------------------------------------------------------------------------------------------------------------
+
+
+			getUser: async () => {
 				try {
-					const response = await fetch(
-						`${url}/api/thanks`, options
-					);
-					let data_thank = await response.json()
+					const response = await fetch(`${url}/api/users`, {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+					});
+					if (response.status === 404) throw Error('Page not found');
+					const user_info = await response.json();
 
+					setStore({
+						users: user_info,
+					});
 
+					console.log(users);
 				} catch (error) {
-					console.log(error);
+					console.log(error.message);
 				}
-
 			},
 
-			getThanks: async () => {
+
+
+			getChallenge21Days: async () => {
 				const { url } = getStore()
-				const { thanks } = getStore
+				const { challenge_21_days } = getStore();
 
 				try {
-					const response = await fetch(`${url}/api/thanks`, {
+					const response = await fetch(`${url}/api/challenges`, {
 						metod: "GET",
 						headers: {
 							"Content-Type": "application/json",
 						},
 					});
 					if (response.status === 404) throw Error("Page not found");
-					const thanks_info = await response.json();
+					const challenge_info = await response.json();
 
 					setStore({
-						thanks: thanks_info,
+						challenge_21_days: challenge_info
 					});
-					console.log(thanks);
+					
 				} catch (error) {
 					console.log(error.message);
 				}
 			},
 
-			getThanksByUser: async () => {
-				const { url, id, thanks_by_user } = getStore()
+
+
+			//audiosStorage-----------------------------------------------------------------------------------------------------
+
+			getAudios: async () => {
+				const { url } = getStore()
 
 				try {
-					const response = await fetch(`${url}/api/thanks/${id}`, {
+					const response = await fetch(`${url}/uploads`, {
 						metod: "GET",
 						headers: {
 							"Content-Type": "application/json",
 						},
 					});
 					if (response.status === 404) throw Error("Page not found");
-					const thanks_user = await response.json();
+					const audio_info = await response.json();
 
 					setStore({
-						thanks_by_user: thanks_user,
+						audios: audio_info,
 					});
-					console.log(thanks_by_user);
 				} catch (error) {
 					console.log(error.message);
 				}
 			},
 
-			deleteThank: async () => {
-				const { url } = getStore()
-				const options = {
-					method: "DELETE",
-					headers: {
-						"Content-Type": "application/json",
-					},
-				};
-				try {
-					const response = await fetch(`${url}/api/thanks/${id}`,
-						options
-					);
-					if (response.status == 200) {
-						setStore({ thanks: thanks.delete.thanks.id });
-					}
-				} catch (error) {
-					console.log(error);
-				}
-			},
-
-			handleChangeObj(e) {
-				const { thank } = getStore()
-				e.preventDefault();
-				thank.list = e.target.value
-				setStore({
-					thank: { ...thank }
-				})
-				console.log(getStore().thank)
-			},
-
-			handleSubmit(e) {
-				e.preventDefault();
-				const { thanks } = getStore()
-				const { thank } = getStore()
-				let setchange = { ...thank }
-				thank.users_id = 10
-				setStore({
-					thanks: [...thanks, setchange]
-				})
-				e.target.reset()
-				getActions().addThank()
-				console.log(getStore().thanks)
-			},
-
-			handleDelete(i) {
-				const { thanks } = getStore()
-				thanks.splice(i, 1);
-				setStore({ thanks: thanks });
-			},
-
-
-		},
-		addThank: async () => {
-			const { url } = getStore()
-			const { thank } = getStore()
-			console.log(thank)
-			const options = {
-				method: "POST",
-				body: JSON.stringify({ ...thank }),
-				headers: {
-					"Content-Type": "application/json",
+			/*addFavorite(fav) {
+					const { favorite } = getStore();
+					let listafav = [...favorite, fav];
+					setStore({ favorite: listafav });
 				},
-			}
-			try {
-				const response = await fetch(
-					`${url}/api/thanks`, options
-				);
-				let data_thank = await response.json()
+				handleDelete(i) {
+					const { favorite } = getStore()
+					favorite.splice(i, 1);
+					setStore({ favorite: favorite });
+				},
+		
+				/*<ul className="dropdown-menu"> menu
+						  
+						  {!!favorite &&
+							favorite.length > 0 &&
+							favorite.map((fav, index) => {
+							  console.log(favorite)
+							  return (
+								<Favorites fav={fav} i={index}/>
+							  );
+							})}
+						</ul><ul className="dropdown-menu">
+						  
+						  {!!favorite &&
+							favorite.length > 0 &&
+							favorite.map((fav, index) => {
+							  console.log(favorite)
+							  return (
+								<Favorites fav={fav} i={index}/>
+							  );
+							})}
+						</ul>*/
 
-			} catch (error) {
-				console.log(error);
-			}
+						// handleSubmitRegister: e => {
+						// 	const { createNewUser } = getActions()
+						// 	console.log(store);
+						// 	e.preventDefault();
+						// 	if (store.newUser.re_password.length > 0) {
+						// 		if (store.newUser.password !== store.newUser.re_password) {
+						// 			console.log("Las contraseñan no son iguales")
+						// 		}
+						// 		else {
+						// 			createNewUser();
+						// 		}
+						// 	}
+						// },
 
-		},
-		//challenges-----------------------------------------------------------------------------------------------------
 
-
-
-		/*addFavorite(fav) {
-				const { favorite } = getStore();
-				let listafav = [...favorite, fav];
-				setStore({ favorite: listafav });
-			},
-			handleDelete(i) {
-				const { favorite } = getStore()
-				favorite.splice(i, 1);
-				setStore({ favorite: favorite });
-			},
-	
-			/*<ul className="dropdown-menu"> menu
-					  
-					  {!!favorite &&
-						favorite.length > 0 &&
-						favorite.map((fav, index) => {
-						  console.log(favorite)
-						  return (
-							<Favorites fav={fav} i={index}/>
-						  );
-						})}
-					</ul><ul className="dropdown-menu">
-					  
-					  {!!favorite &&
-						favorite.length > 0 &&
-						favorite.map((fav, index) => {
-						  console.log(favorite)
-						  return (
-							<Favorites fav={fav} i={index}/>
-						  );
-						})}
-					</ul>*/
-
-	};
+		}
+	}
 };
 
 export default getState;

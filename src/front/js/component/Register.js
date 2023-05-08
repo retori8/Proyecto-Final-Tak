@@ -2,24 +2,13 @@ import React, { useContext } from "react";
 import { CampoForm } from "./CampoForm";
 import { BotonUno } from "./BotonUno";
 import { Context } from "../store/appContext";
+import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
 
     const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
 
-
-    const handleSubmit = e => {
-        console.log(store);
-        e.preventDefault();
-        if (store.newUser.re_password.length > 0) {
-            if (store.newUser.password !== store.newUser.re_password) {
-                console.log("Las contraseñan no son iguales")
-            }
-            else {
-                actions.createNewUser();
-            }
-        }
-    }
 
     /* const validarPassword2 = () => {
         if (store.newUser.password > 0) {
@@ -41,7 +30,7 @@ export const Register = () => {
 
                     <div className="col-md-6">
                         <div className="card-body ps-4">
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={(e) => actions.handleSubmitRegister(e, navigate)}>
                                 <div className="mb-1 p-2">
                                     <h1 className="m-2">Formulario de Registro</h1>
                                     <CampoForm
