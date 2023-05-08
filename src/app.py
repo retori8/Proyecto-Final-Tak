@@ -12,7 +12,7 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from werkzeug.security import generate_password_hash, check_password_hash
 from api.utils import APIException, generate_sitemap
-from api.models import db # me permite vincular mi api con mis modelos
+from api.models import db # me permite vincular mi api con mis modpipeelos
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
