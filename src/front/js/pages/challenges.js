@@ -11,10 +11,13 @@ export const Challenges = () => {
             </div>
             <div className="container">
                 <div className="row row-cols-1 row-cols-md-2 g-4">
-                    <ChallengesCard
-                        img="http://localhost:3000/img/desafio-random.jpg"
-                        title="Desafío Random"
-                        text="Hemos preparado variados desafios para que aceptes el primero que recibas." />
+                    <Link to={"/challenges/random"}>
+                        <ChallengesCard
+                            img="http://localhost:3000/img/desafio-random.jpg"
+                            title="Desafío Random"
+                            text="Hemos preparado variados desafios para que aceptes el primero que recibas." />
+                    </Link>
+
                     <ChallengesCard
                         img="http://localhost:3000/img/desafio-21-dias.jpg"
                         title="Desafío 21 Días"

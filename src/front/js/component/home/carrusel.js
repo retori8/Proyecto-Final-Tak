@@ -1,5 +1,6 @@
 import React from "react";
 import { ImgCarousel } from "./imgcarolusel";
+import { Link } from "react-router-dom";
 
 export const Carrusel = () => {
     return (
@@ -14,7 +15,9 @@ export const Carrusel = () => {
                     <img src="http://localhost:3000/img/slide1.jpg" className="d-block w-100" alt="..." />
                     <div className="carousel-caption d-none d-md-block">
                         <h2 className="carouselTitle">La Gratitud es Ahora</h2>
-                        <button type="button" class="btn btn-outline-light btn-carrusel" >Crear mi cuenta</button>
+                        <Link to={"/register"}>
+                            <button type="button" class="btn btn-outline-light btn-carrusel" >Crear mi cuenta</button>
+                        </Link>
                     </div>
                 </div>
                 <div className="carousel-item" data-bs-interval={4000}>
@@ -22,7 +25,9 @@ export const Carrusel = () => {
                     <div className="carousel-caption d-none d-md-block">
                         <h2 className="carouselTitle">Respira y Conectate Contigo</h2>
                         {/* <h3>Escucha una de nuestras meditaciones</h3> */}
-                        <button type="button" class="btn btn-outline-light btn-carrusel" >Respira & Conecta</button>
+                        <Link to={"/register"}>
+                            <button type="button" class="btn btn-outline-light btn-carrusel" >Crear mi cuenta</button>
+                        </Link>
                     </div>
                 </div>
                 <div className="carousel-item" data-bs-interval={4000}>
@@ -30,7 +35,9 @@ export const Carrusel = () => {
                     <div className="carousel-caption d-none d-md-block">
                         <h2 className="carouselTitle">Medita y Conectate Contigo</h2>
                         {/* <h3>"Regula los neurotransmisores del estado de ánimo (serotonina) y del placer (dopamina)"</h3> */}
-                        <button type="button" class="btn btn-outline-ligh btn-carrusel" >Medita & Conecta</button>
+                        <Link to={"/register"}>
+                            <button type="button" class="btn btn-outline-light btn-carrusel" >Crear mi cuenta</button>
+                        </Link>
                     </div>
                 </div>
                 {/* <ImgCarousel img={"http://localhost:3000/img/slide1"} argumento="Mejora los niveles de glucosa." />

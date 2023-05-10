@@ -5,6 +5,7 @@ import { CardPodcats } from "../component/Discover/cardPodcat"; */
 import { useContext } from "react";
 /* import { CardMovie } from "../component/Discover/cardMovie"; */
 import { CoverDiscover } from "../component/Discover/coverDiscover";
+import { CoverPodcast } from "../component/Discover/coverPodcast";
 import { CardDiscoverAll } from "../component/Discover/cardDiscoverAll";
 import { Context } from "../store/appContext";
 
@@ -34,6 +35,10 @@ export const Discover = () => {
 						);
 					})} */}
 			</CoverDiscover>
+
+			<CoverPodcast title={"Podcast"} caption={"Estas son nuestras mejores recomendaciones de podcast para tí."}>
+
+			</CoverPodcast>
 			{/* <CoverDiscover title={"Podcasts"} caption={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"}>
 				{!!store.podcasts &&
 					store.podcasts?.length > 0 &&
