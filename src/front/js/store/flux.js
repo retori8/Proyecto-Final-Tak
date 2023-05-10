@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			url: "http://127.0.0.1:3001",
-			audios: null,
+			audios:[],
 			books: null,
 			podcasts: null,
 			movies: null,
@@ -115,8 +115,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json()
 					console.log(data)
 
-					// setStore({ newUser: data })
-					// sessionStorage.setItem('newUser', JSON.stringify(data))
 					navigate('/login')
 
 
