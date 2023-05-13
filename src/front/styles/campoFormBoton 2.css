@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+/* ------------------ CONTENEDOR --------------------- */
+
+
+.form-label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: -10px;
+    margin-left: 10px;
+}
+
+.form-control{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: -10px;
+
+    border-radius: 100px;
+}
+
+.btn-form{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    margin-top: 30px;
+    margin-left: 10px;
+    border: solid 1px #636b5f;
+    border-radius: 20px;
+    padding-inline: 25px;
+}
+
+.btn-form:hover{
+    color: beige;
+    background-color: #636b5f;
+    border-color: #636b5f;
+}

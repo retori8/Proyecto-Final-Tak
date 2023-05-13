@@ -8,12 +8,25 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context)
 	const navitgate = useNavigate()
 	return (
-		<nav id="navbar" className="navbar navbar-expand-lg bg-body-tertiary mb-3 fixed-top">
-			<div className="container-fluid">
+
+		/* Inicio del menú */
+
+		<nav id="navbar" className="navbar navbar-expand-md bg-body-tertiary mb-3 fixed-top">
+			<div className="container-fluid ">
+
+				{/* LOGO */}
+
 				<Link className="navbar-brand m-3 ps-4" to={"/"}>
 					<img src={logo} height={35} />
 				</Link>
-				<div className="collapse navbar-collapse m" id="navbarNavDropdown">
+
+				{/* TOOGLER */}
+
+				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menutak" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span className="navbar-toggler-icon"></span>
+				</button>
+
+				<div className="collapse navbar-collapse m" id="menutak">
 					<ul className="navbar-nav ms-auto ps-5">
 						{
 							store.currentUser ?
@@ -34,18 +47,6 @@ export const Navbar = () => {
 								{store.currentUser ? "Cerrar Sesión" : "Ingresar"}
 							</button>
 						</li>
-
-						{/* <ElementNavbar name="Tak?" to="/tak" />
-							<ElementNavbar name="Respira" to="/respira" />
-							<ElementNavbar name="Desafíos" to="/challenges" />
-							<ElementNavbar name="Descubre" to="/discover" />
-							<li className="nav-item pe-4">
-								<Link type="button" className="btn btnNavbar" aria-current="page" to="/login">
-									<span className="">
-										Login
-									</span>
-								</Link>
-							</li> */}
 					</ul>
 				</div>
 			</div>

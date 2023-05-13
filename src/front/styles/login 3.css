@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+/* ------------------ CONTENEDOR --------------------- */
+
+.cont-login{
+    height: 100vh;
+    margin-top: 150px;
+    margin-bottom: -90px;
+}
+
+.form-login{
+    margin-bottom: -100px;
+}
+
+.img-login{
+    display: flex;
+    justify-content: center;
+    width: 550px;
+    margin-top: 50px;
+}
+
+.title-login{
+    font-family: 'Playfair', serif;
+    font-weight: 500;
+    font-size: 50px;
+    color: 333233;
+
+    margin-left: 15px;
+}
+
+.text-crear-cuenta{
+    display: flex;
+    justify-content: left;
+    margin-left: 13px;
+    margin-top: 10px;
+
+    font-family: 'Roboto',sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: #333233;
+}
+
+.link-crear-cuenta{
+    text-decoration: none;
+    font-weight: 500;
+    color: #333233;
+}
+
+.link-crear-cuenta:hover{
+    text-decoration: none;
+    font-weight: 500;
+    color: #9acda3;
+}
