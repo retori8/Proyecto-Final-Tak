@@ -14,8 +14,6 @@ export const Discover = () => {
 
 	const { store } = useContext(Context);
 
-
-
 	return (
 		<div className="content-discover">
 			<br />

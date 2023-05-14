@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
 
 /* ------------------ CONTENEDOR --------------------- */
+
 .content-desafio{
     height: 100vh;
     padding-top: 170px;
@@ -92,4 +93,23 @@
     z-index: 0;
     background-size: cover;
     background-repeat: no-repeat;
+}
+/* 
+-------------------------------------------------------------------------- */
+#tituloday21{
+    color: #636b5f;
+    font-family: 'Playfair', serif;
+}
+.audio{
+    color: #f7e6d3;
+}
+.video{
+    border-radius: 50%;
+}
+#next{
+    color: #f7e6d3;
+    background-color: #636b5f;
+    font-family: 'Playfair', serif;
+    text-decoration: none;
+    border: none;
 }
