@@ -25,6 +25,8 @@ const injectContext = PassedComponent => {
 
 			state.actions.getBooks();
 			state.actions.getFavoritos();
+			state.actions.getUser();
+			state.actions.getThanks();
 			// state.actions.getMovies();
 			// state.actions.getPodcasts();
 			// state.actions.getChallenge21Days();

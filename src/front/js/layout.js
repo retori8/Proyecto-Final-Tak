@@ -27,6 +27,7 @@ import { Fail21Days } from "./pages/fail21days";
 import { Discover } from "./pages/discover";
 import { Storage } from "./pages/storage";
 import { ProteccionDeRutas } from "../../utils/proteccionderutas";
+import PanelAdministrativo from "./pages/panelAdministrativo";
 
 //create your first component
 const Layout = () => {
@@ -48,6 +49,7 @@ const Layout = () => {
                     <Route element={<RegisterPage />} path="/register" />
                     <Route element={<RecoveryPass />} path="/recovery" />
                     <Route element={<Tak />} path="/tak" />
+                    <Route element={<PanelAdministrativo />} path="/panel_administrativo" />
                     {/* <Route element={<LoginUser />} path="/login" /> */}
                     <Route element={<Respira />} path="/respira" />
                     <Route element={<Donate />} path="donate" />

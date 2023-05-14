@@ -200,23 +200,23 @@ def add_thank():
     thank.new_thanks()   
     
     return jsonify({"msg":"thank created", "thank": thank.serialize()}), 201 
-
+'''
 @app.route('/api/thanks', methods=['GET'])
-@jwt_required()
+# @jwt_required()
 def get_all_thanks():
     thanks = Thanks.query.all()
     thanks = list(map(lambda thank : thank.serialize(), thanks))
 
     return jsonify(thanks), 200 
-
 @app.route('/api/thanks/<int:id>', methods=['DELETE'])
+# @jwt_required()
 def delete_thank(id):
     thank = Thanks.query.get(id)
     thank.delete_thanks()
 
     return jsonify({"msg":"thank delete", "thank": {}}), 200
 
-@app.route('/api/thanks/<int:id>', methods=['GET'])
+'''@app.route('/api/thanks/<int:id>', methods=['GET'])
 def get_all_thanks_by_user(id):
     thanks = Thanks.query.filter_by(users_id=id)
     thanks = list(map(lambda thank : thank.serialize(), thanks))
@@ -303,7 +303,7 @@ def search_user():
     return jsonify(users), 200 
 
 @app.route('/api/users/<int:id>', methods=['PUT'])
-@jwt_required()
+# @jwt_required()
 def update_user(id):
     data = request.get_json()
 
@@ -311,7 +311,7 @@ def update_user(id):
     user.first_name = data["first_name"] if data["first_name"] else user.first_name #si me entrega un nuevo dato lo actualizo, sino dejo el dato que tenia inicialmente
     user.last_name = data["last_name"] if data["last_name"] else user.last_name
     user.email = data["email"] if data["email"] else user.email
-    user.address = data["address"] if data["address"] else user.address
+    user.address = data["address"] if not data["address"] else user.address
     user.birthdate = data["birthdate"] if data["birthdate"] else user.birthdate
     user.image = data["image"] if data["image"] else user.image
     user.role_id = data["role_id"] if data["role_id"] else user.role_id
@@ -320,7 +320,7 @@ def update_user(id):
     return jsonify({"msg":"user update", "user": user.serialize()}), 200
 
 @app.route('/api/users/<int:id>', methods=['DELETE'])
-@jwt_required()
+# @jwt_required()
 def delete_user(id):
     user = User.query.get(id)
     user.delete_user()

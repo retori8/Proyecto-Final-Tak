@@ -27,13 +27,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 			re_password: '',
 			name: '',
 			lastname: '',
-			users: '',
+			users: [],
 			newUser: {
+				id: '',
 				first_name: '',
 				last_name: '',
 				email: '',
 				password: '',
-				re_password: ''
+				re_password: '',
+				birthdate: '',
+				image: '',
+				role_id: '',
+				address: '',
+			},
+			modalPanelUsuarios: {
+				titulo: '',
+				contenido: null,
+				id: null,
+			},
+			modalPanelAgradecimientos: {
+				titulo: '',
+				contenido: null,
+				id: null,
+			},
+			alerta: {
+				show: false,
+				mensaje: '',
+				tipo: 'success'
 			}
 		},
 
@@ -163,23 +183,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getThanks: async () => {
 				const { url, thank, currentUser } = getStore()
 				const options = {
-					method: "POST",
-					body: JSON.stringify({ ...thank }),
+					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
-						'Authorization': `Bearer ${currentUser?.access_token}`
+						// 'Authorization': `Bearer ${currentUser?.access_token}`
 					},
 				}
 				try {
 					const response = await fetch(
-						`${url}/thanks`, options
+						`${url}/api/thanks`, options
 					);
 					let data_thank = await response.json()
 					console.log(data_thank)
 
-					// setStore({
-					// 	thanks: data_thank
-					// })
+					setStore({
+						thanks: data_thank
+					})
 
 				} catch (error) {
 					console.log(error);
@@ -337,6 +356,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getUser: async () => {
 				try {
+					const { url } = getStore();
 					const response = await fetch(`${url}/api/users`, {
 						method: 'GET',
 						headers: {
@@ -350,7 +370,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						users: user_info,
 					});
 
-					console.log(users);
+					console.log(getStore().users);
 				} catch (error) {
 					console.log(error.message);
 				}
@@ -470,8 +490,173 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getFavoritosBooks() {
 
-			}
+			},
 
+			abrirModalPanel(titulo, contenido, index) {
+				const { modalPanelUsuarios, newUser, users } = getStore();
+				modalPanelUsuarios.titulo = titulo;
+				if (contenido == 'Editar Usuario') {
+					modalPanelUsuarios.contenido = 'Editar Usuario'
+					newUser.id = users[index].id;
+					newUser.image = users[index].image;
+					newUser.first_name = users[index].first_name;
+					newUser.last_name = users[index].last_name;
+					newUser.email = users[index].email;
+					newUser.birthdate = users[index].birthdate;
+					newUser.role_id = users[index].role_id;
+				}
+				setStore({ modalPanelUsuarios, newUser })
+			},
+
+			async guardarModalPanel() {
+				try {
+					const { modalPanelUsuarios, url, newUser, currentUser } = getStore();
+					if (modalPanelUsuarios.contenido == 'Editar Usuario') {
+
+						let response = await fetch(url + '/api/users/' + newUser.id, {
+							method: 'PUT',
+							headers: {
+								"Content-Type": "application/json",
+								"Authorization": "Bearer " + currentUser?.access_token
+							},
+							body: JSON.stringify(newUser)
+						})
+
+						let data = await response.json()
+						setStore({
+							newUser: {
+								id: '',
+								first_name: '',
+								last_name: '',
+								email: '',
+								password: '',
+								re_password: '',
+								birthdate: '',
+								image: '',
+								role_id: '',
+								address: '',
+							}
+						})
+					}
+					getActions().getUser()
+				}
+				catch (e) {
+					console.log('ha ocurrido un erro', e)
+				}
+			},
+
+			async confirmacionEliminarUsuario(index) {
+				const { modalPanelUsuarios, users } = getStore();
+				modalPanelUsuarios.contenido = 'Eliminar Usuario';
+				modalPanelUsuarios.titulo = 'Eliminar Usuario ' + users[index].id;
+				modalPanelUsuarios.id = users[index].id
+				setStore({ modalPanelUsuarios });
+			},
+
+			async eliminarUsuario() {
+				try {
+					console.log("elimina")
+					const { url, currentUser, modalPanelUsuarios } = getStore();
+					let response = await fetch(`${url}/api/users/${modalPanelUsuarios.id}`, {
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': 'Bearer ' + currentUser?.access_token
+						}
+					});
+
+					let data = await response.json();
+					setStore({
+						alerta: {
+							mensaje: 'El usuario ha sido eliminado',
+							show: true,
+							tipo: 'success'
+						}
+					});
+					getActions().getUser();
+				}
+				catch (e) {
+					console.error('Ha ocurrido un error', e);
+
+				}
+			},
+
+			abrirModalCrearUsuario() {
+				const { modalPanelUsuarios } = getStore();
+				modalPanelUsuarios.contenido = 'Crear Usuario';
+				setStore({ modalPanelUsuarios });
+			},
+
+			async crearUsuario() {
+				try {
+					const { url, newUser } = getStore();
+					const response = await fetch(`${url}/api/register`, {
+						method: 'POST',
+						body: JSON.stringify({ ...newUser }),
+						headers: {
+							'Content-Type': 'application/json'
+						}
+					})
+					if (response.status == 400) {
+						console.log('errror')
+						setStore({
+							alerta: {
+								mensaje: 'El usuario ya existe',
+								show: true,
+								tipo: 'danger'
+							}
+						});
+					}
+					else {
+						setStore({
+							alerta: {
+								mensaje: 'Usuario creado con exito',
+								show: true,
+								tipo: 'success'
+							}
+						});
+					}
+					console.log('llego a la funcion')
+					const data = await response.json()
+					getActions().getUser();
+					console.log(data);
+				} catch (error) {
+					console.log(error);
+				}
+			},
+
+			confirmacionEliminarAgradecimiento(index) {
+				const { modalPanelAgradecimientos, thanks } = getStore();
+				modalPanelAgradecimientos.contenido = 'Eliminar Agradecimiento';
+				modalPanelAgradecimientos.titulo = 'Eliminar Agradecimiento Nro.' + thanks[index].id;
+				modalPanelAgradecimientos.id = thanks[index].id
+				setStore({ modalPanelAgradecimientos });
+			},
+
+			async eliminarAgradecimiento() {
+				try {
+					const { url, currentUser, modalPanelAgradecimientos } = getStore();
+					let response = await fetch(`${url}/api/thanks/${modalPanelAgradecimientos.id}`, {
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': 'Bearer ' + currentUser?.access_token
+						}
+					});
+					let data = await response.json();
+					setStore({
+						alerta: {
+							mensaje: 'El agradecimiento ha sido eliminado',
+							show: true,
+							tipo: 'success'
+						}
+					});
+					getActions().getThanks();
+				}
+				catch (e) {
+					console.error(e);
+				}
+			},
 		}
 	}
 };
