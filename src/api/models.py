@@ -123,8 +123,10 @@ class Book(db.Model):
     author = db.Column(db.String(120), nullable=False)
     number_of_pages = db.Column(db.Integer, nullable=False)
     properties = db.Column(db.Text, nullable=False)
-    
+    books_storage = db.relationship("Storage", primaryjoin="and_(foreign(Storage.relation_id) == Book.id, Storage.relation_type=='book')", lazy="dynamic",)
 
+    
+    
     def serialize(self):
         return {
             "id": self.id,
@@ -132,7 +134,10 @@ class Book(db.Model):
             "author": self.author,
             "number_of_pages": self.number_of_pages,
             "properties": self.properties,
+            "image": (list(map(lambda storage:storage.serialize(), self.books_storage)))[0]
         }
+    
+
     
     def new_book(self):
         db.session.add(self)
@@ -153,6 +158,7 @@ class Podcast(db.Model):
     podcaster = db.Column(db.String(120), nullable=False)
     featured_episodes = db.Column(db.Integer, nullable=False)
     properties = db.Column(db.Text, nullable=False)
+    podcasts_storage = db.relationship("Storage", primaryjoin="and_(foreign(Storage.relation_id) == Podcast.id, Storage.relation_type=='podcast')", lazy="dynamic",)
     
 
     def serialize(self):
@@ -161,7 +167,8 @@ class Podcast(db.Model):
             "name": self.name,
             "podcaster": self.podcaster,
             "featured_episodes": self.featured_episodes,
-            "properties": self.properties
+            "properties": self.properties,
+            "image": (list(map(lambda storage:storage.serialize(), self.podcasts_storage)))[0]
         }
 
     def new_podcast(self):
@@ -182,6 +189,7 @@ class Movie(db.Model):
     director = db.Column(db.String(120), nullable=False)
     duration = db.Column(db.Integer, nullable=False)
     properties = db.Column(db.Text, nullable=False)
+    movies_storage = db.relationship("Storage", primaryjoin="and_(foreign(Storage.relation_id) == Movie.id, Storage.relation_type=='movie')", lazy="dynamic",)
    
 
     def serialize(self):
@@ -190,7 +198,8 @@ class Movie(db.Model):
             "name": self.name,
             "director": self.director,
             "duration": self.duration,
-            "properties": self.properties
+            "properties": self.properties,
+            "image": (list(map(lambda storage:storage.serialize(), self.movies_storage)))[0]
         }
 
     def new_movie(self):
@@ -284,9 +293,10 @@ class Challenges(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     length_in_days = db.Column(db.Integer, nullable=False)
-    text = db.Column(db.Text, nullable=False)
-    audio = db.Column(db.String, nullable=True)
+    text = db.Column(db.Text, nullable=True)
     challengesUser = db.relationship('ChallengesUser', back_populates="challenges")
+    days = db.relationship('Day', backref="challenges")
+    
 
     def serialize(self):
         return {
@@ -294,7 +304,6 @@ class Challenges(db.Model):
             "name": self.name,
             "length_in_days": self.length_in_days,
             "text": self.text,
-            "audio": self.audio
         }
     
     def new_challenges(self):
@@ -309,6 +318,36 @@ class Challenges(db.Model):
         db.session.commit()
 
 
+class Day(db.Model):
+    _tablename_ = 'days'
+    id = db.Column(db.Integer, primary_key=True)
+    current_day = db.Column(db.Integer, nullable=False)
+    challenges_id = db.Column(db.Integer, db.ForeignKey("challenges.id"), nullable=False)
+    days_storage = db.relationship("Storage", primaryjoin="and_(foreign(Storage.relation_id) == Day.id, Storage.relation_type=='day')", lazy="dynamic",)
+
+    
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "current_day": self.current_day,
+            "challenges_id": self.challenges_id,
+            "image": (list(map(lambda storage:storage.serialize(), self.days_storage)))
+        }
+    
+    def new_day(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update_day(self):
+        db.session.commit()
+
+    def delete_day(self):
+        db.session.delete(self)
+        db.session.commit()            
+        
+
+
 class Storage(db.Model):
     __tablename__ = 'storage'
     id = db.Column(db.Integer, primary_key=True)
@@ -316,6 +355,9 @@ class Storage(db.Model):
     archivo = db.Column(db.String(255), nullable=False)
     public_id = db.Column(db.String(100), nullable=False)
     type_upload = db.Column(db.String(150), default="audios")
+    relation_id = db.Column(db.Integer, nullable=False)
+    relation_type = db.Column(db.String(100), nullable=False)
+    
 
     def serialize(self):
         return {
@@ -323,7 +365,8 @@ class Storage(db.Model):
             "title": self.title,
             "archivo": self.archivo,
             "public_id": self.public_id,
-            "type_upload": self.type_upload
+            "relation_id": self.relation_id,
+            "relation_type": self.relation_type,
         }
 
 

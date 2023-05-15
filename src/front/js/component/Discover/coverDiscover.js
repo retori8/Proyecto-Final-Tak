@@ -1,5 +1,4 @@
 import React from "react";
-import { CardDiscoverAll } from "./cardDiscoverAll";
 
 export const CoverDiscover = (props) => {
 	return (
@@ -9,7 +8,7 @@ export const CoverDiscover = (props) => {
 			<div className="container-fluid">
 				<div className="px-lg-5">
 					<div className="row">
-						<CardDiscoverAll
+						{/* <CardDiscoverAll
 							img="http://localhost:3000/img/libros/dones.jpg"
 							name="Los Dones de la Imperfección"
 							author="Brene Brown"
@@ -36,8 +35,8 @@ export const CoverDiscover = (props) => {
 							author="Louise L. Hay"
 							number_of_pages="208"
 							properties="Todos tenemos dentro una sabiduría infinita que es capaz de proporcionarnos la mejor vida posible. Aprendiendo a confiar en esa sabiduría interior..."
-						/>
-						{/* {props.children} */}
+						/> */}
+						{props.children} 
 					</div>
 				</div>
 			</div>

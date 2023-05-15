@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BackendURL } from "./component/backendURL";
-
+import { Link, useNavigate } from "react-router-dom";
 import { Home } from "./pages/home";
 import injectContext, { Context } from "./store/appContext";
 
@@ -60,6 +60,8 @@ const Layout = () => {
 
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
     const { store: { currentUser } } = useContext(Context)
+    // const { store, actions } = useContext(Context);
+    // const navigate = useNavigate();
     return (
         <div>
             <BrowserRouter basename={basename}>
@@ -85,8 +87,8 @@ const Layout = () => {
                     <Route element={<RandomChallenge />} path="/challenges/random" />
                     {/* <Route element={<Challenge21Days />} path="/challenges/21days" /> */}
                     <Route element={<DayOf21Days />} path="/challenges/21days/a" />
-                    <Route element={<Start21days />} path="/challenges/21days/1" numvideo="4" numaudio="4" day="1" numnextday="2"/>
-                    {/* <Route element={<Day1 />} path="/challenges/21days/1" /> */}
+                    {/* <Route element={<Start21days />} path="/challenges/21days/1" numvideo="4" numaudio="4" day="1" numnextday="2"/> */}
+                    <Route element={<Day1 />} path="/challenges/21days/1" /> 
                     <Route element={<Day2 />} path="/challenges/21days/2" />
                     <Route element={<Day3 />} path="/challenges/21days/3" />
                     <Route element={<Day4 />} path="/challenges/21days/4" />

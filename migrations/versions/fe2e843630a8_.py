@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 2e9e58f3a1b8
+Revision ID: fe2e843630a8
 Revises: 
-Create Date: 2023-05-08 14:44:55.059211
+Create Date: 2023-05-14 16:16:50.775758
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2e9e58f3a1b8'
+revision = 'fe2e843630a8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,8 +30,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=120), nullable=False),
     sa.Column('length_in_days', sa.Integer(), nullable=False),
-    sa.Column('text', sa.Text(), nullable=False),
-    sa.Column('audio', sa.String(), nullable=True),
+    sa.Column('text', sa.Text(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('movies',
@@ -67,6 +66,15 @@ def upgrade():
     sa.Column('archivo', sa.String(length=255), nullable=False),
     sa.Column('public_id', sa.String(length=100), nullable=False),
     sa.Column('type_upload', sa.String(length=150), nullable=True),
+    sa.Column('relation_id', sa.Integer(), nullable=False),
+    sa.Column('relation_type', sa.String(length=100), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('day',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('current_day', sa.String(length=10), nullable=False),
+    sa.Column('challenges_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['challenges_id'], ['challenges.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('user',
@@ -141,6 +149,7 @@ def downgrade():
     op.drop_table('favorite_book')
     op.drop_table('challenges_user')
     op.drop_table('user')
+    op.drop_table('day')
     op.drop_table('storage')
     op.drop_table('service')
     op.drop_table('role')

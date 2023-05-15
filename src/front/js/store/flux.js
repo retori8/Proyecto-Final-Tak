@@ -18,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				date: "",
 				users_id: ""
 			},
+			days: null,
 
 			currentUser: null,
 			id: null,
@@ -355,6 +356,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error.message);
 				}
 			},
+			//DAY_________________________________________________________________________________________
+
+			getDays: async () => {
+				const { url } = getStore()
+				try {
+					const response = await fetch(`${url}/api/challenges/day`, {
+						metod: "GET",
+						headers: {
+							"Content-Type": "application/json",
+						},
+					});
+					if (response.status === 404) throw Error("Page not found");
+					const days_info = await response.json();
+
+					setStore({
+						days: days_info,
+					});
+					console.log(days);
+				} catch (error) {
+					console.log(error.message);
+				}
+			},
+
+
+
 
 			//NO OCUPADOS AUN----------------------------------------------------------------------------------------------------------------------
 

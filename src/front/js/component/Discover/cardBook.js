@@ -1,18 +1,17 @@
 import React from "react";
 import "../../../styles/discover.css"
-import { ButtonFavorite } from "./buttonFavorite";
 
 export const CardBook = (props) => {
 
 
     return (
         <div id="cardbooks" className="col-xl-3 col-lg-4 col-md-6 mb-4">
-            <div className="cardescubre">
-                {/*  <img
+            <div className="cardescubre h-100">
+                <img
                     src={props.img}
                     alt=""
                     className="img-fluid card-img-top"
-                /> */}
+                />
                 {props.children}
                 <div className="p-4">
                     <h5 className="card-titles">{props.name}</h5>
