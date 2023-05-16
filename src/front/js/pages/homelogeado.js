@@ -12,6 +12,7 @@ import { Actions } from "../component/homelogeado/actions";
 import React, { useContext } from "react";
 
 
+
 export const HomeLogeado = () => {
 
 	const { store, actions } = useContext(Context);
@@ -29,7 +30,7 @@ export const HomeLogeado = () => {
 	return (
 		<div id="homelogeado">
 			<CardList>
-				<Input handleSubmit={actions.handleSubmit} handleChange={actions.handleChangeObj} />
+				<Input className="input-gracias" handleSubmit={actions.handleSubmit} handleChange={actions.handleChangeObj} />
 				<List>
 					{!!store.thanks && //es distinto de null
 						store.thanks?.length > 0 ? ( //es mayor a cero
@@ -48,9 +49,8 @@ export const HomeLogeado = () => {
 					<ListCounter length={store.thanks?.length} />
 				</List>
 			</CardList>
-			<br />
 			<Actions />
-			<div>
+			{/* <div>
 				<h1 className="text-center m-5">TUS AVANCES</h1>
 				<br />
 				<div className="container">
@@ -61,7 +61,7 @@ export const HomeLogeado = () => {
 						<CardStatistics />
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };

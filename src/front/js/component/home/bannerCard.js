@@ -17,18 +17,18 @@ export const BannerCard = () => {
             </div>
             <div className="card-section">
                 <div className="container">
-                    <div className="card-block bg-white mb30">
+                    <div className="card-block mb30">
                         <div className="row">
                             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div className="section-title mb-0">
-                                    <h1>Mindfulness</h1>
-                                    <h4>conciencia plena “aquí y ahora”</h4>
-                                    <br/>
-                                    <p>
-                                        Es un hecho establecido  un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).
+                                    <h1 className="title-header">Mindfulness</h1>
+                                    <h4 className="subtitle-header">Conciencia Plena “Aquí y Ahora”</h4>
+                                    <br />
+                                    <p className="textBanner">
+                                        Mindfulness es la práctica de estar presente y completamente comprometido en el momento actual, sin juicio ni distracción. Implica prestar atención a los pensamientos, sentimientos y sensaciones de una manera no crítica.
                                     </p>
-                                    <br/>
-                                    <Link type="button" className="btn btn-outline-light m-4" aria-current="page" to="/register">Crear Cuenta</Link>
+                                    <br />
+                                    <Link type="button" className="btn btn-outline-light btnHeader" aria-current="page" to="/register">Crea tu Cuenta</Link>
                                 </div>
                             </div>
                         </div>

@@ -1,12 +1,17 @@
 import React from "react";
-import '../../styles/unete.css'
 import { BotonUno } from "./BotonUno";
+import "../../styles/tak.css"
+import { Link } from "react-router-dom";
 
 export const Unete = () => {
     return (
-        <div className="fondo container">
-            <h2>Únete a Tak</h2>
-            <BotonUno />
+        <div className="container unete-content">
+
+            <h2 className="title-unete">Únete a Tak</h2>
+            <p className="text-unete"> Se parte de la comunidad de mayor crecimiento mundial.</p>
+            <Link to={"/register"}>
+                <button type="button" class="btn btn-outline-light btn-unete">Quiero Unirme</button>
+            </Link>
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import "../../styles/campoFormBoton.css"
 
 
 export const CampoForm = (props) => {
@@ -9,13 +10,14 @@ export const CampoForm = (props) => {
         type={props.type}
         className="form-control"
         placeholder={props.placeholder}
-        id="exampleInputEmail1"
+        id={props.id}
         aria-describedby="emailHelp"
         onChange={props.onInputChange}
         value={props.value}
         name={props.name}
         funcion={props.funcion}
       />
+      {/* <div className="error"></div> */}
     </div>
   );
 };

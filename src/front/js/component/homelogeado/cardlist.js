@@ -1,11 +1,12 @@
 import React from "react";
+import "../../../styles/homelogeado.css"
 
-export default function CardList(props){
-    return(
+export default function CardList(props) {
+    return (
         <div id="container" className="col-6 p-3 mb-5">
             <div className="card-body ">
-                <p id="title" className="card-title text-center text-white fs-3">
-                    Hola Jon Doe <br/> cuales son tus motivos de gratitud hoy?
+                <p className="title-card-list">
+                    ¿Cuales son tus motivos de gratitud hoy?
                 </p>
                 {props.children}
             </div>

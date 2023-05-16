@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 export const Actions = () => {
     return (
         <div>
-            <h1 className="text-center mt-2">Que mas te gustaria hacer hoy?</h1>
+            <h1 className="title-home-logueado">¿Qué mas te gustaria hacer hoy?</h1>
             <section>
                 <div className="row">
                     <div className="col-md-4 col-sm-6 col-xs-12">
                         <div className="card">
                             <div className="cover item-a">
-                                <h1>
+                                <h1 className="title-card">
                                     Biblioteca
                                     <br />
                                     Mindfulness
                                 </h1>
                                 <div className="card-back">
-                                    <Link type="button" className="btn btn-outline-light m-4" aria-current="page" to="/discover">Vamos !</Link>
+                                    <Link type="button" className="btn btn-back" aria-current="page" to="/discover">¡Vamos!</Link>
                                 </div>
                             </div>
                         </div>
@@ -24,13 +24,13 @@ export const Actions = () => {
                     <div className="col-md-4 col-sm-6 col-xs-12">
                         <div className="card">
                             <div className="cover item-b">
-                                <h1>
+                                <h1 className="title-card">
                                     Respiracion
                                     <br />
                                     Mindfulness
                                 </h1>
                                 <div className="card-back">
-                                    <Link type="button" className="btn btn-outline-light m-4" aria-current="page" to="/respira">Vamos !</Link>
+                                    <Link type="button" className="btn btn-back" aria-current="page" to="/respira">¡Vamos!</Link>
                                 </div>
                             </div>
                         </div>
@@ -38,13 +38,13 @@ export const Actions = () => {
                     <div className="col-md-4 col-sm-6 col-xs-12">
                         <div className="card">
                             <div className="cover item-c">
-                                <h1>
+                                <h1 className="title-card">
                                     Desafios
                                     <br />
                                     Mindfulness
                                 </h1>
                                 <div className="card-back">
-                                    <Link type="button" className="btn btn-outline-light m-4" aria-current="page" to="/challenges" >Vamos !</Link>
+                                    <Link type="button" className="btn btn-back" aria-current="page" to="/challenges" >¡Vamos!</Link>
                                 </div>
                             </div>
                         </div>

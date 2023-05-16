@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: a5d366e6a779
+Revision ID: fe2e843630a8
 Revises: 
-Create Date: 2023-05-01 17:29:01.903474
+Create Date: 2023-05-14 16:16:50.775758
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a5d366e6a779'
+revision = 'fe2e843630a8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,8 +30,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=120), nullable=False),
     sa.Column('length_in_days', sa.Integer(), nullable=False),
-    sa.Column('text', sa.Text(), nullable=False),
-    sa.Column('audio', sa.String(), nullable=True),
+    sa.Column('text', sa.Text(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('movies',
@@ -61,19 +60,35 @@ def upgrade():
     sa.Column('text', sa.Text(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('storage',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('title', sa.String(length=255), nullable=False),
+    sa.Column('archivo', sa.String(length=255), nullable=False),
+    sa.Column('public_id', sa.String(length=100), nullable=False),
+    sa.Column('type_upload', sa.String(length=150), nullable=True),
+    sa.Column('relation_id', sa.Integer(), nullable=False),
+    sa.Column('relation_type', sa.String(length=100), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('day',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('current_day', sa.String(length=10), nullable=False),
+    sa.Column('challenges_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['challenges_id'], ['challenges.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=80), nullable=False),
     sa.Column('last_name', sa.String(length=80), nullable=False),
     sa.Column('email', sa.String(length=100), nullable=False),
-    sa.Column('password', sa.String(length=80), nullable=False),
+    sa.Column('password', sa.String(length=500), nullable=False),
     sa.Column('address', sa.String(length=120), nullable=True),
-    sa.Column('birthdate', sa.Integer(), nullable=True),
+    sa.Column('birthdate', sa.DateTime(), nullable=True),
     sa.Column('image', sa.String(length=255), nullable=True),
     sa.Column('role_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['role_id'], ['role.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('email')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('challenges_user',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -134,6 +149,8 @@ def downgrade():
     op.drop_table('favorite_book')
     op.drop_table('challenges_user')
     op.drop_table('user')
+    op.drop_table('day')
+    op.drop_table('storage')
     op.drop_table('service')
     op.drop_table('role')
     op.drop_table('podcasts')

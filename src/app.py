@@ -12,11 +12,11 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from werkzeug.security import generate_password_hash, check_password_hash
 from api.utils import APIException, generate_sitemap
-from api.models import db # me permite vincular mi api con mis modelos
+from api.models import db # me permite vincular mi api con mis modpipeelos
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
-from api.models import db, User, Book, Podcast, Movie, Challenges, Service, Thanks, ChallengesUser, Role, Storage
+from api.models import db, User, Book, Podcast, Movie, Challenges, Service, Thanks, ChallengesUser, Role, Storage, Day
 from dotenv import load_dotenv
 from datetime import datetime
 import cloudinary
@@ -338,8 +338,9 @@ def add_book():
     book.number_of_pages = data["number_of_pages"]
     book.properties = data["properties"]
     book.new_book()  
+
     
-    return jsonify({"msg":"book created", "book": book.serialize()}), 201
+    return jsonify({"msg":"book created"}), 201
 
 @app.route('/api/books', methods=['GET'])
 def get_all_books():
@@ -395,7 +396,7 @@ def add_podcast():
     podcast.properties = data["properties"]
     podcast.new_podcast()  
     
-    return jsonify({"msg":"podcast created", "podcast": podcast.serialize()}), 201
+    return jsonify({"msg":"podcast created"}), 201
 
 @app.route('/api/podcasts', methods=['GET'])
 def get_all_podcasts():
@@ -449,7 +450,7 @@ def add_movie():
     movie.properties = data["properties"]
     movie.new_movie()  
     
-    return jsonify({"msg":"movie created"," movie": movie.serialize()}), 201
+    return jsonify({"msg":"movie created"}), 201
 
 @app.route('/api/movies', methods=['GET'])
 def get_all_movies():
@@ -501,7 +502,6 @@ def add_challenge():
     challenge.name = data["name"]
     challenge.length_in_days = data["length_in_days"]
     challenge.text = data["text"]
-    challenge.audio = data["audio"] if data["audio"] else None
     challenge.new_challenges()  
     
     return jsonify({"msg":"challenge created", "challenge": challenge.serialize()}), 201
@@ -522,7 +522,6 @@ def update_challenges(id):
     challenge.name = data["name"] if data["name"] else challenge.name
     challenge.length_in_days = data["length_in_days"] if data["length_in_days"] else challenge.length_in_days
     challenge.text = data["text"] if data["text"] else challenge.text
-    challenge.audio = data["audio"] if data["audio"] else challenge.audio
     challenge.update_challenges() 
 
     return jsonify({"msg":"challenge update", "challenge": challenge.serialize()}), 200
@@ -539,6 +538,26 @@ def delete_challenges(id):
     challenge.delete_challenges()
 
     return jsonify({"msg":"challenge delete", "challenge": {}}), 200
+
+# DAYchallenges -----------------------------------------------------------------------------------------------
+
+@app.route('/api/challenges/day', methods=['POST'])
+def add_day_challenge():
+    data = request.get_json()
+
+    day = Day()
+    day.current_day = data["current_day"]
+    day.challenges_id = data["challenges_id"]
+    day.new_day()  
+    
+    return jsonify({"msg":"challenge created"}), 201
+
+@app.route('/api/challenges/day', methods=['GET'])
+def get_all_days_challenge():
+    days = Day.query.all()
+    days = list(map(lambda day : day.serialize(), days))
+
+    return jsonify(days), 200 
 
 #challengesuser------------------------------------------------------------------------------------------------------------------
 @app.route('/api/challengesusers', methods=['POST'])
@@ -648,6 +667,9 @@ def upload_archivo():
     
     title = request.form['title']
     type_upload = request.form['type_upload']
+    relation_id = request.form['relation_id']
+    relation_type = request.form['relation_type']
+    
 
     if not title:
         return jsonify({ "msg": "El titulo es requerido"}), 400    
@@ -664,9 +686,11 @@ def upload_archivo():
 
     storage = Storage()
     storage.title = title
-    storage.archivo= resp['secure_url']
+    storage.archivo = resp['secure_url']
+    storage.relation_id = relation_id
+    storage.relation_type = relation_type
     storage.public_id = public_id
-    storage.type_upload =type_upload
+    storage.type_upload = type_upload
 
     storage.new_archivo()
 

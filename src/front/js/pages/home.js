@@ -11,12 +11,13 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div id="home" className="text-center mt-5">
+		<div id="home" className="">
 			<BannerCard />
+			<h2 className="sugerencias-tak-home">Algunas Sugerencias de Tak</h2>
 			<Carrusel />
 			<Testimonials />
-			<br/>
-			<br/>
+			<br />
+			<br />
 		</div>
 	);
 };
