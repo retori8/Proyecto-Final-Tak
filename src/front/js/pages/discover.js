@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { CardMovie } from "../component/Discover/cardMovie";
 import { CoverDiscover } from "../component/Discover/coverDiscover";
 import { Context } from "../store/appContext";
-import { CoverDocu } from "../component/Discover/coverDocu";
 
 
 export const Discover = () => {
@@ -16,7 +15,7 @@ export const Discover = () => {
 	return (
 		<div className="content-discover">
 			<br />
-			<CoverDiscover title={"Libros"} caption={"Estas son nuestras mejores recomendaciones de libros para tí."}>
+			<CoverDiscover title={"Libros"} caption={"Estas son nuestras mejores recomendaciones de libros para ti."}>
 				{!!store.books &&
 					store.books?.length > 0 &&
 					store.books?.map((book, i) => {
@@ -32,7 +31,7 @@ export const Discover = () => {
 						);
 					})}
 			</CoverDiscover>
-			 <CoverDiscover title={"Podcasts"} caption={"Estas son nuestras mejores recomendaciones de podcast para tí."}>
+			 <CoverDiscover title={"Podcasts"} caption={"Estas son nuestras mejores recomendaciones de podcast para ti."}>
 				{!!store.podcasts &&
 					store.podcasts?.length > 0 &&
 					store.podcasts?.map((podcast, i) => {

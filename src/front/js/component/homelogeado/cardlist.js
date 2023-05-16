@@ -6,7 +6,7 @@ export default function CardList(props) {
         <div id="container" className="col-6 p-3 mb-5">
             <div className="card-body ">
                 <p className="title-card-list">
-                    ¿Cuales son tus motivos de gratitud hoy?
+                    ¿Cuáles son tus motivos de gratitud hoy?
                 </p>
                 {props.children}
             </div>

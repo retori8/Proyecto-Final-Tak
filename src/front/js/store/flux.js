@@ -18,7 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				date: "",
 				users_id: ""
 			},
-			days: null,
+			days: [],
 
 			currentUser: null,
 			id: null,
@@ -386,7 +386,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					if (response.status === 404) throw Error("Page not found");
 					const days_info = await response.json();
-
+					
 					setStore({
 						days: days_info,
 					});

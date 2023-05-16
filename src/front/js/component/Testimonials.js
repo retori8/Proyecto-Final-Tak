@@ -21,7 +21,7 @@ export const Testimonials = () => {
                         text='"Desde que uso Tak, ya no rompo mis teclados al escribir código, gracias Tak, son los mejores."'
                     />
                     <CardTestimonials
-                        img={"http://localhost:3000/img/profe.jpg"}
+                        img={"http://localhost:3000/img/caro.jpeg"}
                         name="Carolina Rojas"
                         text='"Desde que uso Tak, ya no rompo mis teclados al escribir código, gracias Tak, son los mejores."'
                     />

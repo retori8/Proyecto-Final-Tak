@@ -56,8 +56,8 @@ export const Navbar = () => {
 									<ElementNavbar name="Mi Cuenta" to="/home" />
 									<ElementNavbar name="Tak?" to="/tak" />
 									<ElementNavbar name="Respira" to="/respira" />
-									<ElementNavbar name="Desafíos" to="/challenges" />
-									<ElementNavbar name="Descubre" to="/discover" />
+									<ElementNavbar name="Desafíos" to="/desafios" />
+									<ElementNavbar name="Descubre" to="/descubre" />
 								</>
 								:
 								<>

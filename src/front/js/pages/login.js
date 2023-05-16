@@ -23,7 +23,7 @@ export const Loginow = () => {
             <body className="bodyform">
                 <div className="registration-form">
                     <form onSubmit={(e) => actions.getLogin(e, navigate)}>
-                        <h1 className="registro text-center ">Acceder a mi cuenta</h1>
+                        <h1 className="registro text-center ">Nos alegra tenerte aquí</h1>
                         <div className="form-group">
                             <input
                                 required

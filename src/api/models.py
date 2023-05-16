@@ -334,6 +334,7 @@ class Day(db.Model):
             "challenges_id": self.challenges_id,
             "image": (list(map(lambda storage:storage.serialize(), self.days_storage)))
         }
+        
     
     def new_day(self):
         db.session.add(self)

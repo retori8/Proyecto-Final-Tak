@@ -13,9 +13,9 @@ export const RespiraComp = () => {
                 <div className="col-md-6 circle-box">
                     <div className="circle"></div>
                     <div className="textContent">
-                        <div className="inhala">¡Inhala!</div>
-                        <div className="exhala">¡Exhala!</div>
-                        <div className="mantiene">¡Mantiene!</div>
+                        <div className="inhala">Inhala</div>
+                        <div className="exhala">Exhala</div>
+                        <div className="mantiene">Mantiene</div>
                     </div>
                 </div>
             </div>

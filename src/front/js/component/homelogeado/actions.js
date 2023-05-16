@@ -16,7 +16,7 @@ export const Actions = () => {
                                     Mindfulness
                                 </h1>
                                 <div className="card-back">
-                                    <Link type="button" className="btn btn-back" aria-current="page" to="/discover">¡Vamos!</Link>
+                                    <Link type="button" className="btn btn-back" aria-current="page" to="/descubre">¡Vamos!</Link>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@ export const Actions = () => {
                                     Mindfulness
                                 </h1>
                                 <div className="card-back">
-                                    <Link type="button" className="btn btn-back" aria-current="page" to="/challenges" >¡Vamos!</Link>
+                                    <Link type="button" className="btn btn-back" aria-current="page" to="/desafios" >¡Vamos!</Link>
                                 </div>
                             </div>
                         </div>

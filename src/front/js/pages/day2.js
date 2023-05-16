@@ -18,8 +18,8 @@ export const Day2 = () => {
                 </div>
                 <div className="col" >
                     <div className="row align-items-center">
-                        <h1 id="tituloday21" className="col">Estas en tu día 2</h1>
-                        <h5 className="texto-21">Reproduce la meditacion y una vez terminada, se habilitara la proxima meditacion para tu siguiente dia</h5>
+                        <h1 id="tituloday21" className="col">Estás en tu día 2 del desafío</h1>
+                        <h5 className="texto-21">Reproduce la meditación y una vez terminada, se habilitará tu próxima meditación diaria.</h5>
                         <audio className="audio" src={store.archivos[34]?.archivo} controls="controls" preload="none" onEnded={(e) => navigate(`/challenges/21days/3`)} />
                         <Link className="cont_boton" to="/challenges/21days/3">
                             <button type="button" id="next" className="btn-lg">Siguiente día</button>

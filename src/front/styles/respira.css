@@ -103,22 +103,22 @@
 }
 @keyframes respiracion {
     0% {
-        background-color: #56a82e;
+        background-color: #836d99;
         transform: scale(1);
     }
 
     25% {
-        background-color: #9ced74;
+        background-color: #ae96c7;
         transform: scale(4);
     }
 
     55%{
-        background-color: #9ced74;
+        background-color: #ae96c7;
         transform: scale(4);
     }
 
     100% {
-        background-color:#56a82e;
+        background-color:#ae96c7;
         transform: scale(1);
     }
 }

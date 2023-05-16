@@ -71,52 +71,33 @@ const Layout = () => {
                 <Navbar />
                 <Routes>
                     <Route element={<Login />} path="/loginm" />
-                    <Route element={<Loginow />} path="/login" />
+                    <Route element={<Loginow />} path="/acceso" />
                     <Route element={<Home />} path="/" />
                     <Route element={<h1>Not found!</h1>} />
                     <Route element={<UserPerfil />} path="/user/:id" />
-                    <Route element={<RegisterPage />} path="/registern" />
-                    <Route element={<Register />} path="/register" />
+                    <Route element={<RegisterPage />} path="/registrarme" />
+                    <Route element={<Register />} path="/registrarme" />
                     <Route element={<RecoveryPass />} path="/recovery" />
                     <Route element={<Tak />} path="/tak" />
                     <Route element={<PanelAdministrativo />} path="/panel_administrativo" />
                     {/* <Route element={<LoginUser />} path="/login" /> */}
                     <Route element={<Respira />} path="/respira" />
-                    <Route element={<Donate />} path="donate" />
+                    <Route element={<Donate />} path="dona" />
                     <Route element={<Error401 />} path="error401" />
                     <Route element={<Error403 />} path="error403" />
                     <Route element={<Error503 />} path="error503" />
                     <Route element={<HomeLogeado />} path="/home" />
-                    <Route element={<ProteccionDeRutas currentUser={currentUser}><Challenges /></ProteccionDeRutas>} path="/challenges" />
-                    <Route element={<RandomChallenge />} path="/challenges/random" />
+                    <Route element={<Challenges currentUser={currentUser}></Challenges>} path="/desafios" />
+                    <Route element={<RandomChallenge />} path="/desafios/random" />
                     {/* <Route element={<Challenge21Days />} path="/challenges/21days" /> */}
-                    <Route element={<DayOf21Days />} path="/challenges/21days/a" />
+                    <Route element={<DayOf21Days />} path="/desafios/21dias/a" />
                     {/* <Route element={<Start21days />} path="/challenges/21days/1" numvideo="4" numaudio="4" day="1" numnextday="2"/> */}
-                    <Route element={<Day1 />} path="/challenges/21days/:current_day" />
-                    <Route element={<Day2 />} path="/challenges/21days/2" />
-                    <Route element={<Day3 />} path="/challenges/21days/3" />
-                    <Route element={<Day4 />} path="/challenges/21days/4" />
-                    <Route element={<Day5 />} path="/challenges/21days/5" />
-                    <Route element={<Day6 />} path="/challenges/21days/6" />
-                    <Route element={<Day7 />} path="/challenges/21days/7" />
-                    <Route element={<Day8 />} path="/challenges/21days/8" />
-                    <Route element={<Day9 />} path="/challenges/21days/9" />
-                    <Route element={<Day10 />} path="/challenges/21days/10" />
-                    <Route element={<Day11 />} path="/challenges/21days/11" />
-                    <Route element={<Day12 />} path="/challenges/21days/12" />
-                    <Route element={<Day13 />} path="/challenges/21days/13" />
-                    <Route element={<Day14 />} path="/challenges/21days/14" />
-                    <Route element={<Day15 />} path="/challenges/21days/15" />
-                    <Route element={<Day16 />} path="/challenges/21days/16" />
-                    <Route element={<Day17 />} path="/challenges/21days/17" />
-                    <Route element={<Day18 />} path="/challenges/21days/18" />
-                    <Route element={<Day19 />} path="/challenges/21days/19" />
-                    <Route element={<Day20 />} path="/challenges/21days/20" />
-                    <Route element={<Day21 />} path="/challenges/21days/21" />
-                    <Route element={<Fail21Days />} path="/challenges/fail21days" />
-                    <Route element={<Discover />} path="/discover" />
+                    <Route element={<Day1 />} path="/desafios/21dias/:current_day" />
+                    <Route element={<Day21 />} path="/desafios/21dias/21" />
+                    {/* <Route element={<Fail21Days />} path="/desafios/fail21days" /> */}
+                    <Route element={<Discover />} path="/descubre" />
                     <Route element={<h1>Not found!</h1>} />
-                    <Route element={<Storage />} path="/storage" />
+                    {/* <Route element={<Storage />} path="/storage" /> */}
                 </Routes>
                 <Footer />
             </BrowserRouter>
