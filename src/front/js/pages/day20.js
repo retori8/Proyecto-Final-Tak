@@ -14,12 +14,13 @@ export const Day20 = () => {
         <div className="container">
             <div className="row align-items-center">
                 <div className="col">
-                    <video src={store.archivos[23]?.archivo} preload="auto" autoPlay="autoplay" className="video" />
+                    <video src={store.archivos[31]?.archivo} preload="auto" autoPlay="autoplay" className="video" />
                 </div>
                 <div className="col" >
                     <div className="row align-items-center">
-                    <audio className="audio" src={store.archivos[0]?.archivo} controls="controls" preload="none" onEnded={(e)=>navigate('/challenges/21days/21')}/>
+                    <audio className="audio" src={store.archivos[33]?.archivo} controls="controls" preload="none" onEnded={(e)=>navigate('/challenges/21days/21')}/>
                         <h1 id="tituloday21" className="col my-4">Estas en tu día 20</h1>
+                        <h5>Reproduce la meditacion y una vez terminada, se habilitara la proxima meditacion para tu siguiente dia</h5>
                         <Link to="/challenges/21days/21">
                             <button type="button" id="next" className="btn-lg">Siguiente día</button>
                         </Link>
