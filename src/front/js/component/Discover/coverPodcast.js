@@ -9,7 +9,7 @@ export const CoverPodcast = (props) => {
 			<div className="container-fluid">
 				<div className="px-lg-5">
 					<div className="row">
-						<CardDiscoverAll
+						{/* <CardDiscoverAll
 							img="http://localhost:3000/img/podcast/conamor.jpg"
 							name="Con Amor Carajo"
 							author="Brene Brown"
@@ -36,7 +36,7 @@ export const CoverPodcast = (props) => {
 							author="Louise L. Hay"
 							number_of_pages="208"
 							properties="Todos tenemos dentro una sabiduría infinita que es capaz de proporcionarnos la mejor vida posible. Aprendiendo a confiar en esa sabiduría interior..."
-						/>
+						/> */}
 						{/* {props.children} */}
 					</div>
 				</div>

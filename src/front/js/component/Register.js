@@ -41,6 +41,7 @@ export const Register = () => {
                                         onInputChange={actions.handleChangeObjUser}
                                         value={store.newUser.name}
                                         name={'first_name'}
+                                        id={'first_name'}
                                     />
                                     <CampoForm
                                         type={"text"}
@@ -49,14 +50,17 @@ export const Register = () => {
                                         onInputChange={actions.handleChangeObjUser}
                                         value={store.newUser.lastname}
                                         name={'last_name'}
+                                        id={'last_name'}
                                     />
                                     <CampoForm
-                                        type={"text"}
+                                        type={"email"}
                                         label={"Email"}
                                         placeholder={"ingresa tu Email "}
                                         onInputChange={actions.handleChangeObjUser}
+                                        // { value.length < 5 ? <span>longitud minima de 5</span>: null}
                                         value={store.newUser.email}
                                         name={'email'}
+                                        id={'email'}
                                     />
                                     <CampoForm
                                         type={"password"}
@@ -65,6 +69,7 @@ export const Register = () => {
                                         onInputChange={actions.handleChangeObjUser}
                                         value={store.newUser.password}
                                         name={'password'}
+                                        id={'password'}
                                     />
                                     <CampoForm
                                         type={"password"}
@@ -73,6 +78,7 @@ export const Register = () => {
                                         onInputChange={actions.handleChangeObjUser}
                                         value={store.newUser.re_password}
                                         name={'re_password'}
+                                        id={'re_password'}
                                     />
                                     <BotonUno
                                         name={"Crear mi cuenta"}

@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			url: "http://127.0.0.1:3001",
-			audios: null,
+			archivos: [],
 			books: null,
 			podcasts: null,
 			movies: null,
@@ -18,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				date: "",
 				users_id: ""
 			},
+			days: null,
 
 			currentUser: null,
 			id: null,
@@ -54,7 +55,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				show: false,
 				mensaje: '',
 				tipo: 'success'
-			}
+			},
+			error: ""
 		},
 
 		actions: {
@@ -82,6 +84,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						sessionStorage.setItem('currentUser', JSON.stringify(data))
 
 						navigate('/home')
+					} else {
+						alert("Lo siento aun no estas registrado(a)")
 					}
 
 				} catch (error) {
@@ -135,8 +139,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json()
 					console.log(data)
 
-					// setStore({ newUser: data })
-					// sessionStorage.setItem('newUser', JSON.stringify(data))
 					navigate('/login')
 
 				} catch (error) {
@@ -152,16 +154,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 					getActions().createNewUser(navitgate);
 				}
 				else {
-					console.log("NO COINCIDEN LAS CONTRASEÑAS")
+					alert("Las contraseñas no coinciden")
 				}
 			},
 
 			handleChangeObjUser(e) {
 				const { newUser } = getStore()
 				e.preventDefault();
+				// if(getStore().newUser.name.length < 3){
+				// 	alert("El campo de nombre debe tener minimo 3 caracteres")
+				// };
+
+				// if(getStore().newUser.lastname.length < 3){
+				// 	alert("El campo de apellido debe tener minimo 3 caracteres")
+				// };
+				// if(getStore().newUser.email.length < 8 ){
+				// 	alert("El campo de apellido debe tener minimo 3 caracteres")
+				// };
+
 				newUser[e.target.name] = e.target.value
 				setStore({ newUser })
 				console.log(getStore().newUser[e.target.name])
+			},
+
+			validate() {
+				if (getStore().newUser.first_name === "") {
+					setStore({ error: "El campo de nombre es obligatorio" })
+				};
+				if (getStore().newUser.re_password !== getStore().newUser.password) {
+					setStore({ error: "Ambos campos de contraseña deben coincidir" })
+				}
+
 			},
 
 			//recovery----------------------------------------------------------------------------------------------------------------------
@@ -350,6 +373,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error.message);
 				}
 			},
+			//DAY_________________________________________________________________________________________
+
+			getDays: async () => {
+				const { url } = getStore()
+				try {
+					const response = await fetch(`${url}/api/challenges/day`, {
+						metod: "GET",
+						headers: {
+							"Content-Type": "application/json",
+						},
+					});
+					if (response.status === 404) throw Error("Page not found");
+					const days_info = await response.json();
+
+					setStore({
+						days: days_info,
+					});
+					console.log(days);
+				} catch (error) {
+					console.log(error.message);
+				}
+			},
+
+
+
 
 			//NO OCUPADOS AUN----------------------------------------------------------------------------------------------------------------------
 
@@ -405,7 +453,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//audiosStorage-----------------------------------------------------------------------------------------------------
 
-			getAudios: async () => {
+			getArchivos: async () => {
 				const { url } = getStore()
 
 				try {
@@ -416,10 +464,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 					});
 					if (response.status === 404) throw Error("Page not found");
-					const audio_info = await response.json();
+					const archivos_info = await response.json();
 
 					setStore({
-						audios: audio_info,
+						archivos: archivos_info,
 					});
 				} catch (error) {
 					console.log(error.message);

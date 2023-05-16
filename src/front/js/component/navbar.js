@@ -8,10 +8,10 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context)
 	const navitgate = useNavigate()
 	return (
-		<nav id="navbar" className="navbar navbar-expand-lg bg-body-tertiary mb-3 fixed-top">
+		<nav id="navbar" className="navbar sticky-top navbar-expand-lg bg-body-tertiary fixed-top">
 			<div className="container-fluid">
 				<Link className="navbar-brand m-3 ps-4" to={"/"}>
-					<img src={logo} height={35} />
+					<img src={logo} height={35} /> 
 				</Link>
 				<div className="collapse navbar-collapse m" id="navbarNavDropdown">
 					<ul className="navbar-nav ms-auto ps-5">
@@ -34,7 +34,6 @@ export const Navbar = () => {
 								{store.currentUser ? "Cerrar Sesión" : "Ingresar"}
 							</button>
 						</li>
-
 						{/* <ElementNavbar name="Tak?" to="/tak" />
 							<ElementNavbar name="Respira" to="/respira" />
 							<ElementNavbar name="Desafíos" to="/challenges" />

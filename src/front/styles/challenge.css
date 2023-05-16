@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
 
 /* ------------------ CONTENEDOR --------------------- */
+
 .content-desafio{
     height: 100vh;
     padding-top: 170px;
@@ -92,4 +93,63 @@
     z-index: 0;
     background-size: cover;
     background-repeat: no-repeat;
+}
+/* 
+-------------------------------------------------------------------------- */
+#tituloday21{
+    color: #636b5f;
+    font-family: 'Playfair', serif;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 50px;
+}
+.texto-21{
+    color: #636b5f;
+    font-family:'Roboto', sans-serif;
+    font-weight: 400;
+    
+}
+.audio{
+    margin: 10px 0;
+}
+.video{
+    border-radius: 50%;
+    margin-top: 30px;
+}
+#next{
+    color: #f7e6d3;
+    background-color: #636b5f;
+    font-family: 'Playfair', serif;
+    text-decoration: none;
+    border: none;
+}
+.cont_flor{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+@media(max-width:600px) {
+    
+    .video{
+        width: 300px;
+
+    }
+    #tituloday21{
+        font-weight: 600;
+        font-size: 40px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .texto-21{
+        margin-bottom: 15px;
+        text-align: center; 
+    }
+   .cont_boton{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+   }
+    
 }

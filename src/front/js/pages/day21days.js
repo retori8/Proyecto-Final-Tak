@@ -1,19 +1,32 @@
 import React from "react";
 import "../../styles/challenge.css"
-//import Gratitud from"../../img/Gratitud.mp3"
+import { Context } from "../store/appContext";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+
 
 export const DayOf21Days = () => {
+
+    const { store, actions } = useContext(Context);
+
+
     return (
         <div className="container">
-            <div className="row">
-                <div className="col-3 mt-4 me-5" >
-                    <h2 className="text-center my-4">Estas en tu dia 1</h2>
-                    <audio src="" controls="controls" preload="none">
-                    </audio>
-                    <button type="button" className="btn btn-outline-light btn-lg mt-3 ms-5">COMENZAR DESAFIO </button>
+            <div className="row align-items-center">
+                <div className="col">
+                    <video src={store.archivos[2]?.archivo} preload="auto" autoPlay="autoplay" loop="loop" className="video" />
                 </div>
-                <div className="animacion col-8 mt-4 ms-3">
+                <div className="col" >
+                    <div className="row align-items-center">
+                        <audio className="audio" src={store.archivos[0]?.archivo} controls="controls" preload="none" />
+                        <h1 id="tituloday21" className="col my-4">Estas en tu día 1</h1>
+                        <Link to="/challenges/21days/2">
+                            <button type="button" id="next" class="btn-lg">Siguiente día</button>
+                        </Link>
+                        <br />
+                    </div>
                 </div>
+                
             </div>
         </div>
     );
