@@ -32,19 +32,7 @@ export const Discover = () => {
 						);
 					})} 
 			</CoverDiscover>
-<<<<<<< HEAD
 			 <CoverDiscover title={"Podcasts"} caption={"Estas son nuestras mejores recomendaciones de podcast para tí."}>
-=======
-
-			<CoverPodcast title={"Podcast"} caption={"Estas son nuestras mejores recomendaciones de podcast para tí."}>
-
-			</CoverPodcast>
-
-			<CoverDocu title={"Documentales"} caption={"Te recomendamos que mires estos documentales, te encantarán."}>
-
-			</CoverDocu>
-			{/* <CoverDiscover title={"Podcasts"} caption={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"}>
->>>>>>> a62b2e45e908d285a525a4b708b0b4e7d1bd2afd
 				{!!store.podcasts &&
 					store.podcasts?.length > 0 &&
 					store.podcasts?.map((podcast, i) => {
