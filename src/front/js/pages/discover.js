@@ -1,9 +1,9 @@
 import React from "react";
 import "../../styles/discover.css"
 import { CardBook } from "../component/Discover/cardBook";
-import { CardPodcats } from "../component/Discover/cardPodcat"; 
+import { CardPodcats } from "../component/Discover/cardPodcat";
 import { useContext } from "react";
-import { CardMovie } from "../component/Discover/cardMovie"; 
+import { CardMovie } from "../component/Discover/cardMovie";
 import { CoverDiscover } from "../component/Discover/coverDiscover";
 import { Context } from "../store/appContext";
 import { CoverDocu } from "../component/Discover/coverDocu";
@@ -17,7 +17,7 @@ export const Discover = () => {
 		<div className="content-discover">
 			<br />
 			<CoverDiscover title={"Libros"} caption={"Estas son nuestras mejores recomendaciones de libros para tí."}>
-				 {!!store.books &&
+				{!!store.books &&
 					store.books?.length > 0 &&
 					store.books?.map((book, i) => {
 						return (
@@ -30,7 +30,7 @@ export const Discover = () => {
 								id={`/books/${book?.id}`}
 							/>
 						);
-					})} 
+					})}
 			</CoverDiscover>
 			 <CoverDiscover title={"Podcasts"} caption={"Estas son nuestras mejores recomendaciones de podcast para tí."}>
 				{!!store.podcasts &&
@@ -63,7 +63,7 @@ export const Discover = () => {
 							/>
 						);
 					})}
-			</CoverDiscover> 
+			</CoverDiscover>
 			<br />
 			<br />
 			<br />

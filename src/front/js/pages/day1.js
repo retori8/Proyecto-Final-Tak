@@ -12,7 +12,8 @@ export const Day1 = (props) => {
     const { store } = useContext(Context);
     const navigate = useNavigate();
     const { current_day } = useParams();
-
+    const day = parseInt(current_day) + 1;
+    console.log(current_day)
     return (
         <div className="container">
             <div className="row align-items-center">
@@ -24,7 +25,7 @@ export const Day1 = (props) => {
                         <h1 id="tituloday21" className="col">Estas en tu día 1</h1>
                         <h5 className="texto-21">Reproduce la meditacion y una vez terminada, se habilitara la proxima meditacion para tu siguiente dia</h5>
                         <audio className="audio" src={store.archivos[33]?.archivo} controls="controls" preload="none" onEnded={(e) => navigate(`/challenges/21days/2`)} />
-                        <Link className="cont_boton" to="/challenges/21days/2">
+                        <Link className="cont_boton" to={`/challenges/21days/${day}`} >
                             <button type="button" id="next" className="btn-lg">Siguiente día</button>
                         </Link>
                         <br />
@@ -32,6 +33,6 @@ export const Day1 = (props) => {
                 </div>
 
             </div>
-        </div>
+        </div >
     );
 };
