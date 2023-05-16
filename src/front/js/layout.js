@@ -52,6 +52,7 @@ import { Day6 } from "./pages/day6";
 import { Loginow } from "./pages/login";
 import { Day11 } from "./pages/day11";
 import PanelAdministrativo from "./pages/panelAdministrativo";
+import { NavbarZaimon } from "./component/home/navbarZaimon";
 
 //create your first component
 const Layout = () => {
@@ -66,6 +67,7 @@ const Layout = () => {
     return (
         <div>
             <BrowserRouter basename={basename}>
+                {/*  <NavbarZaimon /> */}
                 <Navbar />
                 <Routes>
                     <Route element={<Login />} path="/loginm" />

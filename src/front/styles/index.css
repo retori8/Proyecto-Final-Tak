@@ -19,16 +19,56 @@ body {
     background-color:#f7e6d3;
     font-family:'Roboto', sans-serif;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 400;
     color: #333233;
 }
 
+.navbar-toggler{
+    border: none !important;
+}
+
+.navbar-toggler:focus{
+    box-shadow: none !important;
+}
+
+#navbarli{
+    margin-top: 0.7rem;
+    font-size: medium;
+}
+
+@media(max-width:600px){
+
+    .navbar-nav{
+        padding: 0% !important;
+    }
+
+    #navbarli{
+        margin: 0 !important;
+        height: 50px;
+        font-size: medium;
+        text-align: center;
+        justify-content: center;
+    }
+
+    #navbarli:hover{
+        background-color: #636b5f29;
+    }
+
+    .nav-item{
+        margin: -10px !important;
+    }
+
+}
+
+
+
+
 .btnNavbar{
     font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 15px;
     margin-top: 30px;
-    border: solid 1px #636b5f;
+    border: solid 1.5px #636b5f;
     border-radius: 20px;
     padding-inline: 25px;
 }
@@ -37,6 +77,21 @@ body {
     color: beige;
     background-color: #636b5f;
     border-color: #636b5f;
+}
+
+.btnNavbar:focus{
+    box-shadow: none !important;
+}
+
+@media(max-width:600px){
+    .btnNavbar{
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
 }
 
 /* ---------- FOOTER ----------------- */
@@ -113,14 +168,9 @@ p{
 }
 
 
-.nav-item{
-    color: black;
-}
 
-#navbarli{
-    margin-top: 0.7rem;
-    font-size: medium;
-}
+
+
 
 
 

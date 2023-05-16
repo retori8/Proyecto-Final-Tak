@@ -1,19 +1,54 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ElementNavbar } from "./ElementNav";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import logo from "../../../../dist/img/logo_tak.png";
+import "../../styles/index.css"
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context)
 	const navitgate = useNavigate()
+	const [collapsed, setCollapsed] = useState(true)
+
 	return (
-		<nav id="navbar" className="navbar sticky-top navbar-expand-lg bg-body-tertiary fixed-top">
-			<div className="container-fluid">
+
+		/* Inicio del menú */
+
+		<nav id="navbar" className="navbar navbar-expand-md fixed-top">
+			<div className="container ">
+
+				{/* LOGO */}
+
 				<Link className="navbar-brand m-3 ps-4" to={"/"}>
-					<img src={logo} height={35} /> 
+					<img src={logo} height={35} />
 				</Link>
-				<div className="collapse navbar-collapse m" id="navbarNavDropdown">
+
+				{/* TOOGLER */}
+
+				<button
+					className="navbar-toggler "
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#menutak"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+					onClick={() => setCollapsed(!collapsed)}
+				>
+					{collapsed ? (
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" height="2rem">
+							<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+						</svg>
+					) : (
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" height="2rem">
+							<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					)}
+
+
+				</button>
+
+				<div className="collapse navbar-collapse m" id="menutak">
 					<ul className="navbar-nav ms-auto ps-5">
 						{
 							store.currentUser ?
@@ -34,17 +69,6 @@ export const Navbar = () => {
 								{store.currentUser ? "Cerrar Sesión" : "Ingresar"}
 							</button>
 						</li>
-						{/* <ElementNavbar name="Tak?" to="/tak" />
-							<ElementNavbar name="Respira" to="/respira" />
-							<ElementNavbar name="Desafíos" to="/challenges" />
-							<ElementNavbar name="Descubre" to="/discover" />
-							<li className="nav-item pe-4">
-								<Link type="button" className="btn btnNavbar" aria-current="page" to="/login">
-									<span className="">
-										Login
-									</span>
-								</Link>
-							</li> */}
 					</ul>
 				</div>
 			</div>

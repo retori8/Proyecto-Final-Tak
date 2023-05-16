@@ -3,8 +3,12 @@
 
 
 #randomchallenge{
-    margin-top: 250px;
+    margin-top: 100px;
     height: 100vh;
+    background: url("http://localhost:3000/img/patron1.png");
+    background-size: cover;
+    background-color: #ffffff;
+    
 }
 
 .title-random{
@@ -12,7 +16,7 @@
     font-weight: 600;
     font-size: 80px;
     line-height: 70px;
-    margin-top: 50px;
+    margin-top: 250px;
     color: #333233;
 }
 
@@ -21,31 +25,124 @@
     font-weight: 300;
     font-size: 25px;
     line-height: 30px;
+    margin-top: 20px;
     color: #333233;
 }
 
 
 
+ @media (max-width:600px){
+
+    #randomchallenge{
+        margin-top: 80px;
+        height: 800px;
+    }
+
+    .title-random{
+        font-size: 40px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .subtitle-random{
+        font-size: 18px;
+        line-height: 22px;
+        text-align: center;
+        padding: 0 10px;
+    }
+ }
+
+
 /*---------------------------- CARD ---------------------------------*/
 
-.card-random{
-    height: 500px;
-    border-radius: 30px;
-    margin-bottom: 30px;
+.cont-random-card{
+    margin-top: 50px;
     background-color: #636b5f;
+    padding: 50px 50px;
+    border-radius: 100px;
+
+    display: block;
+    justify-content: center;
 }
 
-.text-random{
+.cont-img-random{
     display: flex;
     justify-content: center;
     text-align: center;
-    padding: 80px 50px;
+}
 
-    font-family: 'Playfair', serif;
+.img-card-random{
+    margin: auto;
+    width: 100px;
+    align-items: center;
+}
+.card-random{
+    height: 300px;
+    border-radius: 30px;
+    margin-bottom: 30px;
+}
+
+.text-random{
+    margin: auto;
+    margin: 0 50px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 60px;
+
+    font-family: 'Playfair Display', serif;
     font-weight: 500;
-    font-size: 50px;
-    line-height: 50px;
+    font-size: 25px;
+    line-height: 35px;
 
-    color: #ffffff;
+    color: #f5f4ec;
+}
+
+.btn-random{
+    padding: 20px 0;
+    font-family: 'Playfair', serif;
+    font-size: 25px;
+    font-weight: 600;
+    border-radius: 100px;
+    background-color: #636b5f00;
+    color: #f5f4ec;
+
+    border-color: #f5f4ec;
+}
+
+.btn-random:hover{
+    background-color: #f5f4ec;
+    border-color: #33323300;
+    color: #333233;
+}
+
+.btn-random:focus{
+    box-shadow: none;
+}
+
+
+@media (max-width:600px){
+    .card-random{
+        height: 230px;
+        margin-top: 0px;
+    }
+
+    .cont-random-card{
+        margin-top: 20px;
+        border-radius: 50px;
+    }
+
+    .btn-random{
+        font-size: 20px;
+        padding: 15px 0;
+    }
+
+    .text-random{
+        margin: auto;
+        font-size: 20px;
+        line-height: 25px;
+        padding: 25px 0;
+        justify-content: center;
+    }
 }
 

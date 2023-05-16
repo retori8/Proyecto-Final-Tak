@@ -13,11 +13,11 @@ export const RandomChallenge = () => {
         <div id="randomchallenge">
             <div className="container">
                 <div className="row">
-                    <div className="col-4 me-3">
+                    <div className="col-md-6">
                         <h1 className="title-random">Desafio Random</h1>
                         <h4 className="subtitle-random">¿Qué te parece si soltamos un poco el control y nos aventuramos a hacer un desafío aleatorio? Lo que podemos adelantarte es que será un reto a corto plazo, creado para ejercitar nuestra “conciencia plena”.</h4>
                     </div>
-                    <div className="col-7">
+                    <div className="col-md-6">
                         <CardChallenge random={store.random} click={actions.getRandom} />
                     </div>
                 </div>

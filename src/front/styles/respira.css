@@ -25,6 +25,15 @@
     border-radius: 20px;
 }
 
+@media (max-width:600px){
+    .circle-box{
+        background-color: #57a82e00;
+        margin-top: 0px;
+        margin-left: 0px;
+        width: 500px;
+    }
+}
+
 /* ------------------ TITULO --------------------- */
 .respira-title{
     justify-content: center;
@@ -37,6 +46,19 @@
     line-height:70px;
 
     color: #ffffff;
+}
+
+@media (max-width:600px){
+    .respira-title{
+        margin-top: 0px;
+        width: 350px;
+        text-align: center;
+        margin-left: -100px;
+        
+        font-size: 40px;
+        line-height: 40px;
+        
+    }
 }
 
 /* ------------------ TEXTO --------------------- */
@@ -53,6 +75,16 @@
 
 }
 
+@media (max-width:600px){
+    .respira-text{
+        font-size: 15px;
+        line-height: 16px;
+        width: 350px;
+
+        text-align: center;
+        margin-left: -100px;
+    }
+}
 
 
 /* ------------------ CIRCULO --------------------- */
@@ -99,6 +131,12 @@
     margin-bottom: 50px;
     height: 50px;
     width: 200px;
+}
+
+@media (max-width:600px){
+    .textContent{
+        margin-left: -25px;
+    }
 }
 
 /* ------------------ INHALA --------------------- */

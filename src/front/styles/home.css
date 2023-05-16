@@ -42,6 +42,29 @@
     color: whitesmoke;
     padding-right: 40rem;
 }
+
+@media (max-width:600px) {
+
+    .page-header{
+        background-size: cover;
+        background-position: center;
+        margin-top: 100px;
+        height: 600px;
+    }
+
+    .textBanner{
+       padding-right: 0rem; 
+    }
+
+    .title-header{
+        font-size: 3.5rem;
+    }
+
+    .subtitle-header{
+        font-size: 1.5rem;
+    }
+}
+
 .btnHeader{
     color: #ffffff;
     font-family: 'Roboto', sans-serif;
@@ -60,6 +83,8 @@
 
 
 /* ---------- CARRUSEL ----------------- */
+
+
 
 .sugerencias-tak-home {
     display: flex;
@@ -115,7 +140,26 @@
     border-radius: 50%;
 }
 
+@media (max-width:600px) {
+    .sugerencias-tak-home{
+        margin-top: -150px;
+        margin-bottom: -70px;
+        font-size: 40px;
+        text-align: center;
+    }
 
+    .carousel-item img{
+        height: 400px;
+    }
+
+    .carouselTitle{
+        display: flex;
+        font-size: 10px;
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 0px;
+    }
+}
 
 
 /* ---------- TESTIMONIOS ----------------- */
@@ -154,6 +198,19 @@
     font-size: 16px;
 }
 
+@media (max-width:600px) {
+    .title-testimonios{
+        font-size: 40px;
+        margin-left: -50px ;
+        text-align: center;
+        margin-top: 50px;
+        width: 300px;
+    }
+
+    .card-testimonio-body{
+        margin-bottom: 15px;
+    }
+}
 
 
 
