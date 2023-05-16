@@ -24,7 +24,7 @@ const injectContext = PassedComponent => {
 		useEffect(() => {
 
 			state.actions.getBooks();
-			state.actions.getAudios();
+			// state.actions.getAudios();
 			state.actions.getFavoritos();
 			state.actions.getArchivos();
 			state.actions.getDays()
