@@ -92,7 +92,7 @@ const Layout = () => {
                     {/* <Route element={<Challenge21Days />} path="/challenges/21days" /> */}
                     <Route element={<DayOf21Days />} path="/challenges/21days/a" />
                     {/* <Route element={<Start21days />} path="/challenges/21days/1" numvideo="4" numaudio="4" day="1" numnextday="2"/> */}
-                    <Route element={<Day1 />} path="/challenges/21days/1" />
+                    <Route element={<Day1 />} path="/challenges/21days/:current_day" />
                     <Route element={<Day2 />} path="/challenges/21days/2" />
                     <Route element={<Day3 />} path="/challenges/21days/3" />
                     <Route element={<Day4 />} path="/challenges/21days/4" />

@@ -17,11 +17,12 @@ export const Challenges = () => {
                             title="Desafío Random"
                             text="Hemos preparado variados desafios para que aceptes el primero que recibas." />
                     </Link>
-
-                    <ChallengesCard
-                        img="http://localhost:3000/img/desafio-21-dias.jpg"
-                        title="Desafío 21 Días"
-                        text="Durante 21 días escucharás una meditación que fomentará en ti la gratitud." />
+                    <Link to="/challenges/21days/1">
+                        <ChallengesCard
+                            img="http://localhost:3000/img/desafio-21-dias.jpg"
+                            title="Desafío 21 Días"
+                            text="Durante 21 días escucharás una meditación que fomentará en ti la gratitud." />
+                    </Link>
                 </div>
             </div>
         </div>
