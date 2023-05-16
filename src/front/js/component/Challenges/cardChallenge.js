@@ -4,11 +4,14 @@ import "../../../styles/random.css"
 
 export const CardChallenge = (props) => {
   return (
-    <div class="col m-2" >
+    <div className="col cont-random-card" >
+      <div className="cont-img-random">
+        <img className="img-card-random" src="http://localhost:3000/img/flor.png"></img>
+      </div>
       <div className="card-random">
         <h3 className="text-random">{props.random}</h3>
       </div>
-      <button type="button" onClick={props.click} className="col-11 btn btn-outline-dark btn-lg m-2 ms-4">Acepto el desafío</button>
+      <button type="button" onClick={props.click} className="col-12 btn-random">Acepto el desafío</button>
     </div>
   );
 };

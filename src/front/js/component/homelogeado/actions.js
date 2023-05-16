@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Actions = () => {
     return (
         <div>
-            <h1 className="title-home-logueado">¿Qué mas te gustaria hacer hoy?</h1>
+            <h1 className="title-home-logueado">¿Qué más te gustaría hacer hoy?</h1>
             <section>
                 <div className="row">
                     <div className="col-md-4 col-sm-6 col-xs-12">
@@ -25,7 +25,7 @@ export const Actions = () => {
                         <div className="card">
                             <div className="cover item-b">
                                 <h1 className="title-card">
-                                    Respiracion
+                                    Respiración
                                     <br />
                                     Mindfulness
                                 </h1>
@@ -39,7 +39,7 @@ export const Actions = () => {
                         <div className="card">
                             <div className="cover item-c">
                                 <h1 className="title-card">
-                                    Desafios
+                                    Desafíos
                                     <br />
                                     Mindfulness
                                 </h1>

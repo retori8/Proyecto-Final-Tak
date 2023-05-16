@@ -8,6 +8,7 @@ import { CoverDiscover } from "../component/Discover/coverDiscover";
 import { CoverPodcast } from "../component/Discover/coverPodcast";
 import { CardDiscoverAll } from "../component/Discover/cardDiscoverAll";
 import { Context } from "../store/appContext";
+import { CoverDocu } from "../component/Discover/coverDocu";
 
 
 export const Discover = () => {
@@ -39,6 +40,10 @@ export const Discover = () => {
 			<CoverPodcast title={"Podcast"} caption={"Estas son nuestras mejores recomendaciones de podcast para tí."}>
 
 			</CoverPodcast>
+
+			<CoverDocu title={"Documentales"} caption={"Te recomendamos que mires estos documentales, te encantarán."}>
+
+			</CoverDocu>
 			{/* <CoverDiscover title={"Podcasts"} caption={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"}>
 				{!!store.podcasts &&
 					store.podcasts?.length > 0 &&
@@ -72,6 +77,6 @@ export const Discover = () => {
 			<br />
 			<br />
 			<br />
-		</div>
+		</div >
 	);
 };

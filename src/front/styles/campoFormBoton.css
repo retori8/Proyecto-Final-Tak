@@ -23,11 +23,11 @@
 
 .btn-form{
     font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 15px;
     margin-top: 30px;
     margin-left: 10px;
-    border: solid 1px #636b5f;
+    border: solid 1.5px #636b5f;
     border-radius: 20px;
     padding-inline: 25px;
 }
@@ -36,4 +36,8 @@
     color: beige;
     background-color: #636b5f;
     border-color: #636b5f;
+}
+
+.btn-form:focus{
+    box-shadow: none !important;
 }

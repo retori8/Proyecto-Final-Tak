@@ -1,18 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ElementNavbar } from "./ElementNav";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import logo from "../../../../dist/img/logo_tak.png";
+import "../../styles/index.css"
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context)
 	const navitgate = useNavigate()
+	const [collapsed, setCollapsed] = useState(true)
+
 	return (
 
 		/* Inicio del menú */
 
-		<nav id="navbar" className="navbar navbar-expand-md bg-body-tertiary mb-3 fixed-top">
-			<div className="container-fluid ">
+		<nav id="navbar" className="navbar navbar-expand-md fixed-top">
+			<div className="container ">
 
 				{/* LOGO */}
 
@@ -22,8 +25,27 @@ export const Navbar = () => {
 
 				{/* TOOGLER */}
 
-				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menutak" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span className="navbar-toggler-icon"></span>
+				<button
+					className="navbar-toggler "
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#menutak"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+					onClick={() => setCollapsed(!collapsed)}
+				>
+					{collapsed ? (
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" height="2rem">
+							<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+						</svg>
+					) : (
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" height="2rem">
+							<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					)}
+
+
 				</button>
 
 				<div className="collapse navbar-collapse m" id="menutak">

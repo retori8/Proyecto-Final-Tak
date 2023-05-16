@@ -29,6 +29,7 @@
     align-items: end;
     text-align: right;
     height: 400px;
+    margin: 15px 10px;
 }
 
 .title-banner-left{
@@ -43,6 +44,23 @@
 .text-banner-left{
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
+}
+
+@media (max-width:600px) {
+    .img-banner-left{
+        height: 320px;
+        margin-top: 30px;
+    }
+
+    .title-banner-left{
+        font-size: 40px;
+        margin-top: 10px;
+    }
+
+    .text-banner-left{
+        font-size: 15px;
+        text-align: justify;
+    }
 }
 
 
@@ -73,6 +91,21 @@
     margin-bottom: 100px;
 }
 
+@media (max-width:600px) {
+    .img-banner-right{
+        display: none;
+    }
+
+    .title-banner-right{
+        font-size: 40px;
+        margin-top: -50px;
+    }
+
+    .text-banner-right{
+        font-size: 15px;
+        text-align: justify;
+    }
+}
 
 
 /* ---------------------- UNETE A TAK --------------------- */
@@ -120,6 +153,7 @@
     border-radius: 30px;
     border: solid 1px #ffffff;
     padding: 10px 20px;
+    text-decoration: none !important;
 
     margin: auto;
     display: flex;
@@ -131,4 +165,15 @@
 .btn-unete:hover{
     background-color: #ffffff;
     border: solid 1px #ffffff;
+    text-decoration: none;
+}
+
+@media (max-width:600px) {
+    .title-unete{
+        font-size: 40px;
+    }
+
+    .text-unete{
+        text-align: center;    
+    }
 }

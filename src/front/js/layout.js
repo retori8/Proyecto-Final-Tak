@@ -27,6 +27,7 @@ import { Fail21Days } from "./pages/fail21days";
 import { Discover } from "./pages/discover";
 import { Storage } from "./pages/storage";
 import { ProteccionDeRutas } from "../../utils/proteccionderutas";
+import { NavbarZaimon } from "./component/home/navbarZaimon";
 
 //create your first component
 const Layout = () => {
@@ -39,6 +40,7 @@ const Layout = () => {
     return (
         <div>
             <BrowserRouter basename={basename}>
+                {/*  <NavbarZaimon /> */}
                 <Navbar />
                 <Routes>
                     <Route element={<Login />} path="/login" />
