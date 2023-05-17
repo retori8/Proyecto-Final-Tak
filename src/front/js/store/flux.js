@@ -11,7 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			thanks: [],
 			thanks_user: null,
 			thanks_by_user: null,
-			tareas_random: ["Hoy escribele una carta de agradecimiento a alguien que haya influido positivamente en tu vida.", "Hoy proponte decirle a una persona amiga algo que aprecias de ella", "Hoy mírate en el espejo mientras te lavas los dientes, y piensa en algo que has hecho bien recientemente o algo que te gusta de ti", "Hoy sal a caminar y mira cuantas cosas positivas puedes encontrar en tu camino, agudiza tus sentidos al máximo para encontrar las cosas que antes pasaban desapercibidas.", "Hoy disponte a comer disfrutando de cada bocado, con todos tus sentidos, despierta tu olfato, observa los colores, siente la temperatura y agradece el privilegio que tienes al gozar de esta comida."],
+			tareas_random: ["Hoy escríbele una carta de agradecimiento a alguien que haya influido positivamente en tu vida.", "Hoy proponte decirle a una persona amiga algo que aprecias de ella", "Hoy mírate en el espejo mientras te lavas los dientes, y piensa en algo que has hecho bien recientemente o algo que te gusta de ti", "Hoy sal a caminar y mira cuantas cosas positivas puedes encontrar en tu camino, agudiza tus sentidos al máximo para encontrar las cosas que antes pasaban desapercibidas.", "Hoy disponte a comer disfrutando de cada bocado, con todos tus sentidos, despierta tu olfato, observa los colores, siente la temperatura y agradece el privilegio que tienes al gozar de esta comida."],
 			random: null,
 			thank: {
 				list: "",
@@ -56,7 +56,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				mensaje: '',
 				tipo: 'success'
 			},
-			error: ""
+			error: "",
+			alert: {
+				show: false,
+				text: '',
+				textbtn: ''
+			}
 		},
 
 		actions: {
@@ -85,7 +90,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						navigate('/home')
 					} else {
-						alert("Lo siento aun no estas registrado(a)")
+						setStore({
+							alert: {
+								text: 'Usuario no registrado',
+								show: true,
+								textbtn: 'Registrarme',
+							}
+						})
 					}
 
 				} catch (error) {
@@ -105,6 +116,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						currentUser: JSON.parse(sessionStorage.getItem('currentUser'))
 					})
+					// } else {
+					// 	alert("aun no estas registrado(a)")
+					// setStore({
+					// 	alert: {
+					// 		text: 'Lo sentimos, aún no te has registrado, pero anímate sólo te tomara un par de minutos.',
+					// 		show: true,
+					// 		textbtn: 'Registrarme',
+					// 	}
+					// })
 				}
 			},
 
@@ -229,6 +249,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
+			addThanks: async () => {
+				try {
+					const { url, thank, currentUser } = getStore();
+					const response = await fetch(`${url}/thanks`, {
+						method: 'POST',
+						body: JSON.stringify({ ...thank }),
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': 'Bearer ' + currentUser?.access_token
+						}
+					})
+
+					const data_thank = await response.json()
+					console.log(data_thank)
+
+				} catch (error) {
+					console.log(error);
+				}
+			},
+
+
 			getThanksByUser: async () => {
 				try {
 					const { currentUser, url } = getStore()
@@ -251,7 +292,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			handleSubmit(e) {
+			async handleSubmit(e) {
 				e.preventDefault();
 				const { thanks } = getStore()
 				const { thank } = getStore()
@@ -260,6 +301,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					thanks: [...thanks, setchange]
 				})
 				e.target.reset()
+				await getActions().addThanks()
 				getActions().getThanks()
 				console.log(getStore().thanks)
 			},
@@ -386,7 +428,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					if (response.status === 404) throw Error("Page not found");
 					const days_info = await response.json();
-					
+
 					setStore({
 						days: days_info,
 					});
@@ -525,11 +567,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(getStore().currentUser)
 				if (getStore().currentUser !== null) {
 					getActions().logout()
-					navigate('/login')
 				}
-				else {
-					navigate('/login')
-				}
+					navigate('/acceso')
+				
 			},
 
 			getFavoritos() {

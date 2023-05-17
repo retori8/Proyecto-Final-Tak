@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import { Context } from "../store/appContext";
 import "../../styles/register.css"
+import { Alert } from "../component/alert";
+
 
 export const Loginow = () => {
 
@@ -10,6 +12,7 @@ export const Loginow = () => {
 
 
     useEffect(() => {
+        
         if (store.currentUser !== null) {
             navigate('/')
             console.log(store)
@@ -18,16 +21,15 @@ export const Loginow = () => {
 
 
     return (
-
-        <>
             <body className="bodyform">
+                
                 <div className="registration-form">
                     <form onSubmit={(e) => actions.getLogin(e, navigate)}>
+                    <Alert text={store.alert?.text} show={store.alert?.show}/>
                         <h1 className="registro text-center ">Nos alegra tenerte aquí</h1>
                         <div className="form-group">
                             <input
                                 required
-                                maxlength="20"
                                 type="email"
                                 label="Email"
                                 placeholder="Ingresa tu email"
@@ -52,20 +54,32 @@ export const Loginow = () => {
                                 value={store.password}
                                 name={'password'}
                             />
+                            <p className="text-crear-cuenta">
+                                <small className="">
+                                    ¿No tienes cuenta?
+                                    <Link className="link-crear-cuenta" to='/register'>
+                                        Crea tu cuenta aquí
+                                    </Link>
+                                </small>
+                            </p>
                         </div>
+
                         <div className="form-group">
                             <button type="submit" className="btnSubmit btn btn-block create-account">
                                 Acceder
                             </button>
+                            
                         </div>
                     </form>
+                    
                     <br />
                     <br />
                     <br />
                     <br />
                 </div>
             </body>
-        </>
+        
+        
 
 
     );
