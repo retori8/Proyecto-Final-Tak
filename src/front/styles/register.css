@@ -13,12 +13,12 @@
     margin-bottom: -100px;
 }
 
-.img-register{
+/* .img-register{
     display: flex;
     justify-content: center;
     width: 550px;
     margin-top: 50px;
-}
+} */
 
 .title-register{
     font-family: 'Playfair', serif;
@@ -30,21 +30,28 @@
 }
 /* //-------------------------------------------------------------------------------------------- */
 .bodyform{
-    background: url("http://localhost:3000/img/hojas3.jpg")no-repeat; 
+    height: 100vh;
+    margin-bottom: -90px;
 }
 
 .registration-form{
+    display: flex;
+    justify-content: center;
+    text-align: center;
 	padding: 50px 0;
+    margin-top: 100px;
+    margin-bottom: -150px;
+    border-radius: 50px;
 }
 
 .registration-form form{
-    background-color: rgb(246, 246, 238);
+    background-color: #f7e6d3;
     max-width: 600px;
     margin: auto;
     padding: 50px 70px;
-    /* border-radius: 30px; */
+    border-radius: 30px; 
     /* border-top-right-radius: 30px; */
-    box-shadow: 0 0 50px 5px #585050;
+    box-shadow: 0 0 50px 5px #acafac;
 }
 
 .registration-form .form-icon{
@@ -62,9 +69,16 @@
 
 .registration-form .item{
 	border-radius: 20px;
+    border: none;
     margin-bottom: 25px;
     padding: 10px 20px;
     background-color: white;
+}
+.registration-form .item:focus{
+	box-shadow: none;
+}
+.registration-form .item:hover{
+	box-shadow: none;
 }
 
 .registration-form .create-account{
@@ -75,7 +89,7 @@
     font-size: 18px;
     background-color: #636b5f;
     border: none;
-    color: #f7e6d3;
+    color: white;
     margin-top: 20px;
 }
 .registro{

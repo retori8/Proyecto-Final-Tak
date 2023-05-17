@@ -3,7 +3,7 @@ import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 export const Footer = () => {
 	return (
-		<div className="fixed-bottom">
+		<div className="">
 			<nav id="footer" className="">
 				<div className="container ">
 					<div className="row align-items-center">

@@ -16,7 +16,7 @@ export const Day1 = () => {
     const position = parseInt(current_day) - 1;
 
     return (
-        <div className="container">
+        <div className="container cont-days">
             <div className="row align-items-center">
                 <div className="col cont_flor">
                     <video src={store.days[position]?.image[0]?.archivo} preload="auto" autoPlay="autoplay" className="video" />

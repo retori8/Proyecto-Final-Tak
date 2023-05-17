@@ -7,8 +7,10 @@ import Alerta from "../component/panelAdministrativo/panel/alerta";
 
 export const PanelAdministrativo = () => {
     return (
-        <div className="container cont-panel">
+        <div className="cont-panel">
+            <div>
             <Alerta />
+            </div>
             <h1 className="title-panel"> Panel Administrativo </h1>
             <Panel />
             <BotonesCrear />

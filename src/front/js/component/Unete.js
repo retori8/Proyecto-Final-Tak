@@ -9,7 +9,7 @@ export const Unete = () => {
 
             <h2 className="title-unete">Únete a Tak</h2>
             <p className="text-unete"> Se parte de la comunidad de mayor crecimiento mundial.</p>
-            <Link to={"/register"}>
+            <Link className="link-unete" to={"/registrarme"}>
                 <button type="button" class="btn btn-outline-light btn-unete">Quiero Unirme</button>
             </Link>
         </div>

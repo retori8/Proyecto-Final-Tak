@@ -80,6 +80,7 @@ body section .row {
   border-radius: 20px;
   transition: ease all 2.3s;
   perspective: 1200px;
+  margin-bottom: 20px;
 }
 
 
@@ -254,11 +255,12 @@ body section .row {
   }
 
   .list-group-item{
-    font-size: 15px;
+    font-size: 12px;
   }
 
   .title-home-logueado{
-    font-size: 40px;
+    margin-top: 10px;
+    font-size: 28px;
     text-align: center;
   }
 

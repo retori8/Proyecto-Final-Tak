@@ -11,14 +11,14 @@ export const Day21 = () => {
 
 
     return (
-        <div className="container">
+        <div className="container cont-days">
             <div className="row align-items-center">
                 <div className="col cont_flor">
-                    <video src={store.days[20]?.image[0]?.archivo} preload="auto" autoPlay="autoplay" className="video" />
+                    <video src={store.days[20]?.image[0]?.archivo} preload="auto" autoPlay="autoplay" loop="loop" className="video" />
                 </div>
                 <div className="col" >
                     <div className="row align-items-center">
-                        <h1 id="tituloday21" className="col">Felicidades, estas en tú último día del desafío.</h1>
+                        <h1 id="tituloday21" className="titul0-21 col">Felicidades, estas en tú último día del desafío.</h1>
                         <h5 className="texto-21">"La perseverancia no es una carrera larga, son muchas carreras cortas una tras otra.
                             Y cada una de ellas es importante." (Walter Elliot)</h5>
                         <audio className="audio" src={store.days[20]?.image[1]?.archivo} controls="controls" preload="none" onEnded={(e) => navigate(`/challenges/21days/3`)} />

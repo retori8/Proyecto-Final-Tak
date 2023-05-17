@@ -10,7 +10,7 @@ const BotonesCrear = () => {
     return (
         <div className="row mt-5">
             <div className="d-flex justify-content-center">
-                <button type="button" className="btn btn-secondary" data-bs-target="#formCrearUsuarioModal" data-bs-toggle="modal" onClick={actions.abrirModalCrearUsuario}> Crear Usuario </button>
+                <button type="button" className="btn btn-panel" data-bs-target="#formCrearUsuarioModal" data-bs-toggle="modal" onClick={actions.abrirModalCrearUsuario}> Crear Usuario </button>
             </div>
             <ModalPanel id="formCrearUsuario" tamano="modal-xl" titulo={"Crear Usuario"}>
                 <FormularioEditarUsuario />

@@ -20,8 +20,9 @@
 .circle-box{
     background-color: #01010165;
     width: 350px;
+    height: 350px;
     margin-left: 150px;
-    margin-top: 200px;
+    margin-top: 100px;
     border-radius: 20px;
 }
 
@@ -38,7 +39,7 @@
 .respira-title{
     justify-content: center;
     text-align: left;
-    margin-top: 200px;
+    margin-top: 100px;
 
     font-family: 'Playfair', serif;
     font-weight: 600;
@@ -54,9 +55,9 @@
         width: 350px;
         text-align: center;
         margin-left: -100px;
-        
+        margin-bottom: 20px;
         font-size: 40px;
-        line-height: 40px;
+        line-height: 35px;
         
     }
 }

@@ -24,7 +24,7 @@ export const Loginow = () => {
             <body className="bodyform">
                 
                 <div className="registration-form">
-                    <form onSubmit={(e) => actions.getLogin(e, navigate)}>
+                    <form className="card-login" onSubmit={(e) => actions.getLogin(e, navigate)}>
                     <Alert text={store.alert?.text} show={store.alert?.show}/>
                         <h1 className="registro text-center ">Nos alegra tenerte aquí</h1>
                         <div className="form-group">
@@ -54,9 +54,9 @@ export const Loginow = () => {
                                 value={store.password}
                                 name={'password'}
                             />
-                            <p className="text-crear-cuenta">
+                            <p className="text-crear-cuenta text-center">
                                 <small className="">
-                                    ¿No tienes cuenta?
+                                    ¿No tienes cuenta?{" "}
                                     <Link className="link-crear-cuenta" to='/register'>
                                         Crea tu cuenta aquí
                                     </Link>

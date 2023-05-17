@@ -16,7 +16,7 @@
     font-weight: 600;
     font-size: 80px;
     line-height: 70px;
-    margin-top: 250px;
+    margin-top: 200px;
     color: #333233;
 }
 
@@ -58,8 +58,9 @@
 .cont-random-card{
     margin-top: 50px;
     background-color: #636b5f;
-    padding: 50px 50px;
-    border-radius: 100px;
+    padding: 30px 30px;
+    border-radius: 50px;
+    width: 500px;
 
     display: block;
     justify-content: center;
@@ -92,8 +93,8 @@
 
     font-family: 'Playfair Display', serif;
     font-weight: 500;
-    font-size: 25px;
-    line-height: 35px;
+    font-size: 20px;
+    line-height: 30px;
 
     color: #f5f4ec;
 }
@@ -125,9 +126,13 @@
     .card-random{
         height: 230px;
         margin-top: 0px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
     }
 
     .cont-random-card{
+        width: 360px;
         margin-top: 20px;
         border-radius: 50px;
     }

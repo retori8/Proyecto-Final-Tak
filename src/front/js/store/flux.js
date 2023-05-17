@@ -159,7 +159,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json()
 					console.log(data)
 
-					navigate('/login')
+					navigate('/acceso')
 
 				} catch (error) {
 					console.log(error);

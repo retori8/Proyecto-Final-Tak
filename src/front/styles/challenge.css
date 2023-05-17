@@ -5,7 +5,7 @@
 
 .content-desafio{
     height: 100vh;
-    padding-top: 170px;
+    padding-top: 100px;
     margin-bottom: -90px;
 }
 
@@ -126,12 +126,14 @@
 } */
 /* 
 -------------------------------------------------------------------------- */
+
 #tituloday21{
     color: #636b5f;
     font-family: 'Playfair', serif;
     margin-bottom: 10px;
     font-weight: 600;
     font-size: 50px;
+    margin-top: 0px;
 }
 .texto-21{
     color: #636b5f;
@@ -152,16 +154,30 @@
     font-family: 'Playfair', serif;
     text-decoration: none;
     border: none;
+    text-decoration: none;
+    text-decoration-line: none; 
+}
+.cont_boton{
+    text-decoration: none;
+    text-decoration-line: none; 
 }
 .cont_flor{
     display: flex;
     justify-content: center;
     text-align: center;
+    margin-top: 100px;
+}
+.cont-days{
+    height: 100vh;
+    margin-bottom: -90px;
 }
 @media(max-width:600px) {
+    ..cont_flor{
+        margin-top: 0;
+    }
     
     .video{
-        width: 300px;
+        width: 280px;
 
     }
     #tituloday21{
@@ -172,14 +188,15 @@
         text-align: center;
     }
     .texto-21{
-        margin-bottom: 15px;
-        text-align: center; 
+        display: none;
     }
    .cont_boton{
     display: flex;
     justify-content: center;
     text-align: center;
-    
+   }
+   .titul0-21{
+    line-height:40px;
    }
     
 }
