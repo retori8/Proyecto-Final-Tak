@@ -17,7 +17,6 @@ export const CampoForm = (props) => {
         name={props.name}
         funcion={props.funcion}
       />
-      {/* <div className="error"></div> */}
     </div>
   );
 };

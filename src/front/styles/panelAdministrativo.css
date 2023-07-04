@@ -12,7 +12,7 @@
 .title-panel{
     font-family: 'Playfair', serif;
     font-weight: 700;
-    font-size: 70px;
+    font-size: 40px;
     color: 333233;
     text-align: center;
     margin-left: 15px;
@@ -38,7 +38,7 @@
 }
 /* ------------------ CARD --------------------- */
 .cont-estadisticas{
-    margin-top: 100px;
+    margin-top: 30px;
 }
 .card-esta{
     background-color: white;
@@ -51,7 +51,6 @@
     font-family: 'Roboto', sans-serif;
     font-size: 70px;
     font-weight: 700;
-    
 }
 .card-img{
     background-color: #636b5f;

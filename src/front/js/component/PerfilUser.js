@@ -1,5 +1,4 @@
 import React from "react";
-import { ReactPropTypes } from "react";
 import { CampoForm } from "./CampoForm";
 import { BotonUno } from "./BotonUno";
 

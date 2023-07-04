@@ -116,23 +116,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						currentUser: JSON.parse(sessionStorage.getItem('currentUser'))
 					})
-					// } else {
-					// 	alert("aun no estas registrado(a)")
-					// setStore({
-					// 	alert: {
-					// 		text: 'Lo sentimos, aún no te has registrado, pero anímate sólo te tomara un par de minutos.',
-					// 		show: true,
-					// 		textbtn: 'Registrarme',
-					// 	}
-					// })
 				}
 			},
-
-			/* handlePasswordValidate(e){
-				const { newUser } = getStore()
-				e.preventDefault();
-				
-			}, */
 
 			logout: () => {
 				if (sessionStorage.getItem('currentUser')) {
@@ -181,16 +166,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			handleChangeObjUser(e) {
 				const { newUser } = getStore()
 				e.preventDefault();
-				// if(getStore().newUser.name.length < 3){
-				// 	alert("El campo de nombre debe tener minimo 3 caracteres")
-				// };
-
-				// if(getStore().newUser.lastname.length < 3){
-				// 	alert("El campo de apellido debe tener minimo 3 caracteres")
-				// };
-				// if(getStore().newUser.email.length < 8 ){
-				// 	alert("El campo de apellido debe tener minimo 3 caracteres")
-				// };
+				
 
 				newUser[e.target.name] = e.target.value
 				setStore({ newUser })
@@ -516,52 +492,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			/*addFavorite(fav) {
-					const { favorite } = getStore();
-					let listafav = [...favorite, fav];
-					setStore({ favorite: listafav });
-				},
-				handleDelete(i) {
-					const { favorite } = getStore()
-					favorite.splice(i, 1);
-					setStore({ favorite: favorite });
-				},
-		
-				/*<ul className="dropdown-menu"> menu
-						  
-						  {!!favorite &&
-							favorite.length > 0 &&
-							favorite.map((fav, index) => {
-							  console.log(favorite)
-							  return (
-								<Favorites fav={fav} i={index}/>
-							  );
-							})}
-						</ul><ul className="dropdown-menu">
-						  
-						  {!!favorite &&
-							favorite.length > 0 &&
-							favorite.map((fav, index) => {
-							  console.log(favorite)
-							  return (
-								<Favorites fav={fav} i={index}/>
-							  );
-							})}
-						</ul>*/
-
-			// handleSubmitRegister: e => {
-			// 	const { createNewUser } = getActions()
-			// 	console.log(store);
-			// 	e.preventDefault();
-			// 	if (store.newUser.re_password.length > 0) {
-			// 		if (store.newUser.password !== store.newUser.re_password) {
-			// 			console.log("Las contraseñan no son iguales")
-			// 		}
-			// 		else {
-			// 			createNewUser();
-			// 		}
-			// 	}
-			// },
 
 			comprobarLogin(navigate) {
 				console.log(getStore().currentUser)

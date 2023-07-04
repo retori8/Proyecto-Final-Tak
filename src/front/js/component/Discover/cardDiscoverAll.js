@@ -1,6 +1,5 @@
 import React from "react";
 import "../../../styles/discover.css"
-/* import { ButtonFavorite } from "./buttonFavorite"; */
 
 export const CardDiscoverAll = (props) => {
 
@@ -24,9 +23,6 @@ export const CardDiscoverAll = (props) => {
                     <p className="card-resena">
                         <strong>Reseña:</strong> {props.properties}
                     </p>
-                    {/* <div className="py-2 mt-4 text-end">
-                        <ButtonFavorite />
-                    </div> */}
                 </div>
             </div>
         </div>

@@ -10,7 +10,6 @@ export default function Input(props) {
           type="text"
           name="thank"
           onChange={props.handleChange}
-        //thanks.text
         />
       </form>
     </div>

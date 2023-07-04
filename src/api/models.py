@@ -76,8 +76,8 @@ class User(db.Model):# voy a crear un modelo con esa clase
     address = db.Column(db.String(120), nullable=True)#--------------- default ="" / no es obligarotio
     birthdate = db.Column(db.DateTime(), nullable=True)
     image = db.Column(db.String(255), nullable=True)
-    role_id = db.Column(db.Integer, db.ForeignKey("role.id"), default=2)
-    thanks = db.relationship('Thanks', back_populates="user")
+    role_id = db.Column(db.Integer, db.ForeignKey("role.id"), default=2) #--------este campo esta relacionado con la tabla role, es su campo id 'role.id'
+    thanks = db.relationship('Thanks', back_populates="user")#----- se relaciona/junta al modelo Book, a travez de la tabla segundaria, con consulta por ambas partes
     books = db.relationship('Book', secondary='favorite_book', backref="users")
     podcasts = db.relationship('Podcast', secondary='favorite_podcast', backref="users")
     movies = db.relationship('Movie', secondary='favorite_movie', backref="users")

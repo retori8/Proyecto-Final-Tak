@@ -301,6 +301,7 @@ def search_user():
     users = list(map(lambda user: user.serialize(), users))#traemelo como diccionario
 
     return jsonify(users), 200 
+    
 
 @app.route('/api/users/<int:id>', methods=['PUT'])
 # @jwt_required()

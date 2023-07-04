@@ -24,9 +24,6 @@ export const CardPodcats = (props) => {
                     <p className="card-resena">
                         <strong>Reseña:</strong>{props.properties}
                     </p>
-                    {/* <div className="py-2 mt-4 text-end">
-                        <ButtonFavorite />
-                    </div> */}
                 </div>
             </div>
         </div>

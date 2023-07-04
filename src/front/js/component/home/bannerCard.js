@@ -28,7 +28,7 @@ export const BannerCard = () => {
                                         Mindfulness es la práctica de estar presente y completamente comprometido en el momento actual, sin juicio ni distracción. Implica prestar atención a los pensamientos, sentimientos y sensaciones de una manera no crítica.
                                     </p>
                                     <br />
-                                    <Link type="button" className="btn btn-outline-light btnHeader" aria-current="page" to="/register">Crea tu Cuenta</Link>
+                                    <Link type="button" className="btn btn-outline-light btnHeader" aria-current="page" to="/registrarme">Crea tu Cuenta</Link>
                                 </div>
                             </div>
                         </div>
